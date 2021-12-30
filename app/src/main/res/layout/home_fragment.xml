@@ -1,0 +1,988 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="HomeFragmentBinding">
+
+        <import type="com.sagisu.vault.utils.TransferTypeDescriptor" />
+
+        <variable
+            name="viewModel"
+            type="com.sagisu.vault.ui.home.HomeViewModel" />
+
+        <import type="com.sagisu.vault.utils.AssetTypeDescriptor" />
+
+        <import type="com.sagisu.vault.utils.FeatureNameDescriptor" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".ui.home.HomeFragment">
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.storyteller.ui.row.StorytellerRowView
+                android:id="@+id/channelRowView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
+                app:cellType="round"
+                app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toTopOf="@+id/guideline3" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/gradient"
+                android:elevation="10dp"
+                android:translationZ="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/channelRowView">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="24dp"
+                    android:src="@drawable/ic_rectangle"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView10"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView11"
+                    app:layout_constraintEnd_toEndOf="@+id/appCompatImageView11"
+                    app:layout_constraintStart_toStartOf="@+id/appCompatImageView11"
+                    app:layout_constraintTop_toTopOf="@+id/appCompatImageView11"
+                    app:srcCompat="@drawable/ic_wallet"
+                    app:tint="@color/white" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appCompatTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/your_account_value"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toEndOf="@+id/appCompatImageView11"
+                    app:layout_constraintTop_toTopOf="@+id/appCompatImageView11" />
+
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/shimmer_view_container"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="@+id/home_wallet_balance"
+                    app:layout_constraintEnd_toEndOf="@+id/appCompatTextView"
+                    app:layout_constraintStart_toStartOf="@+id/appCompatTextView"
+                    app:layout_constraintTop_toBottomOf="@+id/appCompatTextView"
+                    app:shimmer_duration="800">
+
+                    <View
+                        android:id="@+id/thumbnail"
+                        android:layout_width="wrap_content"
+                        android:layout_height="10dp"
+                        android:background="@color/white" />
+
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/home_wallet_balance"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="4dp"
+                    android:fontFamily="@font/rubik_medium"
+                    android:text='@{"$ "+viewModel.totalWalletBalance}'
+                    android:textColor="@color/white"
+                    android:textSize="22sp"
+                    android:visibility="invisible"
+                    app:layout_constraintStart_toEndOf="@+id/appCompatImageView11"
+                    app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--android:onClick="@{()->viewModel.setTransferType(TransferTypeDescriptor.TO_CONTACT)}"-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="5dp"
+                android:onClick="@{()->viewModel.setJoinWaitList(FeatureNameDescriptor.TRANSFER_TO_CONTACT)}"
+                app:cardBackgroundColor="#4D81FF"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/materialCardView2"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/contactImg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="20dp"
+                        android:src="@drawable/ic_contact"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="12dp"
+                        android:fontFamily="@font/rubik_medium"
+                        android:text="@string/to_contact"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/contactImg" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!--android:onClick="@{()->viewModel.setTransferType(TransferTypeDescriptor.TO_ACCOUNT)}"-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView2"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:onClick="@{()->viewModel.setJoinWaitList(FeatureNameDescriptor.TRANSFER_TO_ACCOUNT)}"
+                app:cardBackgroundColor="#4D81FF"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/materialCardView3"
+                app:layout_constraintStart_toEndOf="@+id/materialCardView"
+                app:layout_constraintTop_toTopOf="@+id/materialCardView">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/accountImg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="20dp"
+                        android:src="@drawable/ic_bank"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="12dp"
+                        android:fontFamily="@font/rubik_medium"
+                        android:text="@string/to_account"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/accountImg" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!--android:onClick="@{()->viewModel.setTransferType(TransferTypeDescriptor.TO_SELF)}"-->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView3"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:onClick="@{()->viewModel.setJoinWaitList(FeatureNameDescriptor.TRANSFER_TO_SELF)}"
+                app:cardBackgroundColor="#4D81FF"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/materialCardView4"
+                app:layout_constraintStart_toEndOf="@+id/materialCardView2"
+                app:layout_constraintTop_toTopOf="@+id/materialCardView2">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/selfImg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="20dp"
+                        android:src="@drawable/ic_self"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="12dp"
+                        android:fontFamily="@font/rubik_medium"
+                        android:text="@string/to_self"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/selfImg" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView4"
+                android:layout_width="90dp"
+                android:layout_height="90dp"
+                android:layout_marginStart="5dp"
+                android:layout_marginEnd="5dp"
+                android:visibility="gone"
+                app:cardBackgroundColor="#4D81FF"
+                app:cardCornerRadius="10dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                app:layout_constraintStart_toEndOf="@+id/materialCardView3"
+                app:layout_constraintTop_toTopOf="@+id/materialCardView">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/qrCodeImg"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="20dp"
+                        android:src="@drawable/ic_upi"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="12dp"
+                        android:layout_marginEnd="8dp"
+                        android:layout_marginBottom="12dp"
+                        android:fontFamily="@font/rubik_medium"
+                        android:text="@string/upi_or_qr"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/qrCodeImg" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout19"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/blue_500"
+                android:padding="10dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/view"
+                android:visibility="gone">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:src="@drawable/caution"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appCompatTextView92"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginEnd="4dp"
+                    android:gravity="center"
+                    android:text="verify your identity to continue to trade"
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/materialButton6"
+                    app:layout_constraintStart_toEndOf="@+id/appCompatImageView24"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/materialButton6"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="50dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:backgroundTint="@color/blue_500"
+                    android:fontFamily="@font/rubik_medium"
+                    android:text="@string/learn_more"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="5sp"
+                    app:cornerRadius="5dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/home_verify_identity"
+                    app:layout_constraintStart_toEndOf="@+id/appCompatTextView92"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:strokeColor="@color/white"
+                    app:strokeWidth="1dp" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/home_verify_identity"
+                    style="@style/SmallButtonStyle"
+                    android:layout_width="50dp"
+                    android:layout_height="35dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:backgroundTint="@color/white"
+                    android:fontFamily="@font/rubik_medium"
+                    android:text="@string/verify_identity"
+                    android:textAllCaps="false"
+                    android:textColor="@color/blue_500"
+                    android:textSize="5sp"
+                    app:cornerRadius="5dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/materialButton6"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <View
+                android:id="@+id/view"
+                android:layout_width="0dp"
+                android:layout_height="2dp"
+                android:layout_marginTop="16dp"
+                android:background="#F8F8F8"
+                app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardView2" />
+
+            <!--android:onClick="@{()->viewModel.setTransferType(TransferTypeDescriptor.FUND_WALLET)}"-->
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="@{()->viewModel.setJoinWaitList(FeatureNameDescriptor.FUND_WALLET)}"
+                app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout19">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView9"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_wallet_blue" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appCompatTextView66"
+                    style="@style/TextExtraDarkStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/adding_wallet_amount"
+                    app:layout_constraintStart_toEndOf="@+id/appCompatImageView9"
+                    app:layout_constraintTop_toTopOf="@+id/appCompatImageView9" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appCompatTextView67"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Add Your Bank Accounts Here"
+                    android:textColor="@color/text_200"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/appCompatTextView66"
+                    app:layout_constraintTop_toBottomOf="@+id/appCompatTextView66" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_right_arrow" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout10"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView20"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:src="@drawable/train"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appCompatTextView80"
+                    style="@style/TextExtraDarkStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="Will &amp; trust"
+                    app:layout_constraintStart_toEndOf="@+id/appCompatImageView20"
+                    app:layout_constraintTop_toTopOf="@+id/appCompatImageView20" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appCompatTextView90"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Manage your kids growth"
+                    android:textColor="@color/text_200"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/appCompatTextView80"
+                    app:layout_constraintTop_toBottomOf="@+id/appCompatTextView80" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/join_will_trust"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="70dp"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="16dp"
+                    android:fontFamily="@font/rubik_medium"
+                    android:onClick="@{()->viewModel.setJoinWaitList(FeatureNameDescriptor.TOKENIZE_WILL_TRUST)}"
+                    android:text="Tokenize"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="8dp"
+                    app:backgroundTint="#033FD1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout10">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView12"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:src="@drawable/bitcoin1"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appCompatTextView75"
+                    style="@style/TextExtraDarkStyle"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/crypto"
+                    app:layout_constraintStart_toEndOf="@+id/appCompatImageView12"
+                    app:layout_constraintTop_toTopOf="@+id/appCompatImageView12" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appCompatTextView68"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Your digital gold"
+                    android:textColor="@color/text_200"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/appCompatTextView75"
+                    app:layout_constraintTop_toBottomOf="@+id/appCompatTextView75" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buy_crypto"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="50dp"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="4dp"
+                    android:fontFamily="@font/rubik_medium"
+                    android:onClick="@{()->viewModel.setJoinWaitList(FeatureNameDescriptor.BUY_CRYPTO)}"
+                    android:text="@string/buy"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="8dp"
+                    app:backgroundTint="@color/green"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/receive_crypto"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/receive_crypto"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="55dp"
+                    android:layout_height="35dp"
+                    android:fontFamily="@font/rubik_medium"
+                    android:onClick="@{()->viewModel.setTransferType(TransferTypeDescriptor.RECEIVE_CRYPTO)}"
+                    android:text="@string/receive"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="8dp"
+                    app:backgroundTint="@color/red_500"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout4">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView14"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:src="@drawable/ic_nft"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appCompatTextView74"
+                    style="@style/TextExtraDarkStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/nft"
+                    app:layout_constraintStart_toEndOf="@+id/appCompatImageView14"
+                    app:layout_constraintTop_toTopOf="@+id/appCompatImageView14" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appCompatTextView69"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="Buy collection"
+                    android:textColor="@color/text_200"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/appCompatTextView74"
+                    app:layout_constraintTop_toBottomOf="@+id/appCompatTextView74" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buy_nft"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="50dp"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="4dp"
+                    android:fontFamily="@font/rubik_medium"
+                    android:onClick="@{()->viewModel.setJoinWaitList(FeatureNameDescriptor.BUY_NFT)}"
+                    android:text="@string/buy"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="8dp"
+                    app:backgroundTint="@color/green"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/receive_nft"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/receive_nft"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="55dp"
+                    android:layout_height="35dp"
+                    android:fontFamily="@font/rubik_medium"
+                    android:onClick="@{()->viewModel.setJoinWaitList(FeatureNameDescriptor.RECEIVE_NFT)}"
+                    android:text="@string/receive"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="8dp"
+                    app:backgroundTint="@color/red_500"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout5">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView15"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_stocks" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appCompatTextView76"
+                    style="@style/TextExtraDarkStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/stocks"
+                    app:layout_constraintStart_toEndOf="@+id/appCompatImageView15"
+                    app:layout_constraintTop_toTopOf="@+id/appCompatImageView15" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appCompatTextView70"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="Invest in the World's most Popular Assets"
+                    android:textColor="@color/text_200"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@+id/buy_stocks"
+                    app:layout_constraintStart_toStartOf="@+id/appCompatTextView76"
+                    app:layout_constraintTop_toBottomOf="@+id/appCompatTextView76" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buy_stocks"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="50dp"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="4dp"
+                    android:fontFamily="@font/rubik_medium"
+                    android:onClick="@{()->viewModel.setJoinWaitList(FeatureNameDescriptor.BUY_STOCKS)}"
+                    android:text="@string/buy"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="8dp"
+                    app:backgroundTint="@color/green"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/receive_stocks"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/receive_stocks"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="55dp"
+                    android:layout_height="35dp"
+                    android:fontFamily="@font/rubik_medium"
+                    android:onClick="@{()->viewModel.setJoinWaitList(FeatureNameDescriptor.RECEIVE_STOCKS)}"
+                    android:text="@string/receive"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="8dp"
+                    app:backgroundTint="@color/red_500"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout6">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView16"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:src="@drawable/insurance"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appCompatTextView77"
+                    style="@style/TextExtraDarkStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/insurance"
+                    app:layout_constraintStart_toEndOf="@+id/appCompatImageView16"
+                    app:layout_constraintTop_toTopOf="@+id/appCompatImageView16" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appCompatTextView71"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:layout_marginEnd="4dp"
+                    android:text="Allows you to Buy Coverage"
+                    android:textColor="@color/text_200"
+                    android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@+id/buy_insurance"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="@+id/appCompatTextView77"
+                    app:layout_constraintTop_toBottomOf="@+id/appCompatTextView77" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/buy_insurance"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="50dp"
+                    android:layout_height="35dp"
+                    android:layout_marginEnd="4dp"
+                    android:fontFamily="@font/rubik_medium"
+                    android:onClick="@{()->viewModel.setJoinWaitList(FeatureNameDescriptor.BUY_INSURANCE)}"
+                    android:text="@string/buy"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="8dp"
+                    app:backgroundTint="@color/green"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/receive_insurance"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/receive_insurance"
+                    style="@style/Widget.MaterialComponents.Button.TextButton"
+                    android:layout_width="55dp"
+                    android:layout_height="35dp"
+                    android:fontFamily="@font/rubik_medium"
+                    android:onClick="@{()->viewModel.setJoinWaitList(FeatureNameDescriptor.RECEIVE_INSURANCE)}"
+                    android:text="@string/receive"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:textSize="8sp"
+                    app:backgroundTint="@color/red_500"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/recent_transaction_wrap"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/constraintLayout7">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView17"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:src="@drawable/transaction"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appCompatTextView78"
+                    style="@style/TextExtraDarkStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/recent_transaction"
+                    app:layout_constraintStart_toEndOf="@+id/appCompatImageView17"
+                    app:layout_constraintTop_toTopOf="@+id/appCompatImageView17" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appCompatTextView72"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="All your wallet transactions"
+                    android:textColor="@color/text_200"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/appCompatTextView78"
+                    app:layout_constraintTop_toBottomOf="@+id/appCompatTextView78" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_right_arrow" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/constraintLayout9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:onClick="@{()->viewModel.setJoinWaitList(FeatureNameDescriptor.PORTFOLIO)}"
+                app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                app:layout_constraintStart_toStartOf="@+id/guideline2"
+                app:layout_constraintTop_toBottomOf="@+id/recent_transaction_wrap">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView18"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="16dp"
+                    android:src="@drawable/portfolio"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appCompatTextView79"
+                    style="@style/TextExtraDarkStyle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="@string/portfolio"
+                    app:layout_constraintStart_toEndOf="@+id/appCompatImageView18"
+                    app:layout_constraintTop_toTopOf="@+id/appCompatImageView18" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appCompatTextView73"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:text="View of your investments and liabilities"
+                    android:textColor="@color/text_200"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/appCompatTextView79"
+                    app:layout_constraintTop_toBottomOf="@+id/appCompatTextView79" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/ic_right_arrow" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!-- <androidx.constraintlayout.widget.ConstraintLayout
+                 android:id="@+id/constraintLayout4"
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:background="#F8F8F8"
+                 app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                 app:layout_constraintStart_toStartOf="@+id/guideline2"
+                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout3">
+
+                 <androidx.appcompat.widget.AppCompatTextView
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginStart="25dp"
+                     android:layout_marginTop="16dp"
+                     android:layout_marginBottom="16dp"
+                     android:text="@string/recent_transactions"
+                     app:layout_constraintBottom_toBottomOf="parent"
+                     app:layout_constraintStart_toStartOf="parent"
+                     app:layout_constraintTop_toTopOf="parent" />
+
+                 <androidx.appcompat.widget.AppCompatTextView
+                     android:id="@+id/appCompatTextView2"
+                     android:layout_width="wrap_content"
+                     android:layout_height="wrap_content"
+                     android:layout_marginEnd="25dp"
+                     android:text="@string/see_all"
+                     app:layout_constraintBottom_toBottomOf="parent"
+                     app:layout_constraintEnd_toEndOf="parent"
+                     app:layout_constraintTop_toTopOf="parent" />
+             </androidx.constraintlayout.widget.ConstraintLayout>
+
+             <androidx.recyclerview.widget.RecyclerView
+                 android:id="@+id/home_recent_transaction_list"
+                 android:layout_width="0dp"
+                 android:layout_height="0dp"
+                 app:layout_constraintBottom_toBottomOf="parent"
+                 app:layout_constraintEnd_toStartOf="@+id/guideline4"
+                 app:layout_constraintStart_toStartOf="@+id/guideline2"
+                 app:layout_constraintTop_toBottomOf="@+id/constraintLayout4" />-->
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="20dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="20dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="20dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

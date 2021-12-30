@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="CoinsListItemBinding">
+
+        <variable
+            name="model"
+            type="com.sagisu.vault.models.Coins" />
+
+        <import type="android.view.View"/>
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/coins_item_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/appCompatTextView9"
+            imageUrl="@{model.logo}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView5"
+            app:layout_constraintEnd_toStartOf="@+id/appCompatTextView5"
+            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toTopOf="@+id/appCompatTextView5" />
+
+        <!--<androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView9"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/circle_shape_purple"
+            android:fontFamily="@font/rubik_medium"
+            android:gravity="center"
+            android:text='@{(model.name.isEmpty()) ? " " : model.name.substring(0,1)}'
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/appCompatTextView5"
+            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toTopOf="parent" />-->
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/rubik_medium"
+            android:text="@{model.name}"
+            android:textColor="#14172C"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/appCompatTextView9"
+            app:layout_constraintTop_toTopOf="@+id/appCompatTextView15" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView15"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:fontFamily="@font/rubik_medium"
+            android:text='@{((model.balance == (long) model.balance)?String.format("%d",(long)model.balance) : String.format("%.6f",model.balance)) +" "+model.symbol}'
+            android:textColor="@color/text_700"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline40"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/show_decimal_points"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:fontFamily="@font/rubik_medium"
+            android:textColor="@color/colorPrimary"
+            android:textSize="14sp"
+            android:text="Show decimals"
+            android:visibility='@{(String.valueOf(model.balance).split("\\.")[1].length() >6 )? View.VISIBLE: View.GONE}'
+            app:layout_constraintEnd_toEndOf="@+id/appCompatTextView15"
+            app:layout_constraintStart_toStartOf="@+id/guideline40"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView15" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:textColor="@color/text_500"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/appCompatTextView15"
+            app:layout_constraintStart_toStartOf="@+id/guideline40"
+            app:layout_constraintTop_toBottomOf="@+id/show_decimal_points" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="#F8F8F8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/appCompatTextView15"
+            app:layout_constraintStart_toStartOf="@+id/appCompatTextView9" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="10dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline40"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.7" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

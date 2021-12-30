@@ -1,0 +1,320 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="LoginPage1Binding">
+
+        <variable
+            name="viewModel"
+            type="com.sagisu.vault.ui.login.fragments.LoginViewModel" />
+
+        <import type="com.sagisu.vault.ui.login.fragments.LoginViewModel.PageType" />
+        <import type="com.sagisu.vault.ui.login.fragments.LoginViewModel.ViewType" />
+        <import type="com.sagisu.vault.utils.Util"/>
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        tools:context=".Product.Login.ui.login.LoginActivity">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/imageView6"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                app:layout_constraintBottom_toTopOf="@+id/guideline24"
+                app:layout_constraintDimensionRatio=""
+                app:layout_constraintEnd_toStartOf="@+id/guideline30"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline29"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/app_logo_login" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline23"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.0" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline24"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.4" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline26"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.89" />
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/login_business_id_wrap"
+                style="@style/TextInputStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:visibility="gone"
+                app:layout_constraintEnd_toStartOf="@+id/guideline31"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline28"
+                app:layout_constraintTop_toTopOf="@+id/guideline24">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/login_business_id"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Business Id"
+                    android:inputType="text"
+                    android:maxLines="1"
+                    android:singleLine="true" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/login_phone_wrap"
+                style="@style/TextInputStyle"
+                requiredValidator="@{viewModel.consumer.phone}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="17dp"
+                app:prefixText="@{Util.phone_prefix}"
+                app:helperTextTextColor="@color/helper_text"
+                app:layout_constraintEnd_toStartOf="@+id/guideline31"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline28"
+                app:layout_constraintTop_toBottomOf="@+id/login_business_id_wrap">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/login_phone"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Mobile Number*"
+                    android:inputType="phone"
+                    android:maxLength="13"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@={viewModel.consumer.phone}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/login_password_wrap"
+                style="@style/TextInputStyle"
+                requiredValidator="@{viewModel.consumer.password}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="22dp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline31"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline28"
+                app:layout_constraintTop_toBottomOf="@+id/login_phone_wrap"
+                app:passwordToggleEnabled="true">
+
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/login_password"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Password"
+                    android:inputType="textPassword"
+                    android:maxLines="1"
+                    android:singleLine="true"
+                    android:text="@={viewModel.consumer.password}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/material_text_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="29dp"
+                android:layout_marginTop="7dp"
+                android:layout_marginBottom="50dp"
+                android:lineSpacingExtra="13sp"
+                android:text="Forgot Password"
+                android:onClick="@{()-> viewModel.setViewType(ViewType.ForgotPassword)}"
+                android:textAllCaps="false"
+                android:textColor="@color/colorPrimary"
+                android:textSize="11sp"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/guideline27"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/login_password_wrap"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <LinearLayout
+                android:id="@+id/layout_already_registered"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/login_employee"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/login_password_wrap"
+                app:layout_constraintVertical_bias="0.13">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textView3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="13sp"
+                    android:text="Don't have account?"
+                    android:textColor="#FF4C5B72"
+                    android:textSize="11sp" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/sign_up"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:lineSpacingExtra="13sp"
+                    android:onClick="@{()-> viewModel.setViewType(ViewType.SignUp)}"
+                    android:text="Signup here"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:id="@+id/layout_versionCode"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="103dp"
+                android:layout_marginBottom="80dp"
+                android:gravity="center_horizontal"
+                android:orientation="horizontal"
+                app:layout_constraintBottom_toTopOf="@+id/guideline26"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/material_text_button">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/textView4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:lineSpacingExtra="13sp"
+                    android:text="Version"
+                    android:textColor="#FF4C5B72"
+                    android:textSize="11sp"
+                    android:visibility="gone" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/versionNumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:lineSpacingExtra="18sp"
+                    android:textColor="@color/colorPrimary"
+                    android:textSize="11sp" />
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline27"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_percent="0.71" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline28"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="27dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline29"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="60dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline30"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="66dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline31"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="27dp" />
+
+            <RelativeLayout
+                android:id="@+id/login_employee"
+                android:layout_width="0dp"
+                android:layout_height="57dp"
+                android:background="@color/colorPrimary"
+                android:onClick="@{()->viewModel.login()}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/login_businessPartner"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toStartOf="parent">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerHorizontal="true"
+                    android:layout_centerVertical="true"
+                    android:lineSpacingExtra="6sp"
+                    android:text="Login"
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/login_businessPartner"
+                android:layout_width="0dp"
+                android:layout_height="57dp"
+                android:layout_marginStart="1dp"
+                android:layout_marginTop="47dp"
+                android:background="@color/colorPrimary"
+                android:visibility="gone"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.5"
+                app:layout_constraintHorizontal_chainStyle="spread"
+                app:layout_constraintStart_toEndOf="@+id/login_employee"
+                app:layout_constraintTop_toBottomOf="@+id/layout_already_registered"
+                app:layout_constraintVertical_bias="1.0">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/btn_login_bp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:lineSpacingExtra="6sp"
+                    android:text="Customer  "
+                    android:textColor="@color/white"
+                    android:textSize="16dp" />
+
+            </RelativeLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

@@ -1,0 +1,3 @@
+rootProject.name = "Sagisu Wallet"
+include ':app'
+include ':SagisuWallet'

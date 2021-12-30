@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="ReceiveCryptoFragmentBinding">
+
+        <variable
+            name="viewModel"
+            type="com.sagisu.vault.ui.trade.receive.ReceiveCryptoViewModel" />
+
+        <import type="com.sagisu.vault.utils.Util" />
+
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/img_qr_code"
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:scaleType="fitXY"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.3" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                imageUrl="@{viewModel.coins.logo128dp}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/img_qr_code"
+                app:layout_constraintEnd_toEndOf="@+id/img_qr_code"
+                app:layout_constraintStart_toStartOf="@+id/img_qr_code"
+                app:layout_constraintTop_toTopOf="@+id/img_qr_code" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/receive_address_txt"
+                style="@style/TextLightStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="22dp"
+                android:layout_marginEnd="16dp"
+                android:gravity="center"
+                android:text=""
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/img_qr_code" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/receive_address_copy_btn"
+                style="@style/SmallButtonStyle"
+                android:layout_width="150dp"
+                android:layout_marginTop="24dp"
+                android:onClick="@{()->Util.setClipboard(viewModel.receiveCryptoResponse.address)}"
+                android:text="Copy Address"
+                app:backgroundTint="@color/blue_500"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/receive_address_txt" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView58"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:fontFamily="@font/rubik_medium"
+                android:text="@string/scan_this_qr_code_form_sender_s_mobile"
+                android:gravity="center"
+                android:textColor="@color/text_500"
+                android:textSize="18sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/receive_address_copy_btn" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="13dp"
+                android:layout_marginBottom="13dp"
+                android:fontFamily="@font/rubik_medium"
+                android:text="@string/open_our_app_and_click_send"
+                android:textColor="@color/text_200"
+                android:textSize="13sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView58"
+                app:layout_constraintVertical_bias="0.0" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

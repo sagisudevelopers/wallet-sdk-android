@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="TradeCoinSheetBinding">
+
+        <variable
+            name="model"
+            type="com.sagisu.vault.models.Coins" />
+
+        <variable
+            name="btnText"
+            type="String" />
+
+        <variable
+            name="currencyCode"
+            type="String" />
+    </data>
+
+    <FrameLayout
+        android:id="@+id/parent_frame_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:background="@color/white"
+            android:paddingStart="25dp"
+            android:paddingEnd="25dp"
+            android:paddingBottom="25dp">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView32"
+                style="@style/TextDarkStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{model.name}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/guideline17" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView33"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text='@{""+model.balance + " " +model.symbol}'
+                android:textColor="@color/text_200"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView32" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView34"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:fontFamily="@font/rubik_medium"
+                android:text='@{"$"+model.usdBalance}'
+                android:textColor="@color/text_700"
+                android:textSize="14sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView33" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView35"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="5dp"
+                android:text='@{(String.format("%.2f", model.priceChangePercentage))+"%"}'
+                android:textColor="@color/red_500"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView34" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView36"
+                style="@style/TextDarkStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/enter_amount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView35" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/sell_coin_amount"
+                style="@style/TextInputStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                app:layout_constraintEnd_toEndOf="@+id/appCompatTextView36"
+                app:layout_constraintStart_toStartOf="@+id/appCompatTextView36"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView36">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView37"
+                style="@style/TextLightStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="Min-500.00 - 10,000000 Inr"
+                android:visibility="gone"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/sell_coin_amount" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/swap_currency"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:padding="10dp"
+                app:layout_constraintBottom_toBottomOf="@+id/sell_coin_amount"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/appCompatTextView38"
+                app:layout_constraintTop_toTopOf="@+id/sell_coin_amount"
+                app:srcCompat="@drawable/ic_baseline_swap_vert_24" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView38"
+                style="@style/TextLightStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="24dp"
+                android:text="@{currencyCode}"
+                android:visibility="visible"
+                app:layout_constraintBottom_toBottomOf="@+id/sell_coin_amount"
+                app:layout_constraintStart_toEndOf="@+id/sell_coin_amount"
+                app:layout_constraintTop_toTopOf="@+id/sell_coin_amount" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/trade_coin"
+                style="@style/ButtonStyle"
+                android:layout_marginTop="12dp"
+                android:layout_marginBottom="12dp"
+                android:text="@{btnText}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/guideline15"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView37" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline15"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="20dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline16"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="20dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline17"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app:layout_constraintGuide_begin="60dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/floating_tick_icon"
+            imageUrl="@{model.logo128dp}"
+            android:layout_width="84dp"
+            android:layout_height="84dp"
+            android:layout_gravity="center|top"
+            android:layout_marginTop="0dp"
+            android:importantForAccessibility="no"
+            android:visibility="visible"
+            app:backgroundTint="@color/colorPrimary"
+            app:elevation="20dp"
+            app:fabCustomSize="84dp"
+            app:maxImageSize="84dp"
+            app:tint="@null" />
+    </FrameLayout>
+</layout>

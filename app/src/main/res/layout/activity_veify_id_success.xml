@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.kyc.VerifyIdIntroActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/appCompatImageView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="43dp"
+            android:src="@drawable/verified"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView84"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/rubik_medium"
+            android:text="@string/your_identity_is_being_verified"
+            android:textColor="@color/text_700"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline36"
+            app:layout_constraintStart_toStartOf="@+id/guideline35"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatImageView21" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView85"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="We will inform you once your verification is complete and you can begin to trade and make crypto purchases."
+            android:textColor="@color/text_200"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline36"
+            app:layout_constraintStart_toStartOf="@+id/guideline35"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView84" />
+
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/ok_btn"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="60dp"
+            android:backgroundTint="@color/colorPrimary"
+            android:text="OK"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:cornerRadius="15dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline36"
+            app:layout_constraintStart_toStartOf="@+id/guideline35"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView85" />
+
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="50dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline36"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="30dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

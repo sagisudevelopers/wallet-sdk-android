@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="LoginPage2Binding">
+
+        <variable
+            name="viewModel"
+            type="com.sagisu.vault.ui.login.fragments.LoginViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.login.LoginActivity">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/imageView6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="97dp"
+            android:layout_marginBottom="58dp"
+            android:fontFamily="@font/rubik_regular"
+            android:gravity="center"
+            android:lineSpacingExtra="5dp"
+            android:text='@{"Please enter the otp sent to your registered mobile number "+viewModel.consumer.phone}'
+            android:textSize="18sp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline24"
+            app:layout_constraintDimensionRatio=""
+            app:layout_constraintEnd_toStartOf="@+id/guideline31"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="@+id/guideline28"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/login_otp_wrap"
+            style="@style/TextInputStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            requiredValidator="@{viewModel.otpNumber}"
+            app:layout_constraintEnd_toStartOf="@+id/guideline31"
+            app:layout_constraintStart_toStartOf="@+id/guideline28"
+            app:layout_constraintTop_toTopOf="@+id/guideline24">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/login_otp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="OTP Number"
+                android:inputType="phone"
+                android:maxLength="10"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text="@={viewModel.otpNumber}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/materialButton7"
+            style="@style/TextButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:onClick="@{()->viewModel.resendOtp()}"
+            android:text="Resend OTP"
+            app:layout_constraintEnd_toStartOf="@+id/guideline31"
+            app:layout_constraintTop_toBottomOf="@+id/login_otp_wrap" />
+
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:onClick="@{()->viewModel.verifyOtp()}"
+            android:text="Next"
+            android:textColor="@color/white"
+            app:backgroundTint="@color/colorPrimary"
+            app:icon="@drawable/ic_right_arrow"
+            app:iconGravity="textEnd"
+            app:iconSize="14dp"
+            app:iconTint="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/guideline31"
+            app:layout_constraintStart_toStartOf="@+id/guideline28"
+            app:layout_constraintTop_toBottomOf="@+id/materialButton7" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline28"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="27dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline29"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="60dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline30"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="66dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline31"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="27dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline23"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.0" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline24"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.4" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline26"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.89" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

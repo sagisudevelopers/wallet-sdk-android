@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="CryptoTokenListItemBinding">
+
+        <variable
+            name="model"
+            type="com.sagisu.vault.models.Coins" />
+
+        <import type="com.sagisu.vault.R" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/crypto_token_item_root"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?android:attr/selectableItemBackground">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/appCompatTextView9"
+            imageUrl="@{model.logo}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/appCompatTextView5"
+            app:layout_constraintStart_toStartOf="@+id/guideline8"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <!-- <androidx.appcompat.widget.AppCompatTextView
+             android:id="@+id/appCompatTextView9"
+             android:layout_width="wrap_content"
+             android:layout_height="wrap_content"
+             android:layout_marginTop="16dp"
+             android:layout_marginBottom="16dp"
+             android:background="@drawable/circle_shape_purple"
+             android:fontFamily="@font/rubik_medium"
+             android:gravity="center"
+             android:text='@{(model.name.isEmpty()) ? " " : model.name.substring(0,1)}'
+             android:textStyle="bold"
+             app:layout_constraintBottom_toBottomOf="parent"
+             app:layout_constraintEnd_toStartOf="@+id/appCompatTextView5"
+             app:layout_constraintStart_toStartOf="@+id/guideline8"
+             app:layout_constraintTop_toTopOf="parent" />-->
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:fontFamily="@font/rubik_medium"
+            android:text="@{model.name}"
+            android:textColor="#14172C"
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView9"
+            app:layout_constraintStart_toEndOf="@+id/appCompatTextView9"
+            app:layout_constraintTop_toTopOf="@+id/appCompatTextView9" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="23dp"
+            android:fontFamily="@font/rubik_medium"
+            android:textColor="#707070"
+            android:textSize="12sp"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/appCompatTextView5"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView5" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView15"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/rubik_medium"
+            android:text='@{"$ "+String.format("%.2f", model.usdValue)}'
+            android:textColor="@color/text_700"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/guideline39"
+            app:layout_constraintTop_toTopOf="@+id/appCompatTextView5" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="4dp"
+            android:text='@{(String.format("%.2f", model.priceChangePercentage))+"%"}'
+            android:textSize="14sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/appCompatTextView15"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView15"
+            app:marginRaiseColor="@{String.valueOf(model.priceChangePercentage).charAt(0)}" />
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/img_supported"
+            android:layout_width="25dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="6dp"
+            android:src="@drawable/ic_vault_logo"
+            android:visibility="@{model.supported ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="@id/appCompatTextView5"
+            app:layout_constraintStart_toEndOf="@+id/appCompatTextView5"
+            app:layout_constraintTop_toTopOf="@id/appCompatTextView5" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="2dp"
+            android:background="#F8F8F8"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="@+id/appCompatTextView15"
+            app:layout_constraintStart_toStartOf="@+id/appCompatTextView9" />
+
+
+        <androidx.constraintlayout.widget.Barrier
+            android:id="@+id/barrier3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:barrierDirection="end"
+            app:constraint_referenced_ids="appCompatTextView4,appCompatTextView5"
+            tools:layout_editor_absoluteX="411dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="10dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline39"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_percent="0.7" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

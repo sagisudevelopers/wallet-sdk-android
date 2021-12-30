@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data class="ContactsFragmentBinding">
+
+    </data>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/contancts"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.contacts.ContactsFragment">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/contact_list_search"
+            style="@style/SearchViewStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/searchview"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:hint="@string/enter_mobile_number_or_name"
+            android:inputType="text"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ListView
+            android:id="@+id/lstContacts"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/contact_list_search" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

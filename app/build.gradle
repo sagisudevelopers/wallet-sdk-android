@@ -1,0 +1,148 @@
+plugins {
+    id 'com.android.library'
+    id 'com.google.gms.google-services'
+   // id 'com.google.firebase.crashlytics'
+}
+
+ext {
+    enableCrashlytics = true
+}
+
+android {
+    compileSdkVersion 30
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 30
+        versionCode 5
+        versionName "1.5"
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('keystore.jks')
+            storePassword KEYSTORE_PASSWORD
+            keyAlias KEYSTORE_ALIAS
+            keyPassword KEY_PASSWORD
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        exclude 'META-INF/autodispose.kotlin_module'
+    }
+}
+
+dependencies {
+
+    api 'androidx.appcompat:appcompat:1.3.0'
+    api 'com.google.android.material:material:1.3.0'
+    api 'androidx.constraintlayout:constraintlayout:2.0.4'
+    api 'androidx.legacy:legacy-support-v4:1.0.0'
+    api 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    api 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+    api 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    testImplementation 'junit:junit:4.+'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.2'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //plaid link
+    api 'com.plaid.link:sdk-core:3.4.1'
+
+    //HTTP logging
+    api 'com.squareup.okhttp3:logging-interceptor:3.12.6'
+
+    //Retrofit
+    api 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    api 'io.reactivex.rxjava3:rxjava:3.0.0'
+    api 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
+
+    api 'com.loopj.android:android-async-http:1.4.9'
+    api 'com.squareup.retrofit2:retrofit:2.6.2'
+    api 'com.squareup.retrofit2:converter-gson:2.6.2'
+    //api 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    //api "io.reactivex.rxjava3:rxjava:3.0.0-RC3"
+    //api 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+    //Paging
+    def paging_version = "3.0.1"
+
+    api "androidx.paging:paging-runtime:$paging_version"
+    //RxJava3 support
+    api "androidx.paging:paging-rxjava3:$paging_version"
+    //Guava ListenableFuture support
+    api "androidx.paging:paging-guava:$paging_version"
+
+    // AutoDispose 2.x
+    def dispose_version = "2.1.0"
+    api "com.uber.autodispose2:autodispose-android:$dispose_version"
+    api "com.uber.autodispose2:autodispose-androidx-lifecycle:$dispose_version"
+
+    //dagger
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.16'
+    api 'com.google.dagger:dagger:2.27'
+
+    //multidex
+    api 'com.android.support:multidex:1.0.3'
+
+    //paging
+    api 'android.arch.paging:runtime:1.0.1'
+    api 'android.arch.lifecycle:extensions:1.1.1'
+
+    // PubNub Android-Java SDK
+    api group: 'com.pubnub', name: 'pubnub-gson', version: '4.+'
+
+    //Jumio
+    api "com.jumio.android:core:3.9.2@aar"       // Jumio Core library
+    api "com.jumio.android:nv:3.9.2@aar"         // Netverify library
+    api "com.jumio.android:nv-barcode:3.9.2@aar"   // Barcode scanning
+    api "com.jumio.android:nv-mrz:3.9.2@aar"       // MRZ scanning
+
+    //Firebase
+    api platform('com.google.firebase:firebase-bom:28.4.0')
+    // Add the Firebase Crashlytics SDK
+    api 'com.google.firebase:firebase-crashlytics:18.2.1'
+    // Recommended: Add the Google Analytics SDK
+    api 'com.google.firebase:firebase-analytics:19.0.1'
+    api 'com.google.android.gms:play-services-base:17.6.0'
+    api 'com.google.firebase:firebase-messaging:22.0.0'
+
+    //Shimmer progressbar
+    api 'com.facebook.shimmer:shimmer:0.5.0'
+
+    //story teller
+    def storyteller_version = "4.5.6"
+    api group: "Storyteller", name: "sdk", version: "$storyteller_version"
+
+    // Barcode model
+    api 'com.google.mlkit:barcode-scanning:17.0.0'
+    api("androidx.preference:preference:1.1.1")
+    api(name: 'barcode-scan', ext: 'aar')
+    //Picasso
+    api 'com.squareup.picasso:picasso:2.71828'
+    api 'com.squareup.okhttp3:okhttp:4.9.2'
+    api 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
+
+    //MPAndroid chart
+    api 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+}

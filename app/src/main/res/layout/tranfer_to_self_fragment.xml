@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data class="TransferToSelfFragmentBinding">
+
+        <variable
+            name="transferModel"
+            type="com.sagisu.vault.ui.transfer.BankTransferRequest" />
+
+        <variable
+            name="viewModel"
+            type="com.sagisu.vault.ui.transfer.TransferToAccountViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView6"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:text="@string/select_bank_to_transfer_from"
+            android:textColor="#444555"
+            android:fontFamily="@font/rubik_medium"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintTop_toTopOf="@+id/guideline_top" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tl_self_bank_transfer_from"
+            style="@style/SpinnerStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView6">
+
+            <AutoCompleteTextView
+                android:id="@+id/dropdown_self_bank_transfer_from"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:fontFamily="@font/rubik_medium"
+                android:text="@{viewModel.transferModel.fromAccountName}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView7"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34dp"
+            android:text="@string/select_bank_to_transfer_to"
+            android:fontFamily="@font/rubik_medium"
+            android:textColor="#444555"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/tl_self_bank_transfer_from" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/tl_self_bank_transfer_to"
+            style="@style/SpinnerStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            removeRequiredErrorOnTextChange="@{viewModel.validateFields}"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView7">
+
+            <AutoCompleteTextView
+                android:id="@+id/dropdown_self_bank_transfer_to"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:fontFamily="@font/rubik_medium"
+                android:text="@{viewModel.transferModel.toAccountName}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:text="@string/amount"
+            android:fontFamily="@font/rubik_medium"
+            android:textColor="#444555"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/tl_self_bank_transfer_to" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/self_transfer_amount"
+            style="@style/TextInputStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            removeRequiredErrorOnTextChange="@{viewModel.validateFields}"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView8">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="number"
+                android:fontFamily="@font/rubik_medium"
+                android:text="@={viewModel.transferModel.amountString}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            android:layout_width="200dp"
+            android:layout_height="60dp"
+            android:layout_marginTop="35dp"
+            android:onClick="@{()->viewModel.doTransfer()}"
+            android:text="@string/pay"
+            android:fontFamily="@font/rubik_medium"
+            android:textAllCaps="false"
+            android:textSize="18sp"
+            app:backgroundTint="@color/colorPrimary"
+            app:cornerRadius="30dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline_right"
+            app:layout_constraintStart_toStartOf="@+id/guideline_left"
+            app:layout_constraintTop_toBottomOf="@+id/self_transfer_amount" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_left"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="15dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_top"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="60dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline_right"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="15dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
