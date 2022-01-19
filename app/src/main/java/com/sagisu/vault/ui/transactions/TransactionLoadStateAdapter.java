@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.google.android.material.button.MaterialButton;
 import com.sagisu.vault.R;
-import com.sagisu.vault.databinding.NetworkItemBinding;
+import com.sagisu.vault.databinding.VaultNetworkItemBinding;
 
 import org.jetbrains.annotations.NotNull;
 
@@ -50,9 +50,9 @@ public class TransactionLoadStateAdapter extends LoadStateAdapter<TransactionLoa
                 @NonNull ViewGroup parent,
                 @NonNull View.OnClickListener retryCallback) {
             super(LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.item_network_state, parent, false));
+                    .inflate(R.layout.vault_item_network_state, parent, false));
 
-            NetworkItemBinding binding = NetworkItemBinding.bind(itemView);
+            VaultNetworkItemBinding binding = VaultNetworkItemBinding.bind(itemView);
             mProgressBar = binding.progressBar;
             mErrorMsg = binding.errorMsg;
             mRetry = binding.retryButton;

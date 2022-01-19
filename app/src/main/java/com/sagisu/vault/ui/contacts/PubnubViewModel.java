@@ -1,5 +1,6 @@
 package com.sagisu.vault.ui.contacts;
 
+
 import android.util.Log;
 
 import androidx.annotation.Nullable;
@@ -134,17 +135,21 @@ public class PubnubViewModel extends ViewModel {
                     List<MessageBean> tmpList = mMessageBeanList.getValue();
                     tmpList.add(messageBean);
                     mMessageBeanList.setValue(tmpList);
-                           /* mMessageAdapter.notifyItemRangeChanged(mMessageBeanList.size(), 1);
+
+/* mMessageAdapter.notifyItemRangeChanged(mMessageBeanList.size(), 1);
                             mRecyclerView.scrollToPosition(mMessageBeanList.size() - 1);*/
+
 
                 }
 
-            /*
+
+/*
                 log the following items with your favorite logger
                     - message.getMessage()
                     - message.getSubscription()
                     - message.getTimetoken()
             */
+
             }
 
             @Override
@@ -192,8 +197,10 @@ public class PubnubViewModel extends ViewModel {
         List<MessageBean> tmpList = mMessageBeanList.getValue();
         tmpList.add(messageBean);
         mMessageBeanList.setValue(tmpList);
-        /*mMessageAdapter.notifyItemRangeChanged(mMessageBeanList.size(), 1);
+
+/*mMessageAdapter.notifyItemRangeChanged(mMessageBeanList.size(), 1);
         mRecyclerView.scrollToPosition(mMessageBeanList.size() - 1);*/
+
 
         // create message payload using Gson
         final JsonObject messageJsonObject = new JsonObject();
@@ -246,8 +253,10 @@ public class PubnubViewModel extends ViewModel {
                                     MessageBean messageBean = new MessageBean(account, msg, timestamp, paymentId, beSelf);
                                     messageBean.setBackground(R.drawable.circle_shape_blue);
                                     tmpList.add(messageBean);
-                           /* mMessageAdapter.notifyItemRangeChanged(mMessageBeanList.size(), 1);
+
+/* mMessageAdapter.notifyItemRangeChanged(mMessageBeanList.size(), 1);
                             mRecyclerView.scrollToPosition(mMessageBeanList.size() - 1);*/
+
                                 }
                             }
                             mMessageBeanList.setValue(tmpList);

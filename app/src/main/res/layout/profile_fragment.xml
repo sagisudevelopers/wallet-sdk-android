@@ -18,7 +18,7 @@
                 android:id="@+id/constraintLayout5"
                 android:layout_width="match_parent"
                 android:layout_height="150dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/vaultColorPrimary"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent">

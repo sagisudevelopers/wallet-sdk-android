@@ -8,7 +8,6 @@ import androidx.annotation.Nullable;
 import androidx.paging.PagingState;
 import androidx.paging.rxjava3.RxPagingSource;
 
-import com.sagisu.vault.di.ApplicationContext;
 import com.sagisu.vault.models.Transaction;
 import com.sagisu.vault.network.ApiInterface;
 import com.sagisu.vault.ui.transactions.GetTransactionResponse;
@@ -27,16 +26,10 @@ public class TransactionPagingSource extends RxPagingSource<Integer, Transaction
     private ApiInterface mBackend;
     private String mCursor;
 
-    @Inject
-    @ApplicationContext
-    Context context;
-    Globals globals;
-
     public TransactionPagingSource(@NonNull ApiInterface backend,
                                    String cursor) {
         mBackend = backend;
         mCursor = cursor;
-        Globals.getAppComponent().inject(this);
     }
 
     @NotNull

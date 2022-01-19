@@ -9,6 +9,7 @@ import javax.inject.Singleton;
 
 import dagger.Component;
 
+/*
 @Singleton
 @Component(modules = {
         ApplicationModule.class
@@ -21,6 +22,9 @@ public interface ApplicationComponent {
     void inject(ConnectivityInterceptor connectivityInterceptor);
     void inject(TransactionPagingSource transactionPagingSource);
 
-   /* // Utility Module
-    Commons getCommonUtils();*/
+   */
+/* // Utility Module
+    Commons getCommonUtils();*//*
+
 }
+*/

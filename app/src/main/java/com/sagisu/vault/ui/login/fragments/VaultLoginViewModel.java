@@ -15,24 +15,26 @@ import com.sagisu.vault.utils.OtpTypeDescriptor;
 
 import java.util.Objects;
 
-public class LoginViewModel extends ViewModel {
+public class VaultLoginViewModel extends ViewModel {
     public interface PageType {
         String SignUp = "Sign-up";
         String Login = "login";
         String ForgotPasswordPhone = "forgot_password_phone";
         String Otp = "otp";
         String Password = "password";
+        String AUTO_LOGIN_EXTERNAL_APP = "auto_login_external_app";
     }
 
     public interface ViewType {
         String SignUp = "Sign-up";
         String Login = "login";
         String ForgotPassword = "forgot_password";
+        String AUTO_LOGIN_EXTERNAL_APP = "auto_login_external_app";
     }
 
     public MutableLiveData<Integer> pagePos = new MutableLiveData<>(1);
     public MutableLiveData<String> page = new MutableLiveData<>(PageType.Login);
-    public MutableLiveData<String> viewType = new MutableLiveData<>(ViewType.Login);
+    public MutableLiveData<String> viewType = new MutableLiveData<>();
     public MutableLiveData<String> otpStatus = new MutableLiveData<>();
     public MutableLiveData<String> otpNumber = new MutableLiveData<>();
     public MutableLiveData<User> consumer = new MutableLiveData<>(new User());
@@ -43,8 +45,8 @@ public class LoginViewModel extends ViewModel {
     private final MutableLiveData<LoginFormError> formError = new MutableLiveData<>(new LoginFormError());
     private ObservableField<Boolean> validateFields = new ObservableField<>(true);
 
-    public void init() {
-
+    public void init(String viewType) {
+        setViewType(viewType);
     }
 
     public void onNextClicked() {
@@ -80,6 +82,7 @@ public class LoginViewModel extends ViewModel {
     }
 
     public boolean valid() {
+        if (viewType.getValue().equals(ViewType.AUTO_LOGIN_EXTERNAL_APP)) return true;
         boolean flag = true;
         LoginFormError tmpFormError = new LoginFormError();
         switch (page.getValue()) {
@@ -195,8 +198,8 @@ public class LoginViewModel extends ViewModel {
                 loadingObservable.setValue(null);
                 if (agentResult instanceof Result.Success) {
                     loginRes = ((Result.Success<LoginResponse>) agentResult).getData();
-                    //loginStatus.setValue("SignedUp");
-                    setViewType(ViewType.Login);
+                    loginStatus.setValue("SignedUp");
+                    //setViewType(ViewType.Login);
 
                 } else if (agentResult instanceof Result.Error) {
                     APIError apiError = ((Result.Error) agentResult).getError();
@@ -256,6 +259,11 @@ public class LoginViewModel extends ViewModel {
                             else
                                 toastMsg.setValue("Phone number is already registered");
                             break;
+                        case PageType.AUTO_LOGIN_EXTERNAL_APP:
+                            if (loginRes.getUser() == null) signUp();
+                            else
+                                login();
+                            break;
                     }
 
                 } else if (agentResult instanceof Result.Error) {
@@ -264,6 +272,14 @@ public class LoginViewModel extends ViewModel {
                 }
             }
         });
+    }
+
+    public void autoLoginExternalApp(String phone, String password) {
+        User user = new User();
+        user.setPhone(phone);
+        user.setPassword(password);
+        consumer.setValue(user);
+        userExists();
     }
 
     public void setViewType(String viewType) {
@@ -278,6 +294,9 @@ public class LoginViewModel extends ViewModel {
                 break;
             case ViewType.ForgotPassword:
                 page.setValue(PageType.ForgotPasswordPhone);
+                break;
+            case ViewType.AUTO_LOGIN_EXTERNAL_APP:
+                page.setValue(PageType.AUTO_LOGIN_EXTERNAL_APP);
                 break;
         }
     }

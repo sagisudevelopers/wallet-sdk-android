@@ -76,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="4dp"
             android:fontFamily="@font/rubik_medium"
-            android:textColor="@color/colorPrimary"
+            android:textColor="@color/vaultColorPrimary"
             android:textSize="14sp"
             android:text="Show decimals"
             android:visibility='@{(String.valueOf(model.balance).split("\\.")[1].length() >6 )? View.VISIBLE: View.GONE}'

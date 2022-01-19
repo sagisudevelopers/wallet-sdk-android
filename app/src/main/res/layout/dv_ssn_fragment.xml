@@ -28,7 +28,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/kyc_ssn"
-            style="@style/TextInputStyle"
+            style="@style/VaultTextInputStyle"
             removeRequiredErrorOnTextChange="@{viewModel.validateFields}"
             android:layout_width="0dp"
             android:layout_height="wrap_content"

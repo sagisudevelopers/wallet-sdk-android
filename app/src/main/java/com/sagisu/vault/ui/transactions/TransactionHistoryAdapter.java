@@ -9,7 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.paging.PagedListAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.sagisu.vault.databinding.NetworkItemBinding;
+import com.sagisu.vault.databinding.VaultNetworkItemBinding;
 import com.sagisu.vault.databinding.TransactionItemBinding;
 import com.sagisu.vault.models.Transaction;
 import com.sagisu.vault.network.NetworkState;
@@ -34,7 +34,7 @@ public class TransactionHistoryAdapter extends PagedListAdapter<Transaction, Rec
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         if (viewType == TYPE_PROGRESS) {
-            NetworkItemBinding headerBinding = NetworkItemBinding.inflate(layoutInflater, parent, false);
+            VaultNetworkItemBinding headerBinding = VaultNetworkItemBinding.inflate(layoutInflater, parent, false);
             NetworkStateItemViewHolder viewHolder = new NetworkStateItemViewHolder(headerBinding);
             return viewHolder;
 
@@ -113,9 +113,9 @@ public class TransactionHistoryAdapter extends PagedListAdapter<Transaction, Rec
 
     public class NetworkStateItemViewHolder extends RecyclerView.ViewHolder {
 
-        private NetworkItemBinding binding;
+        private VaultNetworkItemBinding binding;
 
-        public NetworkStateItemViewHolder(NetworkItemBinding binding) {
+        public NetworkStateItemViewHolder(VaultNetworkItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }

@@ -72,7 +72,7 @@ public class FundWalletActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         if (savedInstanceState == null) {
             mViewModel = new ViewModelProvider(this).get(FundWalletViewModel.class);
-            mViewModel.checkUserStatus(new SharedPref(getApplicationContext()).getUser());
+            mViewModel.checkUserStatus(new SharedPref().getUser());
             mViewModel.setTotalWalletBalance(getIntent().getDoubleExtra(HomeFragment.BUNDLE_WALLET_BALANCE, 0));
             getSupportFragmentManager().beginTransaction()
                     .replace(R.id.container, FundWalletFragment.newInstance())

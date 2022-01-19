@@ -10,7 +10,7 @@ import androidx.paging.PagingDataAdapter;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.sagisu.vault.databinding.CryptoTokenListItemBinding;
-import com.sagisu.vault.databinding.NetworkItemBinding;
+import com.sagisu.vault.databinding.VaultNetworkItemBinding;
 import com.sagisu.vault.models.Coins;
 import com.sagisu.vault.network.NetworkState;
 
@@ -37,7 +37,7 @@ public class CryptoTokensListAdapter extends PagingDataAdapter<Coins, RecyclerVi
     public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater layoutInflater = LayoutInflater.from(parent.getContext());
         if (viewType == TYPE_PROGRESS) {
-            NetworkItemBinding headerBinding = NetworkItemBinding.inflate(layoutInflater, parent, false);
+            VaultNetworkItemBinding headerBinding = VaultNetworkItemBinding.inflate(layoutInflater, parent, false);
             NetworkStateItemViewHolder viewHolder = new NetworkStateItemViewHolder(headerBinding);
             return viewHolder;
 
@@ -117,9 +117,9 @@ public class CryptoTokensListAdapter extends PagingDataAdapter<Coins, RecyclerVi
 
     public class NetworkStateItemViewHolder extends RecyclerView.ViewHolder {
 
-        private NetworkItemBinding binding;
+        private VaultNetworkItemBinding binding;
 
-        public NetworkStateItemViewHolder(NetworkItemBinding binding) {
+        public NetworkStateItemViewHolder(VaultNetworkItemBinding binding) {
             super(binding.getRoot());
             this.binding = binding;
         }

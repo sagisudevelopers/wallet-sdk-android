@@ -37,7 +37,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/kyc_firstname"
-                style="@style/TextInputStyle"
+                style="@style/VaultTextInputStyle"
                 removeRequiredErrorOnTextChange="@{viewModel.validateFields}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -58,7 +58,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/kyc_lastname"
-                style="@style/TextInputStyle"
+                style="@style/VaultTextInputStyle"
                 removeRequiredErrorOnTextChange="@{viewModel.validateFields}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -79,7 +79,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/kyc_dob"
-                style="@style/TextInputStyle"
+                style="@style/VaultTextInputStyle"
                 removeRequiredErrorOnTextChange="@{viewModel.validateFields}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -103,7 +103,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/kyc_email"
-                style="@style/TextInputStyle"
+                style="@style/VaultTextInputStyle"
                 removeRequiredErrorOnTextChange="@{viewModel.validateFields}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -176,7 +176,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/kyc_otp"
-                style="@style/TextInputStyle"
+                style="@style/VaultTextInputStyle"
                 removeRequiredErrorOnTextChange="@{viewModel.validateFields}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -202,8 +202,8 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/materialButton5"
-                style="@style/SmallButtonStyle"
-                app:backgroundTint="@color/colorPrimary"
+                style="@style/VaultSmallButtonStyle"
+                app:backgroundTint="@color/vaultColorPrimary"
                 android:layout_marginStart="6dp"
                 android:onClick="@{()->viewModel.verifyEmail()}"
                 android:text="@string/verify"
@@ -218,7 +218,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:text="Resend code"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/vaultColorPrimary"
                 android:textSize="12sp"
                 android:visibility='@{viewModel.enableVerificationFields == "show" ?View.VISIBLE:View.GONE}'
                 app:layout_constraintBottom_toBottomOf="@+id/kyc_otp"

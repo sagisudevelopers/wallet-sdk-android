@@ -372,7 +372,7 @@
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/home_verify_identity"
-                    style="@style/SmallButtonStyle"
+                    style="@style/VaultSmallButtonStyle"
                     android:layout_width="50dp"
                     android:layout_height="35dp"
                     android:layout_marginStart="4dp"
@@ -423,7 +423,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/appCompatTextView66"
-                    style="@style/TextExtraDarkStyle"
+                    style="@style/VaultTextExtraDarkStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -474,7 +474,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/appCompatTextView80"
-                    style="@style/TextExtraDarkStyle"
+                    style="@style/VaultTextExtraDarkStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -533,7 +533,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/appCompatTextView75"
-                    style="@style/TextExtraDarkStyle"
+                    style="@style/VaultTextExtraDarkStyle"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -608,7 +608,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/appCompatTextView74"
-                    style="@style/TextExtraDarkStyle"
+                    style="@style/VaultTextExtraDarkStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -684,7 +684,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/appCompatTextView76"
-                    style="@style/TextExtraDarkStyle"
+                    style="@style/VaultTextExtraDarkStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -762,7 +762,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/appCompatTextView77"
-                    style="@style/TextExtraDarkStyle"
+                    style="@style/VaultTextExtraDarkStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -840,7 +840,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/appCompatTextView78"
-                    style="@style/TextExtraDarkStyle"
+                    style="@style/VaultTextExtraDarkStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
@@ -893,7 +893,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/appCompatTextView79"
-                    style="@style/TextExtraDarkStyle"
+                    style="@style/VaultTextExtraDarkStyle"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"

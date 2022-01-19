@@ -13,22 +13,20 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.sagisu.vault.R;
-import com.sagisu.vault.databinding.LoginPage1Binding;
+import com.sagisu.vault.databinding.VaultLoginPage2Binding;
 
+public class VaultLoginPage2Fragment extends Fragment {
 
-public class LoginPage1Fragment extends Fragment {
-
-    private LoginViewModel mViewModel;
-    private LoginPage1Binding binding;
-
-    public static LoginPage1Fragment newInstance() {
-        return new LoginPage1Fragment();
+    private VaultLoginViewModel mViewModel;
+    private VaultLoginPage2Binding binding;
+    public static VaultLoginPage2Fragment newInstance() {
+        return new VaultLoginPage2Fragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.login_page1_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.vault_otp_fragment, container, false);
         binding = DataBindingUtil.bind(rootView);
         return binding.getRoot();
     }
@@ -36,7 +34,7 @@ public class LoginPage1Fragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(getActivity()).get(LoginViewModel.class);
+        mViewModel = new ViewModelProvider(getActivity()).get(VaultLoginViewModel.class);
         binding.setViewModel(mViewModel);
         binding.setLifecycleOwner(this);
 
@@ -44,11 +42,8 @@ public class LoginPage1Fragment extends Fragment {
             @Override
             public void onChanged(LoginFormError loginFormError) {
 
-                binding.loginPhoneWrap.setError(loginFormError.getPhoneError() == null ? null : getString(loginFormError.getPhoneError()));
-                binding.loginPhoneWrap.setErrorEnabled(loginFormError.getPhoneError() != null);
-
-                binding.loginPasswordWrap.setError(loginFormError.getPasswordError() == null ? null : getString(loginFormError.getPasswordError()));
-                binding.loginPasswordWrap.setErrorEnabled(loginFormError.getPasswordError() != null);
+                binding.loginOtpWrap.setError(loginFormError.getOtpError() == null ? null : getString(loginFormError.getOtpError()));
+                binding.loginOtpWrap.setErrorEnabled(loginFormError.getOtpError() != null);
 
             }
         });

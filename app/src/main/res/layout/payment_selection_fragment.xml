@@ -20,7 +20,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/appCompatTextView38"
-        style="@style/TextDarkStyle"
+        style="@style/VaultTextDarkStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/you_are_buying_ethereum_for"
@@ -39,7 +39,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/appCompatTextView40"
-        style="@style/TextSmall"
+        style="@style/VaultTextSmall"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/current_value"
@@ -58,7 +58,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/appCompatTextView41"
-        style="@style/TextDarkStyle"
+        style="@style/VaultTextDarkStyle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="27dp"
@@ -92,7 +92,7 @@
     </RadioGroup>
 
     <com.google.android.material.button.MaterialButton
-        style="@style/ButtonStyle"
+        style="@style/VaultButtonStyle"
         android:layout_marginTop="32dp"
         android:text="@string/proceed_to_pay"
         app:layout_constraintEnd_toEndOf="parent"

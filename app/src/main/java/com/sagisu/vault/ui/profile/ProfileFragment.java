@@ -15,7 +15,7 @@ import androidx.lifecycle.ViewModelProvider;
 import com.sagisu.vault.R;
 import com.sagisu.vault.databinding.ProfileFragmentBinding;
 import com.sagisu.vault.ui.kyc.VerifyIdIntroActivity;
-import com.sagisu.vault.ui.login.LoginActivity;
+import com.sagisu.vault.ui.login.VaultLoginActivity;
 import com.sagisu.vault.utils.SharedPref;
 
 public class ProfileFragment extends Fragment implements View.OnClickListener {
@@ -43,7 +43,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         mViewModel = new ViewModelProvider(this).get(ProfileViewModel.class);
-        binding.setModel(new SharedPref(getActivity().getApplicationContext()).getUser());
+        binding.setModel(new SharedPref().getUser());
         binding.setLifecycleOwner(this);
     }
 
@@ -63,8 +63,8 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
     }
 
     private void logout() {
-        new SharedPref(getActivity().getApplicationContext()).clearSharedPref();
-        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        new SharedPref().clearSharedPref();
+        Intent intent = new Intent(getActivity(), VaultLoginActivity.class);
         startActivity(intent);
         getActivity().finish();
     }

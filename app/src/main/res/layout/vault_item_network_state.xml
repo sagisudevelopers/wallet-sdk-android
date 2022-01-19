@@ -1,6 +1,6 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <data class="NetworkItemBinding" />
+    <data class="VaultNetworkItemBinding" />
 
     <LinearLayout
         android:layout_width="match_parent"

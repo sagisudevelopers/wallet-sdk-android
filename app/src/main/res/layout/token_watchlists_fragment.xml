@@ -429,7 +429,7 @@
                             android:layout_marginBottom="16dp"
                             android:fontFamily="@font/rubik_medium"
                             android:text="Show decimals"
-                            android:textColor="@color/colorPrimary"
+                            android:textColor="@color/vaultColorPrimary"
                             android:textSize="14sp"
                             android:visibility='@{(String.valueOf(viewModel.coinSelected.balance).split("\\.")[1].length() >6 )? View.VISIBLE: View.GONE}'
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -800,7 +800,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/materialButton9"
-                style="@style/LargeButtonStyle"
+                style="@style/VaultLargeButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -814,7 +814,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/materialButton8"
-                style="@style/LargeButtonStyle"
+                style="@style/VaultLargeButtonStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="2dp"

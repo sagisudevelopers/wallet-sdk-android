@@ -31,7 +31,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tl_self_bank_transfer_from"
-            style="@style/SpinnerStyle"
+            style="@style/VaultSpinnerStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -64,7 +64,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/tl_self_bank_transfer_to"
-            style="@style/SpinnerStyle"
+            style="@style/VaultSpinnerStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -97,7 +97,7 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/self_transfer_amount"
-            style="@style/TextInputStyle"
+            style="@style/VaultTextInputStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
@@ -124,7 +124,7 @@
             android:fontFamily="@font/rubik_medium"
             android:textAllCaps="false"
             android:textSize="18sp"
-            app:backgroundTint="@color/colorPrimary"
+            app:backgroundTint="@color/vaultColorPrimary"
             app:cornerRadius="30dp"
             app:layout_constraintEnd_toStartOf="@+id/guideline_right"
             app:layout_constraintStart_toStartOf="@+id/guideline_left"

@@ -332,7 +332,7 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/appCompatTextView2"
-                    style="@style/TextNormalBlue"
+                    style="@style/VaultTextNormalBlue"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/rubik_medium"
@@ -393,7 +393,7 @@
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    style="@style/TextNormalBlue"
+                    style="@style/VaultTextNormalBlue"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="25dp"

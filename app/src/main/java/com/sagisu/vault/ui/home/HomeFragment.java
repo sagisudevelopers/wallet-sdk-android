@@ -16,6 +16,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.sagisu.vault.R;
 import com.sagisu.vault.databinding.HomeFragmentBinding;
+import com.sagisu.vault.network.ApiClient;
 import com.sagisu.vault.ui.ContactsActivity;
 import com.sagisu.vault.ui.FundWalletActivity;
 import com.sagisu.vault.ui.ReceiveCryptoActivity;
@@ -82,7 +83,7 @@ public class HomeFragment extends Fragment implements StorytellerRowViewDelegate
 
         binding.channelRowView.setDelegate(this);
 
-        Storyteller.Companion.initialize("adcabf5b-4ddc-4e43-a9b4-056f9f75d73c", false, new Function0<Unit>() {
+        Storyteller.Companion.initialize(ApiClient.STORYTELLER_API_KEY, false, new Function0<Unit>() {
             @Override
             public Unit invoke() {
                 Storyteller.Companion.setUserDetails(new UserInput(userId));
@@ -223,7 +224,7 @@ public class HomeFragment extends Fragment implements StorytellerRowViewDelegate
             @Override
             public void onChanged(User s) {
                 status = s.getStatus();
-                new SharedPref(getActivity().getApplicationContext()).setUser(s);
+                new SharedPref().setUser(s);
             }
         });
 
@@ -231,7 +232,7 @@ public class HomeFragment extends Fragment implements StorytellerRowViewDelegate
         tradeHomeViewModel.getBalances().observe(getViewLifecycleOwner(), new Observer<Balances>() {
             @Override
             public void onChanged(Balances balances) {
-                new SharedPref(getActivity().getApplicationContext()).setCryptoBalanceUpdated(true);
+                new SharedPref().setCryptoBalanceUpdated(true);
                 mViewModel.setTotalWalletBalance(balances.getCoinsTotal());
             }
         });
@@ -252,7 +253,7 @@ public class HomeFragment extends Fragment implements StorytellerRowViewDelegate
             //initRecyclerView();
         }
         if (tradeHomeViewModel != null)
-            if (tradeHomeViewModel.getBalances().getValue() == null || !new SharedPref(getActivity().getApplicationContext()).isCryptoBalanceUpdated()) {
+            if (tradeHomeViewModel.getBalances().getValue() == null || !new SharedPref().isCryptoBalanceUpdated()) {
                 tradeHomeViewModel.getCryptoWalletBalance();
             }
     }

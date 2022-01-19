@@ -3,12 +3,12 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <data class="SplashScreenActivityBinding">
+    <data class="VaultSplashScreenActivityBinding">
 
         <import type="android.view.View" />
         <variable
             name="viewModel"
-            type="com.sagisu.vault.ui.splashscreen.SplashScreenViewModel" />
+            type="com.sagisu.vault.ui.splashscreen.VaultSplashScreenViewModel" />
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

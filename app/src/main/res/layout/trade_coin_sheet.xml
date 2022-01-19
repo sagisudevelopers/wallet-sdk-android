@@ -35,7 +35,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/appCompatTextView32"
-                style="@style/TextDarkStyle"
+                style="@style/VaultTextDarkStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@{model.name}"
@@ -82,7 +82,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/appCompatTextView36"
-                style="@style/TextDarkStyle"
+                style="@style/VaultTextDarkStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="32dp"
@@ -93,7 +93,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/sell_coin_amount"
-                style="@style/TextInputStyle"
+                style="@style/VaultTextInputStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
@@ -109,7 +109,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/appCompatTextView37"
-                style="@style/TextLightStyle"
+                style="@style/VaultTextLightStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -133,7 +133,7 @@
 
             <androidx.appcompat.widget.AppCompatTextView
                 android:id="@+id/appCompatTextView38"
-                style="@style/TextLightStyle"
+                style="@style/VaultTextLightStyle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="24dp"
@@ -145,7 +145,7 @@
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/trade_coin"
-                style="@style/ButtonStyle"
+                style="@style/VaultButtonStyle"
                 android:layout_marginTop="12dp"
                 android:layout_marginBottom="12dp"
                 android:text="@{btnText}"
@@ -187,7 +187,7 @@
             android:layout_marginTop="0dp"
             android:importantForAccessibility="no"
             android:visibility="visible"
-            app:backgroundTint="@color/colorPrimary"
+            app:backgroundTint="@color/vaultColorPrimary"
             app:elevation="20dp"
             app:fabCustomSize="84dp"
             app:maxImageSize="84dp"

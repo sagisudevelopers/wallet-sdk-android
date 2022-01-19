@@ -31,7 +31,7 @@
             android:layout_marginStart="8dp"
             android:layout_marginTop="23dp"
             android:text="Anusha"
-            style="@style/TextExtraDarkStyle"
+            style="@style/VaultTextExtraDarkStyle"
             app:layout_constraintStart_toEndOf="@+id/contact_display_first_letter"
             app:layout_constraintTop_toTopOf="parent" />
 

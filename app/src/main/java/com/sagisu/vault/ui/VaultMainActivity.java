@@ -2,16 +2,15 @@ package com.sagisu.vault.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.AppCompatImageView;
-import androidx.appcompat.widget.AppCompatTextView;
+import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.sagisu.vault.R;
+import com.sagisu.vault.databinding.MainActivityLayoutBinding;
 import com.sagisu.vault.ui.home.HomeFragment;
 import com.sagisu.vault.ui.home.HomeViewModel;
 import com.sagisu.vault.ui.home.JoinWaitListBottomDialogFragment;
@@ -19,18 +18,19 @@ import com.sagisu.vault.ui.home.TradeHomeFragment;
 import com.sagisu.vault.ui.profile.ProfileFragment;
 import com.sagisu.vault.utils.AppManager;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class VaultMainActivity extends AppCompatActivity implements View.OnClickListener {
 
     private static final String TAB_HOME = "home";
     private static final String TAB_PROFILE = "profile";
     private static final String TAB_TRADE = "trade";
 
     private String tabClicked = "";
+    private MainActivityLayoutBinding binding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        binding = DataBindingUtil.setContentView(this,R.layout.activity_vault_main);
         //Add an Activity instance to the stack of AppManager
         AppManager.getAppManager().addActivity(this);
         /*if (savedInstanceState == null) {
@@ -38,12 +38,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     .replace(R.id.main_layout_container, TradeHomeFragment.newInstance())
                     .commitNow();
         }*/
-        findViewById(R.id.home).setOnClickListener(this);
-        findViewById(R.id.profile).setOnClickListener(this);
-        findViewById(R.id.trade).setOnClickListener(this);
+        binding.home.setOnClickListener(this);
+        binding.profile.setOnClickListener(this);
+        binding.trade.setOnClickListener(this);
         if (getIntent().getData() == null) findViewById(R.id.trade).performClick();
         else {
-            findViewById(R.id.home).performClick();
+            binding.home.performClick();
             onNewIntent(getIntent());
         }
     }
@@ -63,11 +63,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (tabClicked.equals(TAB_HOME)) return;
             else {
                 tabClicked = TAB_HOME;
-                ((AppCompatTextView) findViewById(R.id.home_txt)).setTextColor(getResources().getColor(R.color.colorPrimary));
-                ((AppCompatTextView) findViewById(R.id.profile_txt)).setTextColor(getResources().getColor(R.color.tabInActive));
+                binding.homeTxt.setTextColor(getResources().getColor(R.color.vaultColorPrimary));
+                binding.profileTxt.setTextColor(getResources().getColor(R.color.tabInActive));
 
-                ((AppCompatImageView) findViewById(R.id.home_img)).setImageDrawable(getResources().getDrawable(R.drawable.ic_home_active));
-                ((AppCompatImageView) findViewById(R.id.profile_img)).setImageDrawable(getResources().getDrawable(R.drawable.ic_profile_inactive));
+                binding.homeImg.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_active));
+                binding.profileImg.setImageDrawable(getResources().getDrawable(R.drawable.ic_profile_inactive));
 
                 fragment = HomeFragment.newInstance();
             }
@@ -75,12 +75,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (tabClicked.equals(TAB_PROFILE)) return;
             else {
                 tabClicked = TAB_PROFILE;
-                ((AppCompatTextView) findViewById(R.id.home_txt)).setTextColor(getResources().getColor(R.color.tabInActive));
-                ((AppCompatTextView) findViewById(R.id.profile_txt)).setTextColor(getResources().getColor(R.color.colorPrimary));
+                binding.homeTxt.setTextColor(getResources().getColor(R.color.tabInActive));
+                binding.profileTxt.setTextColor(getResources().getColor(R.color.vaultColorPrimary));
 
 
-                ((AppCompatImageView) findViewById(R.id.home_img)).setImageDrawable(getResources().getDrawable(R.drawable.ic_home_inactive));
-                ((AppCompatImageView) findViewById(R.id.profile_img)).setImageDrawable(getResources().getDrawable(R.drawable.ic_profile_active));
+                binding.homeImg.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_inactive));
+                binding.profileImg.setImageDrawable(getResources().getDrawable(R.drawable.ic_profile_active));
 
                 fragment = ProfileFragment.newInstance();
             }
@@ -90,11 +90,11 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (tabClicked.equals(TAB_TRADE)) return;
             //showJoinWaitlist(FeatureNameDescriptor.TRADE);
             tabClicked = TAB_TRADE;
-            ((AppCompatTextView) findViewById(R.id.home_txt)).setTextColor(getResources().getColor(R.color.tabInActive));
-            ((AppCompatTextView) findViewById(R.id.profile_txt)).setTextColor(getResources().getColor(R.color.tabInActive));
+            binding.homeTxt.setTextColor(getResources().getColor(R.color.tabInActive));
+            binding.profileTxt.setTextColor(getResources().getColor(R.color.tabInActive));
 
-            ((AppCompatImageView) findViewById(R.id.home_img)).setImageDrawable(getResources().getDrawable(R.drawable.ic_home_inactive));
-            ((AppCompatImageView) findViewById(R.id.profile_img)).setImageDrawable(getResources().getDrawable(R.drawable.ic_profile_inactive));
+            binding.homeImg.setImageDrawable(getResources().getDrawable(R.drawable.ic_home_inactive));
+            binding.profileImg.setImageDrawable(getResources().getDrawable(R.drawable.ic_profile_inactive));
 
             fragment = TradeHomeFragment.newInstance();
         }

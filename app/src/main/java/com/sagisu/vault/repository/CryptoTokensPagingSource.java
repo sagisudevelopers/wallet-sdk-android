@@ -7,8 +7,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.paging.PagingState;
 import androidx.paging.rxjava3.RxPagingSource;
-
-import com.sagisu.vault.di.ApplicationContext;
 import com.sagisu.vault.models.Coins;
 import com.sagisu.vault.network.ApiInterface;
 import com.sagisu.vault.network.ServerResponse;
@@ -28,11 +26,6 @@ public class CryptoTokensPagingSource extends RxPagingSource<Integer, Coins> {
     @NonNull
     private ApiInterface mBackend;
     private String mCursor;
-
-    @Inject
-    @ApplicationContext
-    Context context;
-    Globals globals;
 
     public CryptoTokensPagingSource(@NonNull ApiInterface backend,
                                     String cursor) {

@@ -49,7 +49,7 @@ public class ReceiveCryptoFragment extends Fragment {
                 if (receiveCryptoResponse != null) {
                     binding.imgQrCode.setImageBitmap(receiveCryptoResponse.getQrCodeBitmap());
                     binding.receiveAddressTxt.setText(receiveCryptoResponse.getAddress());
-                    new SharedPref(Globals.getContext()).setCryptoBalanceUpdated(!receiveCryptoResponse.isNew());
+                    new SharedPref().setCryptoBalanceUpdated(!receiveCryptoResponse.isNew());
                 }
             }
         });

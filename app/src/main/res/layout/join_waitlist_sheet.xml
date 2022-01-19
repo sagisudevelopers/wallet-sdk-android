@@ -26,7 +26,7 @@
 
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/appCompatTextView13"
-            style="@style/TextDarkStyle"
+            style="@style/VaultTextDarkStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
@@ -38,12 +38,12 @@
 
         <com.google.android.material.textfield.TextInputLayout
             android:id="@+id/textInputLayout"
-            style="@style/TextInputStyle"
+            style="@style/VaultTextInputStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
             android:hint="@string/enter_your_email"
-            android:theme="@style/TextLightStyle"
+            android:theme="@style/VaultTextLightStyle"
             android:visibility="gone"
             app:layout_constraintEnd_toStartOf="@+id/guideline23"
             app:layout_constraintStart_toStartOf="@+id/guideline22"

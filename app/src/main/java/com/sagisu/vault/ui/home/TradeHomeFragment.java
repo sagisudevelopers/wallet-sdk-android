@@ -23,6 +23,7 @@ import com.sagisu.vault.ui.trade.CryptoTokensListAdapter;
 import com.sagisu.vault.ui.trade.SelectCoinsFragment;
 import com.sagisu.vault.ui.trade.send.SendActivity;
 import com.sagisu.vault.ui.trade.watchlists.TokenWatchlistsActivity;
+import com.sagisu.vault.utils.AppManager;
 import com.sagisu.vault.utils.SharedPref;
 import com.sagisu.vault.utils.Util;
 
@@ -50,6 +51,7 @@ public class TradeHomeFragment extends Fragment implements CoinListAdapter.ICoin
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
+        AppManager.getAppManager().addActivity(getActivity());
         View rootView = inflater.inflate(R.layout.fragment_coin_wallet_home, container, false);
         binding = DataBindingUtil.bind(rootView);
         String userId = UUID.randomUUID().toString();
@@ -68,7 +70,7 @@ public class TradeHomeFragment extends Fragment implements CoinListAdapter.ICoin
         mViewModel.getBalances().observe(getViewLifecycleOwner(), new Observer<Balances>() {
             @Override
             public void onChanged(Balances balances) {
-                new SharedPref(getActivity().getApplicationContext()).setCryptoBalanceUpdated(true);
+                new SharedPref().setCryptoBalanceUpdated(true);
                 initRecyclerView(balances.getCoinBalance());
             }
         });
@@ -144,7 +146,7 @@ public class TradeHomeFragment extends Fragment implements CoinListAdapter.ICoin
     public void onResume() {
         super.onResume();
 
-        if (mViewModel.getBalances().getValue() == null || !new SharedPref(getActivity().getApplicationContext()).isCryptoBalanceUpdated()) {
+        if (mViewModel.getBalances().getValue() == null || !new SharedPref().isCryptoBalanceUpdated()) {
             mViewModel.getCryptoWalletBalance();
         }
     }
@@ -164,7 +166,7 @@ public class TradeHomeFragment extends Fragment implements CoinListAdapter.ICoin
                 // Using AutoDispose to handle subscription lifecycle.
                 // See: https://github.com/uber/AutoDispose
                 .to(AutoDispose.autoDisposable(AndroidLifecycleScopeProvider.from(this)))
-                .subscribe(pagingData -> tokenAdapter.submitData(getLifecycle(), pagingData));
+                .subscribe(pagingData -> tokenAdapter.submitData(getLifecycle(), pagingData), error -> error.printStackTrace());
     }
 
     private void shimmerBalanceView(boolean visibility) {

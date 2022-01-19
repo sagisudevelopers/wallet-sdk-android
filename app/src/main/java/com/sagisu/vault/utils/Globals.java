@@ -1,28 +1,27 @@
 package com.sagisu.vault.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.widget.Toast;
 
 import androidx.multidex.MultiDexApplication;
-
-import com.google.firebase.FirebaseApp;
-import com.google.firebase.crashlytics.FirebaseCrashlytics;
+/*
 import com.sagisu.vault.di.ApplicationComponent;
-import com.sagisu.vault.di.ApplicationModule;
-import com.sagisu.vault.di.DaggerApplicationComponent;
+import com.sagisu.vault.di.ApplicationModule;*/
+/*import com.sagisu.vault.di.DaggerApplicationComponent;*/
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
 public class Globals extends MultiDexApplication {
 
-    private static ApplicationComponent appComponent;
+   /* private static ApplicationComponent appComponent;
 
     public static ApplicationComponent getAppComponent() {
         return appComponent;
-    }
+    }*/
 
     public static Toast toast;
 
@@ -30,17 +29,17 @@ public class Globals extends MultiDexApplication {
     @Override
     public void onCreate() {
         super.onCreate();
-        createDaggerInjections();
-        FirebaseApp.initializeApp(getApplicationContext());
-        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);
+       // createDaggerInjections();
+       /* FirebaseApp.initializeApp(getApplicationContext());
+        FirebaseCrashlytics.getInstance().setCrashlyticsCollectionEnabled(true);*/
     }
 
 
-    private void createDaggerInjections() {
+    /*private void createDaggerInjections() {
         appComponent = DaggerApplicationComponent.builder()
                 .applicationModule(new ApplicationModule(this))
                 .build();
-    }
+    }*/
 
     /**
      * Return date in specified format.
@@ -69,7 +68,7 @@ public class Globals extends MultiDexApplication {
 
 
     public static boolean isOnline() {
-        Context context = appComponent.getContext();
+        Context context = AppManager.getAppManager().currentActivity();
         boolean connected = false;
         ConnectivityManager connectivityManager = (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
         if (connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE).getState() == NetworkInfo.State.CONNECTED ||
@@ -81,7 +80,7 @@ public class Globals extends MultiDexApplication {
         return connected;
     }
 
-    public static Context getContext() {
+    /*public static Context getContext() {
         return appComponent.getContext();
-    }
+    }*/
 }

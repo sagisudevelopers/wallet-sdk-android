@@ -7,11 +7,11 @@ import android.view.View;
 
 import com.google.android.material.snackbar.Snackbar;
 import com.sagisu.vault.R;
-import com.sagisu.vault.ui.login.LoginActivity;
+import com.sagisu.vault.ui.login.VaultLoginActivity;
 import com.sagisu.vault.ui.login.fragments.User;
 
 public class Util {
-    public static final String phone_prefix = "+1";
+    public static final String phone_prefix = "+91";
 
     public enum TradeTypes {
         BUY,
@@ -45,8 +45,8 @@ public class Util {
                     .setAction("Login", new View.OnClickListener() {
                         @Override
                         public void onClick(View view) {
-                            new SharedPref(activity.getApplicationContext()).clearSharedPref();
-                            Intent intent = new Intent(activity, LoginActivity.class);
+                            new SharedPref().clearSharedPref();
+                            Intent intent = new Intent(activity, VaultLoginActivity.class);
                             activity.startActivity(intent);
                             activity.finish();
                         }
@@ -57,10 +57,10 @@ public class Util {
     public static boolean hasPermission(String functionality, Context context) {
         boolean flag = true;
 
-        if (new SharedPref(context).getToken() == null)
+        if (new SharedPref().getToken() == null)
             return false;
 
-        User user = new SharedPref(context).getUser();
+        User user = new SharedPref().getUser();
 
 
         return hasPermission(functionality, user.getStatus());

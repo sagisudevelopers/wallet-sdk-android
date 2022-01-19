@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data class="SignupPage1Binding">
+    <data class="VaultSignupPage1Binding">
 
         <variable
             name="viewModel"
-            type="com.sagisu.vault.ui.login.fragments.LoginViewModel" />
+            type="com.sagisu.vault.ui.login.fragments.VaultLoginViewModel" />
         <import type="com.sagisu.vault.utils.Util"/>
     </data>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        tools:context=".ui.login.LoginActivity"
+        tools:context=".ui.login.VaultLoginActivity"
         android:fillViewport="true">
 
         <androidx.constraintlayout.widget.ConstraintLayout
@@ -63,7 +63,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/login_firstname_wrap"
-                style="@style/TextInputStyle"
+                style="@style/VaultTextInputStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
@@ -83,7 +83,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/login_lastname_wrap"
-                style="@style/TextInputStyle"
+                style="@style/VaultTextInputStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -103,7 +103,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/login_phone_wrap"
-                style="@style/TextInputStyle"
+                style="@style/VaultTextInputStyle"
                 requiredValidator="@{viewModel.consumer.phone}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -129,7 +129,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/login_email_wrap"
-                style="@style/TextInputStyle"
+                style="@style/VaultTextInputStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
@@ -157,7 +157,7 @@
                 android:onClick="@{()->viewModel.userExists()}"
                 android:text="Login"
                 android:textColor="@color/white"
-                app:backgroundTint="@color/colorPrimary"
+                app:backgroundTint="@color/vaultColorPrimary"
                 app:icon="@drawable/ic_right_arrow"
                 app:iconGravity="textEnd"
                 app:iconSize="14dp"
@@ -173,7 +173,7 @@
                 android:layout_height="wrap_content"
                 android:onClick="@{()->viewModel.skipLogin()}"
                 android:text="Skip Login"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/vaultColorPrimary"
                 android:visibility="gone"
                 app:backgroundTint="@color/white"
                 app:layout_constraintBottom_toBottomOf="parent"

@@ -35,12 +35,10 @@ public class SelectDocumentsFragment extends Fragment implements NetverifyDeallo
     private DocumentVerificationViewModel mViewModel;
     private DocumentVerificationFragmentBinding binding;
 
-    public static final String KEY_API_TOKEN = "8262ded1-493f-4ee8-b6a0-7561cb6278b8";
-    public static final String KEY_API_SECRET = "LhRDD7LR7dBdYpcAukxXiVWFFbb5otRs";
     public static final JumioDataCenter KEY_DATACENTER = JumioDataCenter.US;
 
-    private String apiToken = KEY_API_TOKEN;
-    private String apiSecret = KEY_API_SECRET;
+    private String apiToken = ApiClient.JUMIO_KEY_API_TOKEN;
+    private String apiSecret = ApiClient.JUMIO_KEY_API_SECRET;
     private JumioDataCenter dataCenter = KEY_DATACENTER;
 
     private NetverifySDK netverifySDK;

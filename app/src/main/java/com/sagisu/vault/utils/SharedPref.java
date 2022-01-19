@@ -15,7 +15,8 @@ public class SharedPref {
     private SharedPreferences sharedPreferences;
     private SharedPreferences.Editor editor;
 
-    public SharedPref(Context context) {
+    public SharedPref() {
+        Context context = AppManager.getAppManager().currentActivity();
         sharedPreferences = context.getSharedPreferences(MY_PREFS_NAME, Context.MODE_PRIVATE);
         editor = sharedPreferences.edit();
     }
@@ -31,7 +32,7 @@ public class SharedPref {
     }
 
     public void setToken(String value) {
-        editor.putString("token", "Bearer ".concat(value));
+        editor.putString("vault_token", "Bearer ".concat(value));
         editor.commit();
     }
 
@@ -68,7 +69,7 @@ public class SharedPref {
     }
 
     public String getToken() {
-        return sharedPreferences.getString("token", null);
+        return sharedPreferences.getString("vault_token", null);
     }
 
     public String getTransactionCursor() {

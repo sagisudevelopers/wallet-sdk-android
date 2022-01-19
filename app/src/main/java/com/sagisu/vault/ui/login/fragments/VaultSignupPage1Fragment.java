@@ -13,22 +13,22 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.sagisu.vault.R;
-import com.sagisu.vault.databinding.SignupPage1Binding;
+import com.sagisu.vault.databinding.VaultSignupPage1Binding;
 
 
-public class SignupPage1Fragment extends Fragment {
+public class VaultSignupPage1Fragment extends Fragment {
 
-    private LoginViewModel mViewModel;
-    private SignupPage1Binding binding;
+    private VaultLoginViewModel mViewModel;
+    private VaultSignupPage1Binding binding;
 
-    public static SignupPage1Fragment newInstance() {
-        return new SignupPage1Fragment();
+    public static VaultSignupPage1Fragment newInstance() {
+        return new VaultSignupPage1Fragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.signup_page1_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.vault_signup_page1_fragment, container, false);
         binding = DataBindingUtil.bind(rootView);
         return binding.getRoot();
     }
@@ -36,7 +36,7 @@ public class SignupPage1Fragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(getActivity()).get(LoginViewModel.class);
+        mViewModel = new ViewModelProvider(getActivity()).get(VaultLoginViewModel.class);
         binding.setViewModel(mViewModel);
         binding.setLifecycleOwner(this);
 

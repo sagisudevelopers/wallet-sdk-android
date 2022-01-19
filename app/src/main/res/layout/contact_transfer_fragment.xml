@@ -105,7 +105,7 @@
                 android:text="@string/pay"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                app:backgroundTint="@color/colorPrimary"
+                app:backgroundTint="@color/vaultColorPrimary"
                 app:cornerRadius="15dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

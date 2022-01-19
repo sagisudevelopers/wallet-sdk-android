@@ -113,7 +113,8 @@ public class SendActivity extends AppCompatActivity implements SelectCoinsFragme
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_send);
         AppManager.getAppManager().addActivity(this);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         mViewModel = new ViewModelProvider(this).get(SendCoinsViewModel.class);
         onNewIntent(getIntent());
        /*mViewModel.getPageNo().observe(this, new Observer<Integer>() {
@@ -172,7 +173,7 @@ public class SendActivity extends AppCompatActivity implements SelectCoinsFragme
             public void onChanged(SendCryptoResponse sendCryptoResponse) {
                 if (sendCryptoResponse != null) {
                     Toast.makeText(SendActivity.this, "Transaction initiated", Toast.LENGTH_LONG).show();
-                    new SharedPref(Globals.getContext()).setCryptoBalanceUpdated(false);
+                    new SharedPref().setCryptoBalanceUpdated(false);
                     finish();
                 }
             }
@@ -281,7 +282,8 @@ public class SendActivity extends AppCompatActivity implements SelectCoinsFragme
        /* getSupportActionBar().setDisplayShowHomeEnabled(true);
         getSupportActionBar().setLogo(R.drawable.vault_logo);
         getSupportActionBar().setDisplayUseLogoEnabled(true);*/
-        getSupportActionBar().setTitle(title);
+        if (getSupportActionBar() != null)
+            getSupportActionBar().setTitle(title);
     }
 
     public void loading(String text, boolean loading) {

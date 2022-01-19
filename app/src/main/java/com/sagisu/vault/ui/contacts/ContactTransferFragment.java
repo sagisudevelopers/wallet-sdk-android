@@ -27,18 +27,18 @@ import com.sagisu.vault.utils.Util;
 
 import java.util.List;
 
-public class ContactTransferFragment extends Fragment implements ConfirmationBottomDialogFragment.IConfirmDialogListener, MessageAdapter.IMessageClickListener {
+public class ContactTransferFragment extends Fragment /*implements ConfirmationBottomDialogFragment.IConfirmDialogListener, MessageAdapter.IMessageClickListener*/ {
 
-    private ContactTransferViewModel mViewModel;
+   /* private ContactTransferViewModel mViewModel;
     private PubnubViewModel mPNViewModel;
     private ContactTransferFragmentBiding biding;
-    private MessageAdapter messageAdapter;
+    private MessageAdapter messageAdapter;*/
 
     public static ContactTransferFragment newInstance() {
         return new ContactTransferFragment();
     }
 
-    @Nullable
+   /* @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -76,7 +76,7 @@ public class ContactTransferFragment extends Fragment implements ConfirmationBot
         biding.setViewModel(mViewModel);
         biding.setLifecycleOwner(this);
 
-        mPNViewModel.setUser(new SharedPref(getActivity().getApplicationContext()).getUser());
+        mPNViewModel.setUser(new SharedPref().getUser());
         mPNViewModel.setChannelName(mViewModel.getContactInfo().get().getPhoneNumber());
         mPNViewModel.setRecipientName(mViewModel.getContactInfo().get().getDisplayName());
         mPNViewModel.initPubNubClient();
@@ -165,5 +165,5 @@ public class ContactTransferFragment extends Fragment implements ConfirmationBot
                 startActivity(intent);
             }
         });
-    }
+    }*/
 }

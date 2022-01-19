@@ -18,7 +18,7 @@ import com.sagisu.vault.databinding.ForgotPasswordPage1Binding;
 
 public class ForgotPasswordPage1Fragment extends Fragment {
 
-    private LoginViewModel mViewModel;
+    private VaultLoginViewModel mViewModel;
     private ForgotPasswordPage1Binding binding;
 
     public static ForgotPasswordPage1Fragment newInstance() {
@@ -36,7 +36,7 @@ public class ForgotPasswordPage1Fragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = new ViewModelProvider(getActivity()).get(LoginViewModel.class);
+        mViewModel = new ViewModelProvider(getActivity()).get(VaultLoginViewModel.class);
         binding.setViewModel(mViewModel);
         binding.setLifecycleOwner(this);
 

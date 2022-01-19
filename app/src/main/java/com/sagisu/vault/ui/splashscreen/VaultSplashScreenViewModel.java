@@ -6,7 +6,7 @@ import androidx.databinding.ObservableField;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class SplashScreenViewModel extends ViewModel {
+public class VaultSplashScreenViewModel extends ViewModel {
     private ObservableField<Boolean> displayBPText = new ObservableField<>();
     private MutableLiveData<Boolean> loadNextScreen = new MutableLiveData<>();
 

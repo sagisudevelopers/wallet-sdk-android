@@ -13,7 +13,7 @@
 
         <androidx.appcompat.widget.AppCompatEditText
             android:id="@+id/contact_list_search"
-            style="@style/SearchViewStyle"
+            style="@style/VaultSearchViewStyle"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="16dp"

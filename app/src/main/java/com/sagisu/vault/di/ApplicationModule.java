@@ -6,6 +6,7 @@ import android.content.Context;
 import dagger.Module;
 import dagger.Provides;
 
+/*
 @Module
 public class ApplicationModule {
     private final Application mApplication;
@@ -25,3 +26,4 @@ public class ApplicationModule {
         return mApplication;
     }
 }
+*/

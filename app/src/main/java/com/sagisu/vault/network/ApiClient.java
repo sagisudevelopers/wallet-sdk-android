@@ -27,11 +27,16 @@ public class ApiClient {
     public static final String PUBNUB_SUB_KEY = "sub-c-3e3b0ce2-0c52-11ec-9c1c-9adb7f1f2877";
     public static final String PUBNUB_PUB_KEY = "pub-c-f5d299e8-ecd4-4a4a-aed8-7080abd60f2f";
 
+    public static final String STORYTELLER_API_KEY = "adcabf5b-4ddc-4e43-a9b4-056f9f75d73c";
+
+    public static final String JUMIO_KEY_API_TOKEN = "8262ded1-493f-4ee8-b6a0-7561cb6278b8";
+    public static final String JUMIO_KEY_API_SECRET = "LhRDD7LR7dBdYpcAukxXiVWFFbb5otRs";
+
     public static String URL;
     private static Retrofit retrofit;
 
     public static ApiInterface buildRetrofitService() {
-        URL = LOCAL_DEV_URL + "/v1/";
+        URL = PROD_URL + "/v1/";
         return buildService();
     }
 

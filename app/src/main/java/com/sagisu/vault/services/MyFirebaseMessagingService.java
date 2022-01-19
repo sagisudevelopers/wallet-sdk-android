@@ -1,5 +1,6 @@
 package com.sagisu.vault.services;
 
+/*
 import android.app.NotificationChannel;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
@@ -16,10 +17,11 @@ import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import com.google.firebase.messaging.FirebaseMessagingService;
 import com.google.firebase.messaging.RemoteMessage;
 import com.sagisu.vault.R;
-import com.sagisu.vault.ui.MainActivity;
+import com.sagisu.vault.ui.VaultMainActivity;
 
 import java.util.Map;
 
+*/
 /**
  * NOTE: There can only be one service in each app that receives FCM messages. If multiple
  * are declared in the Manifest then the first one will be chosen.
@@ -30,16 +32,19 @@ import java.util.Map;
  * <intent-filter>
  * <action android:name="com.google.firebase.MESSAGING_EVENT" />
  * </intent-filter>
- */
+ *//*
+
 public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     private static final String TAG = "MyFirebaseMsgService";
 
-    /**
+    */
+/**
      * Called when message is received.
      *
      * @param remoteMessage Object representing the message received from Firebase Cloud Messaging.
-     */
+     *//*
+
     // [START receive_message]
     @Override
     public void onMessageReceived(RemoteMessage remoteMessage) {
@@ -67,13 +72,19 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         if (remoteMessage.getData().size() > 0) {
             Log.d(TAG, "Message data payload: " + remoteMessage.getData());
 
-            /*if (*//* Check if data needs to be processed by long running job *//* false) {
+            */
+/*if (*//*
+*/
+/* Check if data needs to be processed by long running job *//*
+*/
+/* false) {
                 // For long-running tasks (10 seconds or more) use WorkManager.
                // scheduleJob();
             } else {
                 // Handle message within 10 seconds
                 handleNow();
-            }*/
+            }*//*
+
 
             Map<String, String> data = remoteMessage.getData();
             String type = data.get("type");
@@ -81,12 +92,14 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
                 case "KycScanResult":
                     break;
             }
-            /*String status = data.get("status");
+            */
+/*String status = data.get("status");
             Integer amount = Integer.valueOf(data.get("amount"));
             User user = new SharedPref(Globals.getContext()).getUser();
             user.setStatus(status);
             user.getStatusMetadata().setAmount(amount);
-            new SharedPref(Globals.getContext()).setUser(user);*/
+            new SharedPref(Globals.getContext()).setUser(user);*//*
+
         }
 
         // Check if message contains a notification payload.
@@ -103,7 +116,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
 
     // [START on_new_token]
 
-    /**
+    */
+/**
      * There are two scenarios when onNewToken is called:
      * 1) When a new token is generated on initial app startup
      * 2) Whenever an existing token is changed
@@ -111,7 +125,8 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
      * A) App is restored to a new device
      * B) User uninstalls/reinstalls the app
      * C) User clears app data
-     */
+     *//*
+
     @Override
     public void onNewToken(String token) {
         Log.d(TAG, "Refreshed token: " + token);
@@ -123,28 +138,36 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
     }
     // [END on_new_token]
 
-    /**
+    */
+/**
      * Schedule async work using WorkManager.
-     */
-   /* private void scheduleJob() {
+     *//*
+
+   */
+/* private void scheduleJob() {
         // [START dispatch_job]
         OneTimeWorkRequest work = new OneTimeWorkRequest.Builder(MyWorker.class)
                 .build();
         WorkManager.getInstance(this).beginWith(work).enqueue();
         // [END dispatch_job]
     }
-*/
+*//*
 
-    /**
+
+    */
+/**
      * Handle time allotted to BroadcastReceivers.
-     */
+     *//*
+
     private void handleNow() {
         Log.d(TAG, "Short lived task is done.");
     }
 
-    /**
+    */
+/**
      * Hnadle kyc scan result.
-     */
+     *//*
+
     private void handleKycScanResult(String scanStatus) {
         //Send data through a local broadcast receiver
         Intent intent = new Intent("IntentFilterAction");
@@ -152,27 +175,33 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
         LocalBroadcastManager.getInstance(this).sendBroadcast(intent);
     }
 
-    /**
+    */
+/**
      * Persist token to third-party servers.
      * <p>
      * Modify this method to associate the user's FCM registration token with any
      * server-side account maintained by your application.
      *
      * @param token The new token.
-     */
+     *//*
+
     private void sendRegistrationToServer(String token) {
         // TODO: Implement this method to send token to your app server.
     }
 
-    /**
+    */
+/**
      * Create and show a simple notification containing the received FCM message.
      *
      * @param messageBody FCM message body received.
-     */
+     *//*
+
     private void sendNotification(String messageBody, String tittle) {
-        Intent intent = new Intent(this, MainActivity.class);
+        Intent intent = new Intent(this, VaultMainActivity.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 /* Request code */, intent,
+        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0 */
+/* Request code *//*
+, intent,
                 PendingIntent.FLAG_ONE_SHOT);
 
         String channelId = getString(R.string.default_notification_channel_id);
@@ -197,6 +226,9 @@ public class MyFirebaseMessagingService extends FirebaseMessagingService {
             notificationManager.createNotificationChannel(channel);
         }
 
-        notificationManager.notify(0 /* ID of notification */, notificationBuilder.build());
+        notificationManager.notify(0 */
+/* ID of notification *//*
+, notificationBuilder.build());
     }
 }
+*/

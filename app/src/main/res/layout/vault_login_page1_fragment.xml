@@ -3,14 +3,13 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <data class="LoginPage1Binding">
+    <data class="VaultLoginPage1Binding">
 
         <variable
             name="viewModel"
-            type="com.sagisu.vault.ui.login.fragments.LoginViewModel" />
+            type="com.sagisu.vault.ui.login.fragments.VaultLoginViewModel" />
 
-        <import type="com.sagisu.vault.ui.login.fragments.LoginViewModel.PageType" />
-        <import type="com.sagisu.vault.ui.login.fragments.LoginViewModel.ViewType" />
+        <import type="com.sagisu.vault.ui.login.fragments.VaultLoginViewModel.ViewType" />
         <import type="com.sagisu.vault.utils.Util"/>
 
     </data>
@@ -61,7 +60,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/login_business_id_wrap"
-                style="@style/TextInputStyle"
+                style="@style/VaultTextInputStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:visibility="gone"
@@ -85,7 +84,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/login_phone_wrap"
-                style="@style/TextInputStyle"
+                style="@style/VaultTextInputStyle"
                 requiredValidator="@{viewModel.consumer.phone}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -113,7 +112,7 @@
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/login_password_wrap"
-                style="@style/TextInputStyle"
+                style="@style/VaultTextInputStyle"
                 requiredValidator="@{viewModel.consumer.password}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -150,7 +149,7 @@
                 android:text="Forgot Password"
                 android:onClick="@{()-> viewModel.setViewType(ViewType.ForgotPassword)}"
                 android:textAllCaps="false"
-                android:textColor="@color/colorPrimary"
+                android:textColor="@color/vaultColorPrimary"
                 android:textSize="11sp"
                 android:visibility="visible"
                 app:layout_constraintBottom_toTopOf="@+id/guideline27"
@@ -189,7 +188,7 @@
                     android:lineSpacingExtra="13sp"
                     android:onClick="@{()-> viewModel.setViewType(ViewType.SignUp)}"
                     android:text="Signup here"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/vaultColorPrimary"
                     android:textSize="11sp" />
             </LinearLayout>
 
@@ -223,7 +222,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="5dp"
                     android:lineSpacingExtra="18sp"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/vaultColorPrimary"
                     android:textSize="11sp" />
             </LinearLayout>
 
@@ -266,7 +265,7 @@
                 android:id="@+id/login_employee"
                 android:layout_width="0dp"
                 android:layout_height="57dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/vaultColorPrimary"
                 android:onClick="@{()->viewModel.login()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/login_businessPartner"
@@ -293,7 +292,7 @@
                 android:layout_height="57dp"
                 android:layout_marginStart="1dp"
                 android:layout_marginTop="47dp"
-                android:background="@color/colorPrimary"
+                android:background="@color/vaultColorPrimary"
                 android:visibility="gone"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"

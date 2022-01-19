@@ -10,24 +10,25 @@ import androidx.annotation.Nullable;
 import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.lifecycle.ViewModelProvider;
 
 import com.sagisu.vault.R;
-import com.sagisu.vault.databinding.LoginPage3Binding;
+import com.sagisu.vault.databinding.VaultLoginPage1Binding;
 
-public class LoginPage3Fragment extends Fragment {
 
-    private LoginViewModel mViewModel;
-    private LoginPage3Binding binding;
+public class VaultLoginPage1Fragment extends Fragment {
 
-    public static LoginPage3Fragment newInstance() {
-        return new LoginPage3Fragment();
+    private VaultLoginViewModel mViewModel;
+    private VaultLoginPage1Binding binding;
+
+    public static VaultLoginPage1Fragment newInstance() {
+        return new VaultLoginPage1Fragment();
     }
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.login_password_fragment, container, false);
+        View rootView = inflater.inflate(R.layout.vault_login_page1_fragment, container, false);
         binding = DataBindingUtil.bind(rootView);
         return binding.getRoot();
     }
@@ -35,7 +36,7 @@ public class LoginPage3Fragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        mViewModel = ViewModelProviders.of(getActivity()).get(LoginViewModel.class);
+        mViewModel = new ViewModelProvider(getActivity()).get(VaultLoginViewModel.class);
         binding.setViewModel(mViewModel);
         binding.setLifecycleOwner(this);
 
@@ -43,11 +44,11 @@ public class LoginPage3Fragment extends Fragment {
             @Override
             public void onChanged(LoginFormError loginFormError) {
 
-                binding.loginPassword.setError(loginFormError.getPasswordError() == null ? null : getString(loginFormError.getPasswordError()));
-                binding.loginPassword.setErrorEnabled(loginFormError.getPasswordError() != null);
+                binding.loginPhoneWrap.setError(loginFormError.getPhoneError() == null ? null : getString(loginFormError.getPhoneError()));
+                binding.loginPhoneWrap.setErrorEnabled(loginFormError.getPhoneError() != null);
 
-                binding.loginConfirmPassword.setError(loginFormError.getConfirmPasswordError() == null ? null : getString(loginFormError.getConfirmPasswordError()));
-                binding.loginConfirmPassword.setErrorEnabled(loginFormError.getConfirmPasswordError() != null);
+                binding.loginPasswordWrap.setError(loginFormError.getPasswordError() == null ? null : getString(loginFormError.getPasswordError()));
+                binding.loginPasswordWrap.setErrorEnabled(loginFormError.getPasswordError() != null);
 
             }
         });
