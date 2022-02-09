@@ -8,8 +8,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 import com.sagisu.vault.R;
-import com.sagisu.vault.network.APIError;
-import com.sagisu.vault.network.Result;
+import com.sagisu.vault.network.VaultAPIError;
+import com.sagisu.vault.network.VaultResult;
 import com.sagisu.vault.repository.NetworkRepository;
 import com.sagisu.vault.utils.OtpTypeDescriptor;
 
@@ -160,18 +160,18 @@ public class VaultLoginViewModel extends ViewModel {
     public void login() {
         if (!valid()) return;
         loadingObservable.setValue("Logging in");
-        LiveData<Result<LoginResponse>> liveData = NetworkRepository.getInstance().login(consumer.getValue());
-        loginStatus.addSource(liveData, new Observer<Result<LoginResponse>>() {
+        LiveData<VaultResult<LoginResponse>> liveData = NetworkRepository.getInstance().login(consumer.getValue());
+        loginStatus.addSource(liveData, new Observer<VaultResult<LoginResponse>>() {
             @Override
-            public void onChanged(Result<LoginResponse> agentResult) {
+            public void onChanged(VaultResult<LoginResponse> agentResult) {
                 loadingObservable.setValue(null);
-                if (agentResult instanceof Result.Success) {
-                    loginRes = ((Result.Success<LoginResponse>) agentResult).getData();
+                if (agentResult instanceof VaultResult.Success) {
+                    loginRes = ((VaultResult.Success<LoginResponse>) agentResult).getData();
                     //loginStatus.setValue("LoggedIn");
                     generateOtp();
-                } else if (agentResult instanceof Result.Error) {
-                    APIError apiError = ((Result.Error) agentResult).getError();
-                    toastMsg.setValue(apiError.message());
+                } else if (agentResult instanceof VaultResult.Error) {
+                    VaultAPIError vaultApiError = ((VaultResult.Error) agentResult).getError();
+                    toastMsg.setValue(vaultApiError.message());
                 }
             }
         });
@@ -191,19 +191,19 @@ public class VaultLoginViewModel extends ViewModel {
     public void signUp() {
         if (!valid()) return;
         loadingObservable.setValue("Signing Up");
-        LiveData<Result<LoginResponse>> liveData = NetworkRepository.getInstance().signUp(consumer.getValue());
-        loginStatus.addSource(liveData, new Observer<Result<LoginResponse>>() {
+        LiveData<VaultResult<LoginResponse>> liveData = NetworkRepository.getInstance().signUp(consumer.getValue());
+        loginStatus.addSource(liveData, new Observer<VaultResult<LoginResponse>>() {
             @Override
-            public void onChanged(Result<LoginResponse> agentResult) {
+            public void onChanged(VaultResult<LoginResponse> agentResult) {
                 loadingObservable.setValue(null);
-                if (agentResult instanceof Result.Success) {
-                    loginRes = ((Result.Success<LoginResponse>) agentResult).getData();
+                if (agentResult instanceof VaultResult.Success) {
+                    loginRes = ((VaultResult.Success<LoginResponse>) agentResult).getData();
                     loginStatus.setValue("SignedUp");
                     //setViewType(ViewType.Login);
 
-                } else if (agentResult instanceof Result.Error) {
-                    APIError apiError = ((Result.Error) agentResult).getError();
-                    if (apiError.status() == 403) {
+                } else if (agentResult instanceof VaultResult.Error) {
+                    VaultAPIError vaultApiError = ((VaultResult.Error) agentResult).getError();
+                    if (vaultApiError.status() == 403) {
                         toastMsg.setValue("Phone is already registered");
                     }
                 }
@@ -214,18 +214,18 @@ public class VaultLoginViewModel extends ViewModel {
     public void resetPassword() {
         if (!valid()) return;
         loadingObservable.setValue("Resetting password");
-        LiveData<Result<LoginResponse>> liveData = NetworkRepository.getInstance().forgotPassword(consumer.getValue());
-        loginStatus.addSource(liveData, new Observer<Result<LoginResponse>>() {
+        LiveData<VaultResult<LoginResponse>> liveData = NetworkRepository.getInstance().forgotPassword(consumer.getValue());
+        loginStatus.addSource(liveData, new Observer<VaultResult<LoginResponse>>() {
             @Override
-            public void onChanged(Result<LoginResponse> agentResult) {
+            public void onChanged(VaultResult<LoginResponse> agentResult) {
                 loadingObservable.setValue(null);
-                if (agentResult instanceof Result.Success) {
+                if (agentResult instanceof VaultResult.Success) {
                     setViewType(ViewType.Login);
 
-                } else if (agentResult instanceof Result.Error) {
-                    APIError apiError = ((Result.Error) agentResult).getError();
-                    if (apiError.status() == 403) {
-                        toastMsg.setValue(apiError.message());
+                } else if (agentResult instanceof VaultResult.Error) {
+                    VaultAPIError vaultApiError = ((VaultResult.Error) agentResult).getError();
+                    if (vaultApiError.status() == 403) {
+                        toastMsg.setValue(vaultApiError.message());
                     }
                 }
             }
@@ -239,13 +239,13 @@ public class VaultLoginViewModel extends ViewModel {
         }
 
         loadingObservable.setValue("Checking if user exist");
-        LiveData<Result<LoginResponse>> liveData = NetworkRepository.getInstance().getProfile(consumer.getValue().getPhone());
-        loginStatus.addSource(liveData, new Observer<Result<LoginResponse>>() {
+        LiveData<VaultResult<LoginResponse>> liveData = NetworkRepository.getInstance().getProfile(consumer.getValue().getPhone());
+        loginStatus.addSource(liveData, new Observer<VaultResult<LoginResponse>>() {
             @Override
-            public void onChanged(Result<LoginResponse> agentResult) {
+            public void onChanged(VaultResult<LoginResponse> agentResult) {
                 loadingObservable.setValue(null);
-                if (agentResult instanceof Result.Success) {
-                    loginRes = ((Result.Success<LoginResponse>) agentResult).getData();
+                if (agentResult instanceof VaultResult.Success) {
+                    loginRes = ((VaultResult.Success<LoginResponse>) agentResult).getData();
                     switch (page.getValue()) {
                         case PageType.Login:
                         case PageType.ForgotPasswordPhone:
@@ -266,9 +266,9 @@ public class VaultLoginViewModel extends ViewModel {
                             break;
                     }
 
-                } else if (agentResult instanceof Result.Error) {
-                    APIError apiError = ((Result.Error) agentResult).getError();
-                    toastMsg.setValue(apiError.message());
+                } else if (agentResult instanceof VaultResult.Error) {
+                    VaultAPIError vaultApiError = ((VaultResult.Error) agentResult).getError();
+                    toastMsg.setValue(vaultApiError.message());
                 }
             }
         });

@@ -11,8 +11,8 @@ import com.sagisu.vault.R;
 import com.sagisu.vault.models.Account;
 import com.sagisu.vault.models.Payments;
 import com.sagisu.vault.models.Transaction;
-import com.sagisu.vault.network.APIError;
-import com.sagisu.vault.network.Result;
+import com.sagisu.vault.network.VaultAPIError;
+import com.sagisu.vault.network.VaultResult;
 import com.sagisu.vault.repository.NetworkRepository;
 import com.sagisu.vault.ui.home.Balances;
 import com.sagisu.vault.ui.login.fragments.User;
@@ -63,14 +63,14 @@ public class FundWalletViewModel extends ViewModel {
     }
 
     public void getWalletBalance() {
-        LiveData<Result<Balances>> balanceLiveData = NetworkRepository.getInstance().walletBalance();
-        totalWalletBalance.addSource(balanceLiveData, new Observer<Result<Balances>>() {
+        LiveData<VaultResult<Balances>> balanceLiveData = NetworkRepository.getInstance().walletBalance();
+        totalWalletBalance.addSource(balanceLiveData, new Observer<VaultResult<Balances>>() {
             @Override
-            public void onChanged(Result<Balances> balancesResult) {
-                if (balancesResult instanceof Result.Success) {
-                    totalWalletBalance.setValue(((Result.Success<Balances>) balancesResult).getData().getAvailable());
-                } else if (balancesResult instanceof Result.Error) {
-                    APIError apiError = ((Result.Error) balancesResult).getError();
+            public void onChanged(VaultResult<Balances> balancesResult) {
+                if (balancesResult instanceof VaultResult.Success) {
+                    totalWalletBalance.setValue(((VaultResult.Success<Balances>) balancesResult).getData().getAvailable());
+                } else if (balancesResult instanceof VaultResult.Error) {
+                    VaultAPIError vaultApiError = ((VaultResult.Error) balancesResult).getError();
                 }
             }
         });
@@ -78,17 +78,17 @@ public class FundWalletViewModel extends ViewModel {
 
     public void fetchPaidAccounts() {
         setLoadingAccountsObservable(true);
-        LiveData<Result<List<Account>>> accountsLiveData = NetworkRepository.getInstance().getPlaidAccounts();
-        accountsList.addSource(accountsLiveData, new Observer<Result<List<Account>>>() {
+        LiveData<VaultResult<List<Account>>> accountsLiveData = NetworkRepository.getInstance().getPlaidAccounts();
+        accountsList.addSource(accountsLiveData, new Observer<VaultResult<List<Account>>>() {
             @Override
-            public void onChanged(Result<List<Account>> listResult) {
+            public void onChanged(VaultResult<List<Account>> listResult) {
                 setLoadingAccountsObservable(false);
-                if (listResult instanceof Result.Success) {
-                    accountsList.setValue(((Result.Success<List<Account>>) listResult).getData());
-                } else if (listResult instanceof Result.Error) {
-                    APIError apiError = ((Result.Error) listResult).getError();
+                if (listResult instanceof VaultResult.Success) {
+                    accountsList.setValue(((VaultResult.Success<List<Account>>) listResult).getData());
+                } else if (listResult instanceof VaultResult.Error) {
+                    VaultAPIError vaultApiError = ((VaultResult.Error) listResult).getError();
                     FundWalletFormError formError1 = new FundWalletFormError();
-                    formError1.setToastMsg(apiError.message());
+                    formError1.setToastMsg(vaultApiError.message());
                     formError.setValue(formError1);
                 }
             }
@@ -124,21 +124,21 @@ public class FundWalletViewModel extends ViewModel {
 
     public void exchangeForAccessToken(String publicToken, String institutionName) {
         loadingObservable.setValue("Getting banking details");
-        LiveData<Result<BankDetailsResponse>> exchangeTokenResponseLiveData = NetworkRepository.getInstance().bankDetails(publicToken, institutionName);
-        accessTokenReceived.addSource(exchangeTokenResponseLiveData, new Observer<Result<BankDetailsResponse>>() {
+        LiveData<VaultResult<BankDetailsResponse>> exchangeTokenResponseLiveData = NetworkRepository.getInstance().bankDetails(publicToken, institutionName);
+        accessTokenReceived.addSource(exchangeTokenResponseLiveData, new Observer<VaultResult<BankDetailsResponse>>() {
             @Override
-            public void onChanged(Result<BankDetailsResponse> bankTransferResponseResult) {
+            public void onChanged(VaultResult<BankDetailsResponse> bankTransferResponseResult) {
                 setLoadingObservable(null);
-                if (bankTransferResponseResult instanceof Result.Success) {
-                    BankDetailsResponse bankDetailsResponse = ((Result.Success<BankDetailsResponse>) bankTransferResponseResult).getData();
+                if (bankTransferResponseResult instanceof VaultResult.Success) {
+                    BankDetailsResponse bankDetailsResponse = ((VaultResult.Success<BankDetailsResponse>) bankTransferResponseResult).getData();
                     //bankTransferRequest.setAccessToken(bankDetailsResponse.getAccess_token());
                     insertAccountDetails(bankDetailsResponse.getAccounts().get(0));
                     fetchPaidAccounts();
                     //doTransfer();
-                } else if (bankTransferResponseResult instanceof Result.Error) {
-                    APIError apiError = ((Result.Error) bankTransferResponseResult).getError();
+                } else if (bankTransferResponseResult instanceof VaultResult.Error) {
+                    VaultAPIError vaultApiError = ((VaultResult.Error) bankTransferResponseResult).getError();
                     FundWalletFormError formError1 = new FundWalletFormError();
-                    formError1.setToastMsg(apiError.message());
+                    formError1.setToastMsg(vaultApiError.message());
                     formError.setValue(formError1);
                 }
 
@@ -159,17 +159,17 @@ public class FundWalletViewModel extends ViewModel {
     public void doTransfer() {
         loadingObservable.setValue("Transferring amount");
         //Hit api to transfer amount
-        LiveData<Result<Transaction>> bankTransferResponseLiveData = NetworkRepository.getInstance().fundWallet(bankTransferRequest.getValue());
-        bankTransferResponseData.addSource(bankTransferResponseLiveData, new Observer<Result<Transaction>>() {
+        LiveData<VaultResult<Transaction>> bankTransferResponseLiveData = NetworkRepository.getInstance().fundWallet(bankTransferRequest.getValue());
+        bankTransferResponseData.addSource(bankTransferResponseLiveData, new Observer<VaultResult<Transaction>>() {
             @Override
-            public void onChanged(Result<Transaction> bankTransferResponseResult) {
+            public void onChanged(VaultResult<Transaction> bankTransferResponseResult) {
                 loadingObservable.setValue(null);
-                if (bankTransferResponseResult instanceof Result.Success)
-                    bankTransferResponseData.setValue(((Result.Success<Transaction>) bankTransferResponseResult).getData());
-                else if (bankTransferResponseResult instanceof Result.Error) {
-                    APIError apiError = ((Result.Error) bankTransferResponseResult).getError();
+                if (bankTransferResponseResult instanceof VaultResult.Success)
+                    bankTransferResponseData.setValue(((VaultResult.Success<Transaction>) bankTransferResponseResult).getData());
+                else if (bankTransferResponseResult instanceof VaultResult.Error) {
+                    VaultAPIError vaultApiError = ((VaultResult.Error) bankTransferResponseResult).getError();
                     FundWalletFormError formError1 = new FundWalletFormError();
-                    formError1.setToastMsg(apiError.message());
+                    formError1.setToastMsg(vaultApiError.message());
                     formError.setValue(formError1);
                 }
             }

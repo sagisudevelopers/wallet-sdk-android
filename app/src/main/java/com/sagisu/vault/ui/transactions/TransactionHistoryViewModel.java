@@ -10,8 +10,8 @@ import androidx.paging.PagingData;
 import androidx.paging.rxjava3.PagingRx;
 
 import com.sagisu.vault.models.Transaction;
-import com.sagisu.vault.network.ApiClient;
-import com.sagisu.vault.network.NetworkState;
+import com.sagisu.vault.network.VaultApiClient;
+import com.sagisu.vault.network.VaultNetworkState;
 import com.sagisu.vault.repository.TransactionPagingSource;
 import com.sagisu.vault.repository.services.ServicesRepository;
 
@@ -27,7 +27,7 @@ public class TransactionHistoryViewModel extends ViewModel {
         CoroutineScope viewModelScope = ViewModelKt.getViewModelScope(this);
         Pager<Integer, Transaction> pager = new Pager<>(
                 new PagingConfig( /*pageSize =  */5),
-                () -> new TransactionPagingSource(ApiClient.buildRetrofitService(), query));
+                () -> new TransactionPagingSource(VaultApiClient.buildRetrofitService(), query));
 
         flowable = PagingRx.getFlowable(pager);
         PagingRx.cachedIn(flowable, viewModelScope);
@@ -43,7 +43,7 @@ public class TransactionHistoryViewModel extends ViewModel {
     }
 */
     @NonNull
-    public LiveData<NetworkState> getNetworkState() {
+    public LiveData<VaultNetworkState> getNetworkState() {
         return productRepository.getNetworkState();
     }
 }

@@ -11,8 +11,8 @@ import androidx.lifecycle.Observer;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import com.sagisu.vault.R;
 import com.sagisu.vault.models.WaitList;
-import com.sagisu.vault.network.APIError;
-import com.sagisu.vault.network.Result;
+import com.sagisu.vault.network.VaultAPIError;
+import com.sagisu.vault.network.VaultResult;
 import com.sagisu.vault.repository.NetworkRepository;
 import com.sagisu.vault.utils.FeatureNameDescriptor;
 import com.sagisu.vault.utils.ProgressShimmer;
@@ -43,16 +43,16 @@ public class JoinWaitListBottomDialogFragment extends BottomSheetDialogFragment 
             @Override
             public void onClick(View view) {
                 loading("Joining waitlist", true);
-                NetworkRepository.getInstance().joinWaitLists(featureName).observe(getViewLifecycleOwner(), new Observer<Result<WaitList>>() {
+                NetworkRepository.getInstance().joinWaitLists(featureName).observe(getViewLifecycleOwner(), new Observer<VaultResult<WaitList>>() {
                     @Override
-                    public void onChanged(Result<WaitList> waitListResult) {
+                    public void onChanged(VaultResult<WaitList> waitListResult) {
                         loading(null, false);
-                        if (waitListResult instanceof Result.Success) {
-                            waitListJoinSuccess(((Result.Success<WaitList>) waitListResult).getData());
+                        if (waitListResult instanceof VaultResult.Success) {
+                            waitListJoinSuccess(((VaultResult.Success<WaitList>) waitListResult).getData());
                             dismiss();
-                        } else if (waitListResult instanceof Result.Error) {
-                            APIError apiError = ((Result.Error) waitListResult).getError();
-                            Util.showSnackBar(apiError.message(), getActivity());
+                        } else if (waitListResult instanceof VaultResult.Error) {
+                            VaultAPIError vaultApiError = ((VaultResult.Error) waitListResult).getError();
+                            Util.showSnackBar(vaultApiError.message(), getActivity());
                             //Toast.makeText(getActivity(), apiError.message(), Toast.LENGTH_SHORT).show();
                         }
                     }

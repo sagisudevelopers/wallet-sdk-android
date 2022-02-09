@@ -75,7 +75,7 @@ public class VaultLoginFragment extends Fragment implements IOtp {
         //Add an Activity instance to the stack of AppManager
         //FirebaseApp.initializeApp(this);
         AppManager.getAppManager().addActivity(listener.getActivityReference());
-        mViewModel = new ViewModelProvider(this).get(VaultLoginViewModel.class);
+        mViewModel = new ViewModelProvider(getActivity()).get(VaultLoginViewModel.class);
         intent = getArguments();
         if (intent.getBoolean(EXTERNAL_APP, false))
             mViewModel.init(VaultLoginViewModel.ViewType.AUTO_LOGIN_EXTERNAL_APP);

@@ -21,6 +21,11 @@ public class SharedPref {
         editor = sharedPreferences.edit();
     }
 
+    public SharedPref(Context context) {
+        sharedPreferences = context.getSharedPreferences(MY_PREFS_NAME, Context.MODE_PRIVATE);
+        editor = sharedPreferences.edit();
+    }
+
     public void setValueToSharedPref(String key, String value) {
         editor.putString(key, value);
         editor.commit();

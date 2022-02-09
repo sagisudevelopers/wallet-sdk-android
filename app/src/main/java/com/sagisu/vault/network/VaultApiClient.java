@@ -19,7 +19,7 @@ import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class ApiClient {
+public class VaultApiClient {
     private static final String LOCAL_NGROK = "http://3d14-2401-4900-32aa-c5c1-6c8d-9b2e-2e98-3122.ngrok.io";
     private static final String LOCAL_DEV_URL = "http://44.198.41.195";
     private static final String PROD_URL = "https://walletprod.sagisu.com";
@@ -35,16 +35,16 @@ public class ApiClient {
     public static String URL;
     private static Retrofit retrofit;
 
-    public static ApiInterface buildRetrofitService() {
+    public static VaultApiInterface buildRetrofitService() {
         URL = PROD_URL + "/v1/";
         return buildService();
     }
 
-    public static ApiInterface buildService() {
+    public static VaultApiInterface buildService() {
         OkHttpClient.Builder okHttpClient;
        if (URL.contains(LOCAL_DEV_URL) || URL.contains(LOCAL_NGROK)) {
             okHttpClient = new OkHttpClient.Builder()
-                    .addInterceptor(new ConnectivityInterceptor())
+                    .addInterceptor(new VaultConnectivityInterceptor())
                     //.authenticator(new TokenAuthenticator())
                     .connectTimeout(120, TimeUnit.SECONDS)
                     .readTimeout(120, TimeUnit.SECONDS);   // To connect to local server use this
@@ -64,7 +64,7 @@ public class ApiClient {
             okHttpClient = new OkHttpClient.Builder()
                     .connectionSpecs(Collections.singletonList(spec))
                     .dispatcher(dispatcher)
-                    .addInterceptor(new ConnectivityInterceptor())
+                    .addInterceptor(new VaultConnectivityInterceptor())
                     //.authenticator(new TokenAuthenticator())
                     .connectTimeout(60, TimeUnit.SECONDS)
                     .writeTimeout(120, TimeUnit.SECONDS)
@@ -82,11 +82,11 @@ public class ApiClient {
                 .baseUrl(URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .addCallAdapterFactory(RxJava3CallAdapterFactory.create())
-                .addCallAdapterFactory(new ErrorHandlingAdapter.ErrorHandlingCallAdapterFactory())
+                .addCallAdapterFactory(new VaulrErrorHandlingAdapter.ErrorHandlingCallAdapterFactory())
                 .client(okHttpClient.build())
                 .build();
 
-        return retrofit.create(ApiInterface.class);
+        return retrofit.create(VaultApiInterface.class);
     }
 
     public static Retrofit getRetrofit() {

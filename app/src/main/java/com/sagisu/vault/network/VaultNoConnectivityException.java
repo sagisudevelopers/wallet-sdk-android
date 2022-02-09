@@ -6,7 +6,7 @@ import java.io.IOException;
  * Created by Anusha on 26-02-2018.
  */
 
-public class NoConnectivityException extends IOException {
+public class VaultNoConnectivityException extends IOException {
 
     @Override
     public String getMessage() {

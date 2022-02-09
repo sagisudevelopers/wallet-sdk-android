@@ -8,8 +8,8 @@
       android:fillColor="#fff"/>
   <path
       android:pathData="M13.587,4 L8,9.573h4.19v9.792h2.794L14.984,9.573h4.19Z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/><!--#4d81ff-->
   <path
       android:pathData="M23.365,23.57v-9.792h-2.794v9.792h-4.19l5.587,5.573 5.587,-5.573Z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/>
 </vector>

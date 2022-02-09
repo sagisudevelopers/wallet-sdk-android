@@ -1,6 +1,6 @@
 package com.sagisu.vault.network;
 
-public class ServerResponse<T> {
+public class VaultServerResponse<T> {
     String message;
     boolean success;
     String code;

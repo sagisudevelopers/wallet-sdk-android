@@ -121,6 +121,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <!--android:onClick="@{()->viewModel.setTransferType(TransferTypeDescriptor.TO_CONTACT)}"-->
+            <!--#4D81FF-->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardView"
                 android:layout_width="90dp"
@@ -129,7 +130,7 @@
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="5dp"
                 android:onClick="@{()->viewModel.setJoinWaitList(FeatureNameDescriptor.TRANSFER_TO_CONTACT)}"
-                app:cardBackgroundColor="#4D81FF"
+                app:cardBackgroundColor="@color/vaultColorPrimary"
                 app:cardCornerRadius="10dp"
                 app:layout_constraintEnd_toStartOf="@+id/materialCardView2"
                 app:layout_constraintStart_toStartOf="@+id/guideline2"
@@ -170,6 +171,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <!--android:onClick="@{()->viewModel.setTransferType(TransferTypeDescriptor.TO_ACCOUNT)}"-->
+            <!--#4D81FF-->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardView2"
                 android:layout_width="90dp"
@@ -177,7 +179,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:onClick="@{()->viewModel.setJoinWaitList(FeatureNameDescriptor.TRANSFER_TO_ACCOUNT)}"
-                app:cardBackgroundColor="#4D81FF"
+                app:cardBackgroundColor="@color/vaultColorPrimary"
                 app:cardCornerRadius="10dp"
                 app:layout_constraintEnd_toStartOf="@+id/materialCardView3"
                 app:layout_constraintStart_toEndOf="@+id/materialCardView"
@@ -218,6 +220,7 @@
             </com.google.android.material.card.MaterialCardView>
 
             <!--android:onClick="@{()->viewModel.setTransferType(TransferTypeDescriptor.TO_SELF)}"-->
+            <!--#4D81FF-->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/materialCardView3"
                 android:layout_width="90dp"
@@ -225,7 +228,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:onClick="@{()->viewModel.setJoinWaitList(FeatureNameDescriptor.TRANSFER_TO_SELF)}"
-                app:cardBackgroundColor="#4D81FF"
+                app:cardBackgroundColor="@color/vaultColorPrimary"
                 app:cardCornerRadius="10dp"
                 app:layout_constraintEnd_toStartOf="@+id/materialCardView4"
                 app:layout_constraintStart_toEndOf="@+id/materialCardView2"
@@ -272,7 +275,7 @@
                 android:layout_marginStart="5dp"
                 android:layout_marginEnd="5dp"
                 android:visibility="gone"
-                app:cardBackgroundColor="#4D81FF"
+                app:cardBackgroundColor="@color/vaultColorPrimary"
                 app:cardCornerRadius="10dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline4"
                 app:layout_constraintStart_toEndOf="@+id/materialCardView3"

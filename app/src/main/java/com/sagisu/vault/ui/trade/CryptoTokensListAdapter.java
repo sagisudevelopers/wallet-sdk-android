@@ -12,7 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.sagisu.vault.databinding.CryptoTokenListItemBinding;
 import com.sagisu.vault.databinding.VaultNetworkItemBinding;
 import com.sagisu.vault.models.Coins;
-import com.sagisu.vault.network.NetworkState;
+import com.sagisu.vault.network.VaultNetworkState;
 
 public class CryptoTokensListAdapter extends PagingDataAdapter<Coins, RecyclerView.ViewHolder> {
 
@@ -24,7 +24,7 @@ public class CryptoTokensListAdapter extends PagingDataAdapter<Coins, RecyclerVi
     private ICoinSelectionListener listener;
 
     private Context context;
-    private NetworkState networkState;
+    private VaultNetworkState vaultNetworkState;
 
     public CryptoTokensListAdapter(Context context, ICoinSelectionListener listener) {
         super(Coins.DIFF_CALLBACK);
@@ -53,13 +53,13 @@ public class CryptoTokensListAdapter extends PagingDataAdapter<Coins, RecyclerVi
         if (holder instanceof CustomerItemViewHolder) {
             ((CustomerItemViewHolder) holder).bindTo(getItem(position));
         } else {
-            ((NetworkStateItemViewHolder) holder).bindView(networkState);
+            ((NetworkStateItemViewHolder) holder).bindView(vaultNetworkState);
         }
     }
 
 
     private boolean hasExtraRow() {
-        if (networkState != null && networkState != NetworkState.LOADED) {
+        if (vaultNetworkState != null && vaultNetworkState != VaultNetworkState.LOADED) {
             return true;
         } else {
             return false;
@@ -75,10 +75,10 @@ public class CryptoTokensListAdapter extends PagingDataAdapter<Coins, RecyclerVi
         }
     }
 
-    public void setNetworkState(NetworkState newNetworkState) {
-        NetworkState previousState = this.networkState;
+    public void setNetworkState(VaultNetworkState newVaultNetworkState) {
+        VaultNetworkState previousState = this.vaultNetworkState;
         boolean previousExtraRow = hasExtraRow();
-        this.networkState = newNetworkState;
+        this.vaultNetworkState = newVaultNetworkState;
         boolean newExtraRow = hasExtraRow();
         if (previousExtraRow != newExtraRow) {
             if (previousExtraRow) {
@@ -86,7 +86,7 @@ public class CryptoTokensListAdapter extends PagingDataAdapter<Coins, RecyclerVi
             } else {
                 notifyItemInserted(getItemCount());
             }
-        } else if (newExtraRow && previousState != newNetworkState) {
+        } else if (newExtraRow && previousState != newVaultNetworkState) {
             notifyItemChanged(getItemCount() - 1);
         }
     }
@@ -124,16 +124,16 @@ public class CryptoTokensListAdapter extends PagingDataAdapter<Coins, RecyclerVi
             this.binding = binding;
         }
 
-        public void bindView(NetworkState networkState) {
-            if (networkState != null && networkState.getStatus() == NetworkState.Status.RUNNING) {
+        public void bindView(VaultNetworkState vaultNetworkState) {
+            if (vaultNetworkState != null && vaultNetworkState.getStatus() == VaultNetworkState.Status.RUNNING) {
                 binding.progressBar.setVisibility(View.VISIBLE);
             } else {
                 binding.progressBar.setVisibility(View.GONE);
             }
 
-            if (networkState != null && networkState.getStatus() == NetworkState.Status.FAILED) {
+            if (vaultNetworkState != null && vaultNetworkState.getStatus() == VaultNetworkState.Status.FAILED) {
                 binding.errorMsg.setVisibility(View.VISIBLE);
-                binding.errorMsg.setText(networkState.getMsg());
+                binding.errorMsg.setText(vaultNetworkState.getMsg());
             } else {
                 binding.errorMsg.setVisibility(View.GONE);
             }

@@ -1,6 +1,5 @@
 package com.sagisu.vault.repository;
 
-import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -9,13 +8,10 @@ import androidx.paging.PagingState;
 import androidx.paging.rxjava3.RxPagingSource;
 
 import com.sagisu.vault.models.Transaction;
-import com.sagisu.vault.network.ApiInterface;
+import com.sagisu.vault.network.VaultApiInterface;
 import com.sagisu.vault.ui.transactions.GetTransactionResponse;
-import com.sagisu.vault.utils.Globals;
 
 import org.jetbrains.annotations.NotNull;
-
-import javax.inject.Inject;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
@@ -23,10 +19,10 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class TransactionPagingSource extends RxPagingSource<Integer, Transaction> {
     @NonNull
-    private ApiInterface mBackend;
+    private VaultApiInterface mBackend;
     private String mCursor;
 
-    public TransactionPagingSource(@NonNull ApiInterface backend,
+    public TransactionPagingSource(@NonNull VaultApiInterface backend,
                                    String cursor) {
         mBackend = backend;
         mCursor = cursor;

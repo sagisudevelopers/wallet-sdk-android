@@ -7,9 +7,9 @@ import androidx.paging.LivePagedListBuilder;
 import androidx.paging.PagedList;
 
 import com.sagisu.vault.models.Transaction;
-import com.sagisu.vault.network.ApiClient;
-import com.sagisu.vault.network.ApiInterface;
-import com.sagisu.vault.network.NetworkState;
+import com.sagisu.vault.network.VaultApiClient;
+import com.sagisu.vault.network.VaultApiInterface;
+import com.sagisu.vault.network.VaultNetworkState;
 
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
@@ -17,12 +17,12 @@ import java.util.concurrent.Executors;
 public class ServicesRepository {
 
     private static ServicesRepository customerRepository;
-    ApiInterface api;
+    VaultApiInterface api;
     private Executor executor;
-    private LiveData<NetworkState> networkState;
+    private LiveData<VaultNetworkState> networkState;
     ServicesDataFactory customerDataFactory;
     LiveData<PagedList<Transaction>> articleLiveData;
-    private MediatorLiveData<NetworkState> networkStateMediatorLiveData = new MediatorLiveData<>();
+    private MediatorLiveData<VaultNetworkState> networkStateMediatorLiveData = new MediatorLiveData<>();
 
 
     public static ServicesRepository getInstance() {
@@ -33,7 +33,7 @@ public class ServicesRepository {
     }
 
     private ServicesRepository() {
-        api = ApiClient.buildRetrofitService();
+        api = VaultApiClient.buildRetrofitService();
     }
 
 
@@ -56,7 +56,7 @@ public class ServicesRepository {
         return articleLiveData;
     }
 
-    public LiveData<NetworkState> getNetworkState() {
+    public LiveData<VaultNetworkState> getNetworkState() {
         return networkState;
     }
 

@@ -15,8 +15,8 @@ import com.plaid.link.result.LinkError;
 import com.plaid.link.result.LinkExit;
 import com.plaid.link.result.LinkSuccess;
 import com.plaid.link.result.LinkSuccessMetadata;
-import com.sagisu.vault.network.APIError;
-import com.sagisu.vault.network.Result;
+import com.sagisu.vault.network.VaultAPIError;
+import com.sagisu.vault.network.VaultResult;
 import com.sagisu.vault.repository.NetworkRepository;
 import com.sagisu.vault.utils.Util;
 
@@ -69,19 +69,19 @@ public class PlaidLinkActivity extends AppCompatActivity {
     protected void onCreate(@Nullable @org.jetbrains.annotations.Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         getSupportActionBar().setTitle("Redirecting to plaid");
-        NetworkRepository.getInstance().createLinkToken().observe(this, new Observer<Result<String>>() {
+        NetworkRepository.getInstance().createLinkToken().observe(this, new Observer<VaultResult<String>>() {
             @Override
-            public void onChanged(Result<String> tokenResult) {
-                if (tokenResult instanceof Result.Success) {
-                    String linkToken = ((Result.Success<String>) tokenResult).getData();
+            public void onChanged(VaultResult<String> tokenResult) {
+                if (tokenResult instanceof VaultResult.Success) {
+                    String linkToken = ((VaultResult.Success<String>) tokenResult).getData();
                     if (linkToken == null) return;
                     LinkTokenConfiguration linkTokenConfiguration = new LinkTokenConfiguration.Builder()
                             .token(linkToken)
                             .build();
                     linkAccountToPlaid.launch(linkTokenConfiguration);
-                } else if (tokenResult instanceof Result.Error) {
-                    APIError apiError = ((Result.Error) tokenResult).getError();
-                    Util.showSnackBar(apiError.message(),PlaidLinkActivity.this);
+                } else if (tokenResult instanceof VaultResult.Error) {
+                    VaultAPIError vaultApiError = ((VaultResult.Error) tokenResult).getError();
+                    Util.showSnackBar(vaultApiError.message(),PlaidLinkActivity.this);
                     //Toast.makeText(PlaidLinkActivity.this, apiError.message(), Toast.LENGTH_LONG).show();
                 }
             }

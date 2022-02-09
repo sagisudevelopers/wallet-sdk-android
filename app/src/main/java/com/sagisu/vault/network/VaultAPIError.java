@@ -1,15 +1,15 @@
 package com.sagisu.vault.network;
 
 
-public class APIError {
+public class VaultAPIError {
     private int statusCode;
     private String message;
     private String code;
 
-    public APIError() {
+    public VaultAPIError() {
     }
 
-    public APIError(String message, int code) {
+    public VaultAPIError(String message, int code) {
         this.message = message;
         this.statusCode = code;
     }

@@ -11,9 +11,9 @@ import androidx.paging.PagingData;
 import androidx.paging.rxjava3.PagingRx;
 
 import com.sagisu.vault.models.Coins;
-import com.sagisu.vault.network.APIError;
-import com.sagisu.vault.network.ApiClient;
-import com.sagisu.vault.network.Result;
+import com.sagisu.vault.network.VaultAPIError;
+import com.sagisu.vault.network.VaultApiClient;
+import com.sagisu.vault.network.VaultResult;
 import com.sagisu.vault.repository.CryptoTokensPagingSource;
 import com.sagisu.vault.repository.NetworkRepository;
 import com.sagisu.vault.ui.home.Balances;
@@ -48,14 +48,14 @@ public class SelectCoinsViewModel extends ViewModel {
     }
 
     public void getCryptoWalletBalance() {
-        LiveData<Result<Balances>> balanceLiveData = NetworkRepository.getInstance().cryptoWalletBalance();
-        coinsList.addSource(balanceLiveData, new Observer<Result<Balances>>() {
+        LiveData<VaultResult<Balances>> balanceLiveData = NetworkRepository.getInstance().cryptoWalletBalance();
+        coinsList.addSource(balanceLiveData, new Observer<VaultResult<Balances>>() {
             @Override
-            public void onChanged(Result<Balances> balancesResult) {
-                if (balancesResult instanceof Result.Success) {
-                    coinsList.setValue(((Result.Success<Balances>) balancesResult).getData().getCoinBalance());
-                } else if (balancesResult instanceof Result.Error) {
-                    APIError apiError = ((Result.Error) balancesResult).getError();
+            public void onChanged(VaultResult<Balances> balancesResult) {
+                if (balancesResult instanceof VaultResult.Success) {
+                    coinsList.setValue(((VaultResult.Success<Balances>) balancesResult).getData().getCoinBalance());
+                } else if (balancesResult instanceof VaultResult.Error) {
+                    VaultAPIError vaultApiError = ((VaultResult.Error) balancesResult).getError();
                     //toastMsg.setValue(apiError.message());
                 }
             }
@@ -67,7 +67,7 @@ public class SelectCoinsViewModel extends ViewModel {
         CoroutineScope viewModelScope = ViewModelKt.getViewModelScope(this);
         Pager<Integer, Coins> pager = new Pager<>(
                 new PagingConfig( /*pageSize =  */5),
-                () -> new CryptoTokensPagingSource(ApiClient.buildRetrofitService(), query));
+                () -> new CryptoTokensPagingSource(VaultApiClient.buildRetrofitService(), query));
 
         flowable = PagingRx.getFlowable(pager);
         PagingRx.cachedIn(flowable, viewModelScope);

@@ -115,6 +115,7 @@
                     app:srcCompat="@drawable/ic_baseline_refresh_24" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
+            <!--#4D81FF-->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_buy"
                 android:layout_width="0dp"
@@ -124,7 +125,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="16dp"
                 android:onClick="@{()->viewModel.setJoinWaitList(FeatureNameDescriptor.BUY_CRYPTO)}"
-                app:cardBackgroundColor="#4D81FF"
+                app:cardBackgroundColor="@color/vaultColorPrimary"
                 app:cardCornerRadius="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/constraintLayout4"
                 app:layout_constraintEnd_toStartOf="@+id/card_send"
@@ -163,6 +164,7 @@
 
             <!--android:onClick="@{()->viewModel.setJoinWaitList(FeatureNameDescriptor.SEND_CRYPTO)}"-->
             <!--android:onClick="@{()->viewModel.setTradeTypes(TradeTypes.SEND)}"-->
+            <!--#4D81FF-->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_send"
                 android:layout_width="0dp"
@@ -172,7 +174,7 @@
                 android:layout_marginEnd="5dp"
                 android:layout_marginBottom="16dp"
                 android:onClick="@{()->viewModel.setTradeTypes(TradeTypes.SEND)}"
-                app:cardBackgroundColor="#4D81FF"
+                app:cardBackgroundColor="@color/vaultColorPrimary"
                 app:cardCornerRadius="10dp"
                 app:layout_constraintBottom_toTopOf="@+id/view"
                 app:layout_constraintEnd_toStartOf="@+id/card_receive"
@@ -208,7 +210,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/accountImg" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
-
+<!--#4D81FF-->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_receive"
                 android:layout_width="0dp"
@@ -217,7 +219,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="5dp"
                 android:onClick="@{()->viewModel.setTradeTypes(TradeTypes.RECEIVE)}"
-                app:cardBackgroundColor="#4D81FF"
+                app:cardBackgroundColor="@color/vaultColorPrimary"
                 app:cardCornerRadius="10dp"
                 app:layout_constraintEnd_toStartOf="@+id/card_swap"
                 app:layout_constraintStart_toEndOf="@+id/card_send"
@@ -253,6 +255,7 @@
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
 
+            <!--#4D81FF-->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_swap"
                 android:layout_width="0dp"
@@ -261,7 +264,7 @@
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="5dp"
                 android:onClick="@{()->viewModel.setJoinWaitList(FeatureNameDescriptor.SWAP_CRYPTO)}"
-                app:cardBackgroundColor="#4D81FF"
+                app:cardBackgroundColor="@color/vaultColorPrimary"
                 app:cardCornerRadius="10dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline4"
                 app:layout_constraintStart_toEndOf="@+id/card_receive"

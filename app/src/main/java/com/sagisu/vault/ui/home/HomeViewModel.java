@@ -8,8 +8,8 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
-import com.sagisu.vault.network.APIError;
-import com.sagisu.vault.network.Result;
+import com.sagisu.vault.network.VaultAPIError;
+import com.sagisu.vault.network.VaultResult;
 import com.sagisu.vault.repository.NetworkRepository;
 import com.sagisu.vault.ui.login.fragments.LoginResponse;
 import com.sagisu.vault.ui.login.fragments.User;
@@ -33,16 +33,16 @@ public class HomeViewModel extends ViewModel {
 
     public void getWalletBalance() {
         shimmerBalanceView.setValue(true);
-        LiveData<Result<Balances>> balanceLiveData = NetworkRepository.getInstance().walletBalance();
-        totalWalletBalance.addSource(balanceLiveData, new Observer<Result<Balances>>() {
+        LiveData<VaultResult<Balances>> balanceLiveData = NetworkRepository.getInstance().walletBalance();
+        totalWalletBalance.addSource(balanceLiveData, new Observer<VaultResult<Balances>>() {
             @Override
-            public void onChanged(Result<Balances> balancesResult) {
+            public void onChanged(VaultResult<Balances> balancesResult) {
                 shimmerBalanceView.setValue(false);
-                if (balancesResult instanceof Result.Success) {
-                    totalWalletBalance.setValue(((Result.Success<Balances>) balancesResult).getData().getAvailable());
-                } else if (balancesResult instanceof Result.Error) {
-                    APIError apiError = ((Result.Error) balancesResult).getError();
-                    toastMsg.setValue(apiError.message());
+                if (balancesResult instanceof VaultResult.Success) {
+                    totalWalletBalance.setValue(((VaultResult.Success<Balances>) balancesResult).getData().getAvailable());
+                } else if (balancesResult instanceof VaultResult.Error) {
+                    VaultAPIError vaultApiError = ((VaultResult.Error) balancesResult).getError();
+                    toastMsg.setValue(vaultApiError.message());
                 }
             }
         });
@@ -50,34 +50,34 @@ public class HomeViewModel extends ViewModel {
 
     public void getCryptoWalletBalance() {
         shimmerBalanceView.setValue(true);
-        LiveData<Result<Balances>> balanceLiveData = NetworkRepository.getInstance().cryptoWalletBalance();
-        totalWalletBalance.addSource(balanceLiveData, new Observer<Result<Balances>>() {
+        LiveData<VaultResult<Balances>> balanceLiveData = NetworkRepository.getInstance().cryptoWalletBalance();
+        totalWalletBalance.addSource(balanceLiveData, new Observer<VaultResult<Balances>>() {
             @Override
-            public void onChanged(Result<Balances> balancesResult) {
+            public void onChanged(VaultResult<Balances> balancesResult) {
                 shimmerBalanceView.setValue(false);
-                if (balancesResult instanceof Result.Success) {
-                    totalWalletBalance.setValue(((Result.Success<Balances>) balancesResult).getData().getCoinsTotal());
-                } else if (balancesResult instanceof Result.Error) {
-                    APIError apiError = ((Result.Error) balancesResult).getError();
-                    toastMsg.setValue(apiError.message());
+                if (balancesResult instanceof VaultResult.Success) {
+                    totalWalletBalance.setValue(((VaultResult.Success<Balances>) balancesResult).getData().getCoinsTotal());
+                } else if (balancesResult instanceof VaultResult.Error) {
+                    VaultAPIError vaultApiError = ((VaultResult.Error) balancesResult).getError();
+                    toastMsg.setValue(vaultApiError.message());
                 }
             }
         });
     }
 
     private void getProfile() {
-        LiveData<Result<LoginResponse>> liveData = NetworkRepository.getInstance().getProfile();
-        userData.addSource(liveData, new Observer<Result<LoginResponse>>() {
+        LiveData<VaultResult<LoginResponse>> liveData = NetworkRepository.getInstance().getProfile();
+        userData.addSource(liveData, new Observer<VaultResult<LoginResponse>>() {
             @Override
-            public void onChanged(Result<LoginResponse> agentResult) {
+            public void onChanged(VaultResult<LoginResponse> agentResult) {
 
-                if (agentResult instanceof Result.Success) {
-                    User user = ((Result.Success<LoginResponse>) agentResult).getData().getUser();
+                if (agentResult instanceof VaultResult.Success) {
+                    User user = ((VaultResult.Success<LoginResponse>) agentResult).getData().getUser();
                     userData.setValue(user);
 
-                } else if (agentResult instanceof Result.Error) {
-                    APIError apiError = ((Result.Error) agentResult).getError();
-                    toastMsg.setValue(apiError.message());
+                } else if (agentResult instanceof VaultResult.Error) {
+                    VaultAPIError vaultApiError = ((VaultResult.Error) agentResult).getError();
+                    toastMsg.setValue(vaultApiError.message());
                 }
             }
         });

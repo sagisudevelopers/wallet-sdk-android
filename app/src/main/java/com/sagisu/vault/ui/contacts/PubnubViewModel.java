@@ -8,7 +8,7 @@ import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.google.gson.JsonObject;
-import com.pubnub.api.PNConfiguration;
+/*import com.pubnub.api.PNConfiguration;
 import com.pubnub.api.PubNub;
 import com.pubnub.api.callbacks.PNCallback;
 import com.pubnub.api.callbacks.SubscribeCallback;
@@ -30,7 +30,7 @@ import com.pubnub.api.models.consumer.pubsub.files.PNFileEventResult;
 import com.pubnub.api.models.consumer.pubsub.message_actions.PNMessageActionResult;
 import com.sagisu.vault.R;
 import com.sagisu.vault.models.MessageBean;
-import com.sagisu.vault.network.ApiClient;
+import com.sagisu.vault.network.VaultApiClient;
 import com.sagisu.vault.ui.login.fragments.User;
 
 import org.jetbrains.annotations.NotNull;
@@ -77,8 +77,8 @@ public class PubnubViewModel extends ViewModel {
     public void initPubNubClient() {
         uid = user.getPhone().substring(1);
         pnConfiguration = new PNConfiguration();
-        pnConfiguration.setSubscribeKey(ApiClient.PUBNUB_SUB_KEY);
-        pnConfiguration.setPublishKey(ApiClient.PUBNUB_PUB_KEY);
+        pnConfiguration.setSubscribeKey(VaultApiClient.PUBNUB_SUB_KEY);
+        pnConfiguration.setPublishKey(VaultApiClient.PUBNUB_PUB_KEY);
         pnConfiguration.setUuid(uid);
 
         pubnub = new PubNub(pnConfiguration);
@@ -136,19 +136,19 @@ public class PubnubViewModel extends ViewModel {
                     tmpList.add(messageBean);
                     mMessageBeanList.setValue(tmpList);
 
-/* mMessageAdapter.notifyItemRangeChanged(mMessageBeanList.size(), 1);
-                            mRecyclerView.scrollToPosition(mMessageBeanList.size() - 1);*/
+*//* mMessageAdapter.notifyItemRangeChanged(mMessageBeanList.size(), 1);
+                            mRecyclerView.scrollToPosition(mMessageBeanList.size() - 1);*//*
 
 
                 }
 
 
-/*
+*//*
                 log the following items with your favorite logger
                     - message.getMessage()
                     - message.getSubscription()
                     - message.getTimetoken()
-            */
+            *//*
 
             }
 
@@ -198,8 +198,8 @@ public class PubnubViewModel extends ViewModel {
         tmpList.add(messageBean);
         mMessageBeanList.setValue(tmpList);
 
-/*mMessageAdapter.notifyItemRangeChanged(mMessageBeanList.size(), 1);
-        mRecyclerView.scrollToPosition(mMessageBeanList.size() - 1);*/
+*//*mMessageAdapter.notifyItemRangeChanged(mMessageBeanList.size(), 1);
+        mRecyclerView.scrollToPosition(mMessageBeanList.size() - 1);*//*
 
 
         // create message payload using Gson
@@ -254,8 +254,8 @@ public class PubnubViewModel extends ViewModel {
                                     messageBean.setBackground(R.drawable.circle_shape_blue);
                                     tmpList.add(messageBean);
 
-/* mMessageAdapter.notifyItemRangeChanged(mMessageBeanList.size(), 1);
-                            mRecyclerView.scrollToPosition(mMessageBeanList.size() - 1);*/
+*//* mMessageAdapter.notifyItemRangeChanged(mMessageBeanList.size(), 1);
+                            mRecyclerView.scrollToPosition(mMessageBeanList.size() - 1);*//*
 
                                 }
                             }
@@ -306,4 +306,4 @@ public class PubnubViewModel extends ViewModel {
                 });
     }
 
-}
+}*/

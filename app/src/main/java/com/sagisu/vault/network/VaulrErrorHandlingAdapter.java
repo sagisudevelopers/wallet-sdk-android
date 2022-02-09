@@ -36,7 +36,7 @@ import retrofit2.Retrofit;
  * A sample showing a custom {@link CallAdapter} which adapts the built-in {@link Call} to a custom
  * version whose callback has more granular methods.
  */
-public final class ErrorHandlingAdapter {
+public final class VaulrErrorHandlingAdapter {
     /**
      * A callback which offers granular callbacks for various conditions.
      */

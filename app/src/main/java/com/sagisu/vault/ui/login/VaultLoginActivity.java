@@ -53,11 +53,11 @@ public class VaultLoginActivity extends AppCompatActivity implements IOtp {
         AppManager.getAppManager().addActivity(this);
         mViewModel = new ViewModelProvider(this).get(VaultLoginViewModel.class);
         intent = getIntent().getParcelableExtra(Intent.EXTRA_INTENT);
-        if (intent.getBooleanExtra(EXTERNAL_APP, false))
+        if (intent != null && intent.getBooleanExtra(EXTERNAL_APP, false))
             mViewModel.init(VaultLoginViewModel.ViewType.AUTO_LOGIN_EXTERNAL_APP);
-        else{
+        else {
             mViewModel.init(VaultLoginViewModel.ViewType.Login);
-            mViewModel.consumer.getValue().setPhone(intent.getStringExtra(BUNDLE_PHONE));
+            mViewModel.consumer.getValue().setPhone(intent != null ? intent.getStringExtra(BUNDLE_PHONE) : null);
         }
         getFcmToken();
         attachObserver();
@@ -126,7 +126,7 @@ public class VaultLoginActivity extends AppCompatActivity implements IOtp {
                         break;
                     case VaultLoginViewModel.PageType
                             .AUTO_LOGIN_EXTERNAL_APP:
-                        mViewModel.autoLoginExternalApp(intent.getStringExtra(BUNDLE_PHONE),intent.getStringExtra(BUNDLE_PASSWORD));
+                        mViewModel.autoLoginExternalApp(intent.getStringExtra(BUNDLE_PHONE), intent.getStringExtra(BUNDLE_PASSWORD));
                         break;
                 }
             }
@@ -237,8 +237,8 @@ public class VaultLoginActivity extends AppCompatActivity implements IOtp {
     }
 
     private void goToDashboard() {
-        Intent intent = new Intent(VaultLoginActivity.this, VaultMainActivity.class);
-        startActivity(intent);
+        /*Intent intent = new Intent(VaultLoginActivity.this, VaultMainActivity.class);
+        startActivity(intent);*/ //TODO : Do a routing if it is from normal way
         finish();
     }
 

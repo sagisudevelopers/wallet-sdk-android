@@ -8,74 +8,74 @@
       android:fillColor="#fff"/>
   <path
       android:pathData="M6.524,6.399L6.524,13.555L13.68,13.555L13.68,6.399ZM11.996,11.871L8.208,11.871L8.208,8.083L11.996,8.083Z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/><!--#4d81ff-->
   <path
       android:pathData="M9.318,9.193h1.596v1.596h-1.596z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/>
   <path
       android:pathData="M20.92,6.399L20.92,13.555h7.156L28.076,6.399ZM26.392,11.871h-3.788L22.604,8.083h3.788Z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/>
   <path
       android:pathData="M23.686,9.193h1.596v1.596h-1.596z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/>
   <path
       android:pathData="M6.524,20.795v7.156L13.68,27.951L13.68,20.795ZM11.996,26.267L8.208,26.267v-3.788L11.996,22.479Z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/>
   <path
       android:pathData="M9.318,23.561h1.596v1.596h-1.596z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/>
   <path
       android:pathData="M7.721,14.78h2.395v1.596h-2.395z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/>
   <path
       android:pathData="M11.576,18.059L11.576,16.375L9.892,16.375v1.684h1.642v1.684h1.684v-1.684Z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/>
   <path
       android:pathData="M18.098,9.193h1.596v2.395h-1.596z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/>
   <path
       android:pathData="M14.905,7.596h1.596v3.991h-1.596z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/>
   <path
       android:pathData="M16.502,6h1.596v1.596h-1.596z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/>
   <path
       android:pathData="M16.627,11.324v1.684L14.943,13.008v1.684h3.368L18.311,11.324Z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/>
   <path
       android:pathData="M18.311,21.342v-1.642h-1.684L16.627,16.375L14.943,16.375v3.368h1.684v1.642h1.684v1.642h3.368v-1.684Z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/>
   <path
       android:pathData="M18.098,14.78h1.596v3.193h-1.596z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/>
   <path
       android:pathData="M26.393,16.334L26.393,14.692h-3.073v1.684L21.678,16.376v1.684h1.684v1.642L28.078,19.702v-3.368ZM26.393,18.018h-3.031v-1.642h3.031Z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/>
   <path
       android:pathData="M26.879,21.166h1.596v3.991h-1.596z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/>
   <path
       android:pathData="M19.695,17.973h2.395v1.596h-2.395z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/>
   <path
       android:pathData="M22.089,22.763h1.596v2.395h-1.596z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/>
   <path
       android:pathData="M23.686,21.166h1.596v1.596h-1.596z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/>
   <path
       android:pathData="M23.362,24.71v3.241h1.684v-1.557h1.347L26.393,24.71Z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/>
   <path
       android:pathData="M14.905,21.166h1.596v3.193h-1.596z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/>
   <path
       android:pathData="M19.995,26.268L19.995,24.584L16.627,24.584v3.367h1.684v-1.684h1.642v1.684h1.684v-1.684Z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/>
   <path
       android:pathData="M11.712,14.78h3.193v1.596h-3.193z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/>
   <path
       android:pathData="M6.923,16.377h0.798v3.193h-0.798z"
-      android:fillColor="#4d81ff"/>
+      android:fillColor="@color/vaultColorPrimary"/>
 </vector>

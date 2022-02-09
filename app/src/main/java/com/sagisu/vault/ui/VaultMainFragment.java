@@ -46,11 +46,12 @@ public class VaultMainFragment extends Fragment implements View.OnClickListener 
         binding.home.setOnClickListener(this);
         binding.profile.setOnClickListener(this);
         binding.trade.setOnClickListener(this);
-        if (getArguments() == null) rootView.findViewById(R.id.trade).performClick();
+        rootView.findViewById(R.id.trade).performClick();
+        /*if (getArguments() == null) rootView.findViewById(R.id.trade).performClick();
         else {
             binding.home.performClick();
             onNewIntent(getArguments());
-        }
+        }*/
         return binding.getRoot();
     }
 

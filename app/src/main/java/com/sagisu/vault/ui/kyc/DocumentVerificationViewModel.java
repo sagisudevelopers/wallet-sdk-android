@@ -9,11 +9,11 @@ import androidx.lifecycle.ViewModel;
 
 import com.google.gson.JsonObject;
 import com.sagisu.vault.R;
-import com.sagisu.vault.network.APIError;
-import com.sagisu.vault.network.ApiClient;
-import com.sagisu.vault.network.ApiInterface;
-import com.sagisu.vault.network.Result;
-import com.sagisu.vault.network.ServerResponse;
+import com.sagisu.vault.network.VaultAPIError;
+import com.sagisu.vault.network.VaultApiClient;
+import com.sagisu.vault.network.VaultApiInterface;
+import com.sagisu.vault.network.VaultResult;
+import com.sagisu.vault.network.VaultServerResponse;
 import com.sagisu.vault.repository.NetworkRepository;
 import com.sagisu.vault.ui.OTP.Otp;
 
@@ -48,13 +48,13 @@ public class DocumentVerificationViewModel extends ViewModel {
 
     private void getScanDetails() {
         loadingObservable.setValue("Getting kyc scan details");
-        LiveData<Result<KycScanResultBean>> liveData = NetworkRepository.getInstance().getKycScanDetails();
-        documentScanResult.addSource(liveData, new Observer<Result<KycScanResultBean>>() {
+        LiveData<VaultResult<KycScanResultBean>> liveData = NetworkRepository.getInstance().getKycScanDetails();
+        documentScanResult.addSource(liveData, new Observer<VaultResult<KycScanResultBean>>() {
             @Override
-            public void onChanged(Result<KycScanResultBean> agentResult) {
+            public void onChanged(VaultResult<KycScanResultBean> agentResult) {
                 loadingObservable.setValue(null);
-                if (agentResult instanceof Result.Success) {
-                    KycScanResultBean kycScanResultBean = ((Result.Success<KycScanResultBean>) agentResult).getData();
+                if (agentResult instanceof VaultResult.Success) {
+                    KycScanResultBean kycScanResultBean = ((VaultResult.Success<KycScanResultBean>) agentResult).getData();
 
                     if (kycScanResultBean == null || kycScanResultBean.getDocument() == null || kycScanResultBean.getDocument().getStatus() == null)
                         documentScanResult.setValue(KycScanResult.PENDING);
@@ -67,10 +67,10 @@ public class DocumentVerificationViewModel extends ViewModel {
                             kycBeanObservable.setValue(kycScanResultBean.getDocument());
                         } else documentScanResult.setValue(KycScanResult.PENDING);
                     }
-                } else if (agentResult instanceof Result.Error) {
-                    APIError apiError = ((Result.Error) agentResult).getError();
+                } else if (agentResult instanceof VaultResult.Error) {
+                    VaultAPIError vaultApiError = ((VaultResult.Error) agentResult).getError();
                     KycFormError tmpFormError = new KycFormError();
-                    tmpFormError.setToastError(apiError.message());
+                    tmpFormError.setToastError(vaultApiError.message());
                     formError.setValue(tmpFormError);
                 }
             }
@@ -105,27 +105,27 @@ public class DocumentVerificationViewModel extends ViewModel {
         enableVerificationFields.setValue("shimmer");
         KycBean kycBean = kycBeanObservable.getValue();
         Otp otp = new Otp(email, kycBean.getFirstName());
-        ApiInterface api = ApiClient.buildRetrofitService();
-        Call<ServerResponse<JsonObject>> call = api.generateOtp(otp);
-        call.enqueue(new Callback<ServerResponse<JsonObject>>() {
+        VaultApiInterface api = VaultApiClient.buildRetrofitService();
+        Call<VaultServerResponse<JsonObject>> call = api.generateOtp(otp);
+        call.enqueue(new Callback<VaultServerResponse<JsonObject>>() {
             @Override
-            public void onResponse(Call<ServerResponse<JsonObject>> call, Response<ServerResponse<JsonObject>> response) {
+            public void onResponse(Call<VaultServerResponse<JsonObject>> call, Response<VaultServerResponse<JsonObject>> response) {
 
                 if (response.isSuccessful()) {
                     // showOtpPopup();
                     enableVerificationFields.setValue("show");
                 } else {
-                    APIError apiError = new Result.Error(response.errorBody()).getError();
+                    VaultAPIError vaultApiError = new VaultResult.Error(response.errorBody()).getError();
                     //Toast.makeText(context, apiError.message(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<ServerResponse<JsonObject>> call, Throwable t) {
+            public void onFailure(Call<VaultServerResponse<JsonObject>> call, Throwable t) {
                 t.printStackTrace();
                 //listener.loading(null, false);
                 if (t instanceof HttpException) {
-                    APIError apiError = new Result.Error((HttpException) t).getError();
+                    VaultAPIError vaultApiError = new VaultResult.Error((HttpException) t).getError();
                     //Toast.makeText(context, apiError.message(), Toast.LENGTH_SHORT).show();
                 }
             }
@@ -138,11 +138,11 @@ public class DocumentVerificationViewModel extends ViewModel {
         assert kycBean != null;
         if (kycBean.getOtpToken() == null || kycBean.getOtpToken().isEmpty()) return;
 
-        ApiInterface api = ApiClient.buildRetrofitService();
-        Call<ServerResponse<JsonObject>> call = api.validateOtp(null, kycBean.getEmail(), kycBean.getOtpToken(), null, null);
-        call.enqueue(new Callback<ServerResponse<JsonObject>>() {
+        VaultApiInterface api = VaultApiClient.buildRetrofitService();
+        Call<VaultServerResponse<JsonObject>> call = api.validateOtp(null, kycBean.getEmail(), kycBean.getOtpToken(), null, null);
+        call.enqueue(new Callback<VaultServerResponse<JsonObject>>() {
             @Override
-            public void onResponse(Call<ServerResponse<JsonObject>> call, Response<ServerResponse<JsonObject>> response) {
+            public void onResponse(Call<VaultServerResponse<JsonObject>> call, Response<VaultServerResponse<JsonObject>> response) {
                 //listener.loading(null, false);
                 if (response.isSuccessful()) {
                     // showOtpPopup();
@@ -155,17 +155,17 @@ public class DocumentVerificationViewModel extends ViewModel {
                         formError.setValue(tmpFormError);
                     }
                 } else {
-                    APIError apiError = new Result.Error(response.errorBody()).getError();
+                    VaultAPIError vaultApiError = new VaultResult.Error(response.errorBody()).getError();
                     //Toast.makeText(context, apiError.message(), Toast.LENGTH_SHORT).show();
                 }
             }
 
             @Override
-            public void onFailure(Call<ServerResponse<JsonObject>> call, Throwable t) {
+            public void onFailure(Call<VaultServerResponse<JsonObject>> call, Throwable t) {
                 //listener.loading(null, false);
                 t.printStackTrace();
                 if (t instanceof HttpException) {
-                    APIError apiError = new Result.Error((HttpException) t).getError();
+                    VaultAPIError vaultApiError = new VaultResult.Error((HttpException) t).getError();
                     //Toast.makeText(context, apiError.message(), Toast.LENGTH_SHORT).show();
                 }
             }
@@ -174,17 +174,17 @@ public class DocumentVerificationViewModel extends ViewModel {
 
     private void submitKyc() {
         loadingObservable.setValue("Posting kyc");
-        LiveData<Result<KycBean>> liveData = NetworkRepository.getInstance().postKyc(kycBeanObservable.getValue());
-        kycPostStatus.addSource(liveData, new Observer<Result<KycBean>>() {
+        LiveData<VaultResult<KycBean>> liveData = NetworkRepository.getInstance().postKyc(kycBeanObservable.getValue());
+        kycPostStatus.addSource(liveData, new Observer<VaultResult<KycBean>>() {
             @Override
-            public void onChanged(Result<KycBean> agentResult) {
+            public void onChanged(VaultResult<KycBean> agentResult) {
                 loadingObservable.setValue(null);
-                if (agentResult instanceof Result.Success) {
+                if (agentResult instanceof VaultResult.Success) {
                     kycPostStatus.setValue(true);
-                } else if (agentResult instanceof Result.Error) {
-                    APIError apiError = ((Result.Error) agentResult).getError();
+                } else if (agentResult instanceof VaultResult.Error) {
+                    VaultAPIError vaultApiError = ((VaultResult.Error) agentResult).getError();
                     KycFormError tmpFormError = new KycFormError();
-                    tmpFormError.setToastError(apiError.message());
+                    tmpFormError.setToastError(vaultApiError.message());
                     formError.setValue(tmpFormError);
                 }
             }
@@ -193,17 +193,17 @@ public class DocumentVerificationViewModel extends ViewModel {
 
     public void postKycScanId(String scanID) {
         loadingObservable.setValue("Posting scan details");
-        LiveData<Result<JsonObject>> liveData = NetworkRepository.getInstance().postKycScanId(scanID);
-        documentScanResult.addSource(liveData, new Observer<Result<JsonObject>>() {
+        LiveData<VaultResult<JsonObject>> liveData = NetworkRepository.getInstance().postKycScanId(scanID);
+        documentScanResult.addSource(liveData, new Observer<VaultResult<JsonObject>>() {
             @Override
-            public void onChanged(Result<JsonObject> agentResult) {
+            public void onChanged(VaultResult<JsonObject> agentResult) {
                 loadingObservable.setValue(null);
-                if (agentResult instanceof Result.Success) {
+                if (agentResult instanceof VaultResult.Success) {
                     documentScanResult.setValue(KycScanResult.AWAITING);
-                } else if (agentResult instanceof Result.Error) {
-                    APIError apiError = ((Result.Error) agentResult).getError();
+                } else if (agentResult instanceof VaultResult.Error) {
+                    VaultAPIError vaultApiError = ((VaultResult.Error) agentResult).getError();
                     KycFormError tmpFormError = new KycFormError();
-                    tmpFormError.setToastError(apiError.message());
+                    tmpFormError.setToastError(vaultApiError.message());
                     formError.setValue(tmpFormError);
                 }
             }

@@ -4,19 +4,19 @@ package com.sagisu.vault.repository.services;
 import androidx.lifecycle.MutableLiveData;
 import androidx.paging.DataSource;
 
-import com.sagisu.vault.network.ApiInterface;
+import com.sagisu.vault.network.VaultApiInterface;
 
 
 public class ServicesDataFactory extends DataSource.Factory {
 
     private MutableLiveData<ServicesDataSource> mutableLiveData;
     private ServicesDataSource customerDataSource;
-    private ApiInterface api;
+    private VaultApiInterface api;
     String filterKey,filterValue;
     MutableLiveData<String> filterText = new MutableLiveData<>();
     String productType;
 
-    public ServicesDataFactory(ApiInterface api) {
+    public ServicesDataFactory(VaultApiInterface api) {
         this.api = api;
         this.mutableLiveData = new MutableLiveData<ServicesDataSource>();
     }

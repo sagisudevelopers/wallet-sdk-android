@@ -10,8 +10,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModel;
 
 import com.sagisu.vault.models.Transaction;
-import com.sagisu.vault.network.APIError;
-import com.sagisu.vault.network.Result;
+import com.sagisu.vault.network.VaultAPIError;
+import com.sagisu.vault.network.VaultResult;
 import com.sagisu.vault.repository.NetworkRepository;
 import com.sagisu.vault.utils.Globals;
 
@@ -41,17 +41,17 @@ public class ContactTransferViewModel extends ViewModel {
 
     public void doTransfer() {
         setLoadingObservable("Transferring amount");
-        LiveData<Result<Transaction>> contactTransferRes = NetworkRepository.getInstance().contactTransfer(contactInfo.get(), Integer.valueOf(chatMessage.getValue()));
-        contactTransferResponse.addSource(contactTransferRes, new Observer<Result<Transaction>>() {
+        LiveData<VaultResult<Transaction>> contactTransferRes = NetworkRepository.getInstance().contactTransfer(contactInfo.get(), Integer.valueOf(chatMessage.getValue()));
+        contactTransferResponse.addSource(contactTransferRes, new Observer<VaultResult<Transaction>>() {
             @Override
-            public void onChanged(Result<Transaction> jsonObjectResult) {
+            public void onChanged(VaultResult<Transaction> jsonObjectResult) {
                 setLoadingObservable(null);
-                if (jsonObjectResult instanceof Result.Success) {
-                    Transaction transaction = ((Result.Success<Transaction>) jsonObjectResult).getData();
+                if (jsonObjectResult instanceof VaultResult.Success) {
+                    Transaction transaction = ((VaultResult.Success<Transaction>) jsonObjectResult).getData();
                     contactTransferResponse.setValue(transaction.getId());
-                } else if (jsonObjectResult instanceof Result.Error) {
-                    APIError apiError = ((Result.Error) jsonObjectResult).getError();
-                    toastMsg.setValue(apiError.message());
+                } else if (jsonObjectResult instanceof VaultResult.Error) {
+                    VaultAPIError vaultApiError = ((VaultResult.Error) jsonObjectResult).getError();
+                    toastMsg.setValue(vaultApiError.message());
                 }
             }
         });

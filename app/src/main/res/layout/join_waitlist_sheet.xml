@@ -54,6 +54,7 @@
                 android:layout_height="match_parent" />
         </com.google.android.material.textfield.TextInputLayout>
 
+        <!--app:backgroundTint="@color/blue_500"-->
         <com.google.android.material.button.MaterialButton
             android:id="@+id/join_waitlist"
             style="@style/Widget.MaterialComponents.Button.TextButton"
@@ -66,7 +67,7 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="14sp"
-            app:backgroundTint="@color/blue_500"
+            app:backgroundTint="@color/vaultColorPrimary"
             app:cornerRadius="20dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/guideline23"

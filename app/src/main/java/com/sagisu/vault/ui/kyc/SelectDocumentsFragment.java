@@ -27,7 +27,7 @@ import com.jumio.nv.NetverifyDeallocationCallback;
 import com.jumio.nv.NetverifySDK;
 import com.sagisu.vault.R;
 import com.sagisu.vault.databinding.DocumentVerificationFragmentBinding;
-import com.sagisu.vault.network.ApiClient;
+import com.sagisu.vault.network.VaultApiClient;
 
 
 public class SelectDocumentsFragment extends Fragment implements NetverifyDeallocationCallback {
@@ -37,8 +37,8 @@ public class SelectDocumentsFragment extends Fragment implements NetverifyDeallo
 
     public static final JumioDataCenter KEY_DATACENTER = JumioDataCenter.US;
 
-    private String apiToken = ApiClient.JUMIO_KEY_API_TOKEN;
-    private String apiSecret = ApiClient.JUMIO_KEY_API_SECRET;
+    private String apiToken = VaultApiClient.JUMIO_KEY_API_TOKEN;
+    private String apiSecret = VaultApiClient.JUMIO_KEY_API_SECRET;
     private JumioDataCenter dataCenter = KEY_DATACENTER;
 
     private NetverifySDK netverifySDK;
@@ -239,7 +239,7 @@ public class SelectDocumentsFragment extends Fragment implements NetverifyDeallo
 //			netverifySDK.setUserReference("USERREFERENCE");
 
             // Callback URL for the confirmation after the verification is completed. This setting overrides your Jumio merchant settings.
-            netverifySDK.setCallbackUrl(ApiClient.URL + "auth/jumioCallback");
+            netverifySDK.setCallbackUrl(VaultApiClient.URL + "auth/jumioCallback");
 
             // You can disable Identity Verification during the ID verification for a specific transaction.
             netverifySDK.setEnableIdentityVerification(true);

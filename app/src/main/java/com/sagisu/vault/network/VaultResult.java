@@ -9,17 +9,17 @@ import retrofit2.HttpException;
 /**
  * A generic class that holds a result success w/ data or an error exception.
  */
-public class Result<T> {
+public class VaultResult<T> {
     // hide the private constructor to limit subclass types (Success, Error)
-    private Result() {
+    private VaultResult() {
     }
 
     @Override
     public String toString() {
-        if (this instanceof Result.Success) {
+        if (this instanceof VaultResult.Success) {
             Success success = (Success) this;
             return "Success[data=" + success.getData().toString() + "]";
-        } else if (this instanceof Result.Error) {
+        } else if (this instanceof VaultResult.Error) {
             Error error = (Error) this;
             return "Error[exception=" + error.getError().toString() + "]";
         }
@@ -27,7 +27,7 @@ public class Result<T> {
     }
 
     // Success sub-class
-    public final static class Success<T> extends Result {
+    public final static class Success<T> extends VaultResult {
         private T data;
         private String msg;
 
@@ -50,40 +50,40 @@ public class Result<T> {
     }
 
     // Error sub-class
-    public final static class Error extends Result {
-        private APIError error;
+    public final static class Error extends VaultResult {
+        private VaultAPIError error;
 
 
         public Error(HttpException errResponse) {
-            Converter<ResponseBody, APIError> converter =
-                    ApiClient.getRetrofit().responseBodyConverter(APIError.class, new Annotation[0]);
+            Converter<ResponseBody, VaultAPIError> converter =
+                    VaultApiClient.getRetrofit().responseBodyConverter(VaultAPIError.class, new Annotation[0]);
 
             try {
                 error = converter.convert(errResponse.response().errorBody());
             } catch (Exception e) {
-                error = new APIError();
+                error = new VaultAPIError();
             }
 
         }
 
         public Error(ResponseBody errResponse) {
-            Converter<ResponseBody, APIError> converter =
-                    ApiClient.getRetrofit().responseBodyConverter(APIError.class, new Annotation[0]);
+            Converter<ResponseBody, VaultAPIError> converter =
+                    VaultApiClient.getRetrofit().responseBodyConverter(VaultAPIError.class, new Annotation[0]);
 
             try {
                 error = converter.convert(errResponse);
             } catch (Exception e) {
-                error = new APIError();
+                error = new VaultAPIError();
             }
 
         }
 
 
-        public Error(APIError errResponse) {
+        public Error(VaultAPIError errResponse) {
             this.error = errResponse;
         }
 
-        public APIError getError() {
+        public VaultAPIError getError() {
             return this.error;
         }
     }

@@ -1,6 +1,5 @@
 package com.sagisu.vault.repository;
 
-import android.content.Context;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -8,15 +7,12 @@ import androidx.annotation.Nullable;
 import androidx.paging.PagingState;
 import androidx.paging.rxjava3.RxPagingSource;
 import com.sagisu.vault.models.Coins;
-import com.sagisu.vault.network.ApiInterface;
-import com.sagisu.vault.network.ServerResponse;
-import com.sagisu.vault.utils.Globals;
+import com.sagisu.vault.network.VaultApiInterface;
+import com.sagisu.vault.network.VaultServerResponse;
 
 import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
-
-import javax.inject.Inject;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.core.Single;
@@ -24,10 +20,10 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 
 public class CryptoTokensPagingSource extends RxPagingSource<Integer, Coins> {
     @NonNull
-    private ApiInterface mBackend;
+    private VaultApiInterface mBackend;
     private String mCursor;
 
-    public CryptoTokensPagingSource(@NonNull ApiInterface backend,
+    public CryptoTokensPagingSource(@NonNull VaultApiInterface backend,
                                     String cursor) {
         mBackend = backend;
         mCursor = cursor;
@@ -58,7 +54,7 @@ public class CryptoTokensPagingSource extends RxPagingSource<Integer, Coins> {
     }
 
     private LoadResult<Integer, Coins> toLoadResult(
-            @NonNull ServerResponse<List<Coins>> response) {
+            @NonNull VaultServerResponse<List<Coins>> response) {
 
        // new SharedPref(context).setTransactionCursor(response.getCursor());
 
