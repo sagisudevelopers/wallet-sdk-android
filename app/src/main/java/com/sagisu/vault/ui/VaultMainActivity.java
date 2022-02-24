@@ -17,6 +17,7 @@ import com.sagisu.vault.ui.home.JoinWaitListBottomDialogFragment;
 import com.sagisu.vault.ui.home.TradeHomeFragment;
 import com.sagisu.vault.ui.profile.ProfileFragment;
 import com.sagisu.vault.utils.AppManager;
+import com.sagisu.vault.utils.SharedPref;
 
 public class VaultMainActivity extends AppCompatActivity implements View.OnClickListener {
 
@@ -30,7 +31,7 @@ public class VaultMainActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        binding = DataBindingUtil.setContentView(this,R.layout.activity_vault_main);
+        binding = DataBindingUtil.setContentView(this, R.layout.activity_vault_main);
         //Add an Activity instance to the stack of AppManager
         AppManager.getAppManager().addActivity(this);
         /*if (savedInstanceState == null) {
@@ -51,6 +52,8 @@ public class VaultMainActivity extends AppCompatActivity implements View.OnClick
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        //CLear the business selection and set to null
+        new SharedPref().setBusinessVaultSelected(null);
         //Remove the Activity instance from the stack of AppManager
         AppManager.getAppManager().finishActivity(this);
     }

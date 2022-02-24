@@ -13,66 +13,82 @@
         android:name="android.hardware.camera"
         android:required="false" />
 
-    <application
-        android:supportsRtl="true">
-        <!--android:icon="@mipmap/ic_app_icon"
+    <application android:supportsRtl="true">
+        <activity
+            android:name=".ui.businessprofile.TestActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.businessprofile.BusinessProfileActivity"
+            android:exported="false"
+            android:theme="@style/Theme.SagisuWallet" />
+        <!--
+        android:icon="@mipmap/ic_app_icon"
         android:label="@string/app_name"
         android:networkSecurityConfig="@xml/network_security_config"
         android:roundIcon="@mipmap/ic_app_icon"
 
-        tools:replace="android:icon">-->
+        tools:replace="android:icon">
+        -->
         <activity
             android:name=".ui.trade.watchlists.TokenWatchlistsActivity"
             android:exported="true"
-            android:theme="@style/Theme.SagisuWallet.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.SagisuWallet.NoActionBar" />
         <activity
             android:name=".ui.trade.send.SendActivity"
             android:exported="true"
-            android:theme="@style/Theme.SagisuWallet"/>
+            android:theme="@style/Theme.SagisuWallet" />
         <activity
             android:name=".ui.ReceiveCryptoActivity"
             android:exported="true"
-            android:theme="@style/Theme.SagisuWallet"/>
+            android:theme="@style/Theme.SagisuWallet" />
         <activity
             android:name=".ui.BuyCoinsActivity"
             android:exported="true"
-            android:theme="@style/Theme.SagisuWallet"/>
+            android:theme="@style/Theme.SagisuWallet" />
         <activity
             android:name=".ui.storyteller.StoryTellerActivity"
             android:exported="true"
-            android:theme="@style/Theme.SagisuWallet"/>
-        <activity android:name=".ui.DocumentVerificationActivity"
+            android:theme="@style/Theme.SagisuWallet" />
+        <activity
+            android:name=".ui.DocumentVerificationActivity"
             android:exported="true"
-            android:theme="@style/Theme.SagisuWallet"/>
-        <activity android:name=".ui.kyc.VerifyIdIntroActivity"
+            android:theme="@style/Theme.SagisuWallet" />
+        <activity
+            android:name=".ui.kyc.VerifyIdIntroActivity"
             android:exported="true"
-            android:theme="@style/Theme.SagisuWallet"/>
-        <activity android:name=".ui.kyc.VerifyIdSuccessActivity"
+            android:theme="@style/Theme.SagisuWallet" />
+        <activity
+            android:name=".ui.kyc.VerifyIdSuccessActivity"
             android:exported="true"
-            android:theme="@style/Theme.SagisuWallet"/>
+            android:theme="@style/Theme.SagisuWallet" />
         <activity
             android:name=".ui.ContactTransferActivity"
             android:exported="true"
             android:theme="@style/Theme.SagisuWallet.Chat" />
-        <activity android:name=".TransactionDetailsActivity"
+        <activity
+            android:name=".TransactionDetailsActivity"
             android:exported="true"
-            android:theme="@style/Theme.SagisuWallet"/>
-        <activity android:name=".ui.TransactionActivity"
+            android:theme="@style/Theme.SagisuWallet" />
+        <activity
+            android:name=".ui.TransactionActivity"
             android:exported="true"
-            android:theme="@style/Theme.SagisuWallet"/>
-        <activity android:name=".ui.transactions.TransactionHistoryActivity"
+            android:theme="@style/Theme.SagisuWallet" />
+        <activity
+            android:name=".ui.transactions.TransactionHistoryActivity"
             android:exported="true"
-            android:theme="@style/Theme.SagisuWallet"/>
-        <activity android:name=".ui.FundWalletActivity"
+            android:theme="@style/Theme.SagisuWallet" />
+        <activity
+            android:name=".ui.FundWalletActivity"
             android:exported="true"
-            android:theme="@style/Theme.SagisuWallet"/>
-        <activity android:name=".ui.ContactsActivity"
+            android:theme="@style/Theme.SagisuWallet" />
+        <activity
+            android:name=".ui.ContactsActivity"
             android:exported="true"
-            android:theme="@style/Theme.SagisuWallet"/>
-        <activity android:name=".ui.TransferToAccountActivity"
+            android:theme="@style/Theme.SagisuWallet" />
+        <activity
+            android:name=".ui.TransferToAccountActivity"
             android:exported="true"
-            android:theme="@style/Theme.SagisuWallet"/>
+            android:theme="@style/Theme.SagisuWallet" />
         <activity
             android:name=".ui.VaultMainActivity"
             android:exported="true"
@@ -105,37 +121,42 @@
             android:name=".ui.splashscreen.VaultSplashScreenActivity"
             android:exported="true"
             android:theme="@style/Theme.SagisuWallet.NoActionBar">
-           <!-- <intent-filter>
+
+            <!--
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category
                     android:name="android.intent.category.LAUNCHER"
                     tools:node="replace" />
-            </intent-filter>-->
+            </intent-filter>
+            -->
         </activity>
-        <activity android:name=".ui.PlaidLinkActivity"
+        <activity
+            android:name=".ui.PlaidLinkActivity"
             android:exported="true"
-            android:theme="@style/Theme.SagisuWallet"/>
-        <!-- Jumio -->
-       <!-- <activity
+            android:theme="@style/Theme.SagisuWallet" /> <!-- Jumio -->
+        <!--
+ <activity
             android:exported="true"
             android:name="com.jumio.nv.NetverifyActivity"
             android:configChanges="orientation|screenSize|screenLayout|keyboardHidden"
             android:hardwareAccelerated="true"
-            android:theme="@style/Theme.Netverify" />-->
-        <!--enable for jumio-->
-
-        <!--<service
+            android:theme="@style/Theme.Netverify" />
+        -->
+        <!-- enable for jumio -->
+        <!--
+<service
             android:name=".services.MyFirebaseMessagingService"
             android:exported="true">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
-        </service>-->
-
+        </service>
+        -->
         <meta-data
-            android:exported="true"
             android:name="com.google.mlkit.vision.DEPENDENCIES"
+            android:exported="true"
             android:value="barcode" />
     </application>
 

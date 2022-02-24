@@ -19,6 +19,7 @@ import com.sagisu.vault.databinding.TradeHomeFragmentBinding;
 import com.sagisu.vault.models.Coins;
 import com.sagisu.vault.ui.BuyCoinsActivity;
 import com.sagisu.vault.ui.ReceiveCryptoActivity;
+import com.sagisu.vault.ui.login.fragments.User;
 import com.sagisu.vault.ui.trade.CryptoTokensListAdapter;
 import com.sagisu.vault.ui.trade.SelectCoinsFragment;
 import com.sagisu.vault.ui.trade.send.SendActivity;
@@ -70,8 +71,17 @@ public class TradeHomeFragment extends Fragment implements CoinListAdapter.ICoin
         mViewModel.getBalances().observe(getViewLifecycleOwner(), new Observer<Balances>() {
             @Override
             public void onChanged(Balances balances) {
-                new SharedPref().setCryptoBalanceUpdated(true);
+                //new SharedPref().setCryptoBalanceUpdated(true);
                 initRecyclerView(balances.getCoinBalance());
+            }
+        });
+
+        mViewModel.getUserData().observe(getViewLifecycleOwner(), new Observer<User>() {
+            @Override
+            public void onChanged(User user) {
+                if (user != null) {
+                    mViewModel.setUserName(user.getName());
+                }
             }
         });
 

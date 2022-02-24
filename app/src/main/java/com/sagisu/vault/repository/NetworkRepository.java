@@ -4,6 +4,8 @@ import androidx.lifecycle.MutableLiveData;
 
 import com.google.gson.JsonObject;
 import com.sagisu.vault.models.Account;
+import com.sagisu.vault.models.Business;
+import com.sagisu.vault.models.MyBusinessVault;
 import com.sagisu.vault.models.Payments;
 import com.sagisu.vault.models.Transaction;
 import com.sagisu.vault.models.ValidateAddressResponse;
@@ -85,7 +87,8 @@ public class NetworkRepository {
         }
         user.setPhone(Util.phone_prefix + user.getPhone());
         MutableLiveData<VaultResult<LoginResponse>> userRes = new MutableLiveData<>();
-        VaulrErrorHandlingAdapter.MyCall<LoginResponse> call = api.login(user);
+        //VaulrErrorHandlingAdapter.MyCall<LoginResponse> call = api.login(user);
+        VaulrErrorHandlingAdapter.MyCall<LoginResponse> call = api.login(user.getPhone(), user.getPassword());
         call.enqueue(new VaulrErrorHandlingAdapter.MyCallback<LoginResponse>() {
             @Override
             public void success(Response<LoginResponse> response) {
@@ -587,9 +590,12 @@ public class NetworkRepository {
         return resResponse;
     }
 
-    public MutableLiveData<VaultResult<Balances>> cryptoWalletBalance() {
+    /* @Params : vaultAccountId null for personal account balance, VaultId for business accounts
+     * Gives coinsTotal and list of coins with coin data
+     */
+    public MutableLiveData<VaultResult<Balances>> cryptoWalletBalance(String vaultAccountId) {
         MutableLiveData<VaultResult<Balances>> resResponse = new MutableLiveData<>();
-        VaulrErrorHandlingAdapter.MyCall<Balances> call = api.cryptoWalletBalance();
+        VaulrErrorHandlingAdapter.MyCall<Balances> call = vaultAccountId == null ? api.cryptoWalletBalance() : api.cryptoWalletBalance(vaultAccountId);
         call.enqueue(new VaulrErrorHandlingAdapter.MyCallback<Balances>() {
             @Override
             public void success(Response<Balances> response) {
@@ -885,9 +891,9 @@ public class NetworkRepository {
         return resResponse;
     }
 
-    public MutableLiveData<ChartMetrics> fetchChartData(String assetId,String start, String end, String interval) {
+    public MutableLiveData<ChartMetrics> fetchChartData(String assetId, String start, String end, String interval) {
         MutableLiveData<ChartMetrics> resResponse = new MutableLiveData<>();
-        VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<ChartMetrics>> call = api.getChartData(assetId,start,end,interval);
+        VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<ChartMetrics>> call = api.getChartData(assetId, start, end, interval);
         call.enqueue(new VaulrErrorHandlingAdapter.MyCallback<VaultServerResponse<ChartMetrics>>() {
             @Override
             public void success(Response<VaultServerResponse<ChartMetrics>> response) {
@@ -902,6 +908,70 @@ public class NetworkRepository {
             @Override
             public void clientError(Response<?> response) {
 
+            }
+        });
+        return resResponse;
+    }
+
+    public MutableLiveData<VaultResult<Business>> postBusiness(Business business) {
+        MutableLiveData<VaultResult<Business>> resResponse = new MutableLiveData<>();
+        VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<Business>> call = api.postBusiness(business);
+        call.enqueue(new VaulrErrorHandlingAdapter.MyCallback<VaultServerResponse<Business>>() {
+            @Override
+            public void success(Response<VaultServerResponse<Business>> response) {
+                if (response.isSuccessful()) {
+                    resResponse.postValue(new VaultResult.Success<Business>(response.body().getData(), response.body().getMessage()));
+                } else {
+                    resResponse.postValue(new VaultResult.Error(response.errorBody()));
+                }
+            }
+
+            @Override
+            public void clientError(Response<?> response) {
+                resResponse.postValue(new VaultResult.Error(response.errorBody()));
+            }
+        });
+        return resResponse;
+    }
+
+
+    public MutableLiveData<VaultResult<Business>> joinBusiness(String businessId) {
+        MutableLiveData<VaultResult<Business>> resResponse = new MutableLiveData<>();
+        VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<Business>> call = api.joinBusiness(businessId);
+        call.enqueue(new VaulrErrorHandlingAdapter.MyCallback<VaultServerResponse<Business>>() {
+            @Override
+            public void success(Response<VaultServerResponse<Business>> response) {
+                if (response.isSuccessful()) {
+                    resResponse.postValue(new VaultResult.Success<Business>(response.body().getData(), response.body().getMessage()));
+                } else {
+                    resResponse.postValue(new VaultResult.Error(response.errorBody()));
+                }
+            }
+
+            @Override
+            public void clientError(Response<?> response) {
+                resResponse.postValue(new VaultResult.Error(response.errorBody()));
+            }
+        });
+        return resResponse;
+    }
+
+    public MutableLiveData<List<MyBusinessVault>> getMyBusiness() {
+        MutableLiveData<List<MyBusinessVault>> resResponse = new MutableLiveData<>();
+        VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<List<MyBusinessVault>>> call = api.getMyBusiness();
+        call.enqueue(new VaulrErrorHandlingAdapter.MyCallback<VaultServerResponse<List<MyBusinessVault>>>() {
+            @Override
+            public void success(Response<VaultServerResponse<List<MyBusinessVault>>> response) {
+                if (response.isSuccessful()) {
+                    resResponse.postValue(response.body().getData());
+                } else {
+                    //resResponse.postValue();
+                }
+            }
+
+            @Override
+            public void clientError(Response<?> response) {
+                //resResponse.postValue(new VaultResult.Error(response.errorBody()));
             }
         });
         return resResponse;

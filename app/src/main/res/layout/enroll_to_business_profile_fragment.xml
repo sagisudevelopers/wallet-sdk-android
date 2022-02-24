@@ -1,0 +1,186 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="EnrollToBusinessProfileBinding"></data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatEditText
+            android:id="@+id/business_name_search"
+            style="@style/VaultSearchViewStyle"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/searchview"
+            android:drawableStart="@drawable/ic_search"
+            android:drawablePadding="8dp"
+            android:gravity="center_vertical"
+            android:hint="Business Name"
+            android:inputType="text"
+            android:padding="10dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lstAllBusiness"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toTopOf="@+id/guideline55"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/business_name_search" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline55"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_percent="0.7" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@color/lighter_grey"
+            app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView104"
+            app:layout_constraintEnd_toStartOf="@+id/appCompatTextView104"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/lstAllBusiness" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView104"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="OR"
+            style="@style/VaultTextLightStyle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/guideline55" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="1dp"
+            android:layout_marginStart="32dp"
+            android:layout_marginEnd="32dp"
+            android:background="@color/lighter_grey"
+            app:layout_constraintBottom_toBottomOf="@+id/appCompatTextView104"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/appCompatTextView104"
+            app:layout_constraintTop_toTopOf="@+id/appCompatTextView104" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_business"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/vaultColorPrimary"
+            android:text="Add Business"
+            app:iconTint="@color/white"
+            app:iconSize="40dp"
+            android:textColor="@color/white"
+            app:icon="@drawable/ic_baseline_business_24"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/add_dao"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView104" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/add_dao"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/vaultColorPrimary"
+            android:text="Add Dao"
+            app:iconSize="40dp"
+            app:iconTint="@color/white"
+            android:textColor="@color/white"
+            app:icon="@drawable/ic_dao"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.5"
+            app:layout_constraintStart_toEndOf="@+id/add_business"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView104" />
+
+        <!--<androidx.coordinatorlayout.widget.CoordinatorLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:id="@+id/dial"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="top|center_horizontal"
+                android:visibility="invisible"
+                app:layout_anchor="@id/fabMenu"
+                android:layout_margin="32dp"
+                app:layout_anchorGravity="top|center_horizontal"
+                app:layout_behavior="com.google.android.material.transformation.FabTransformationScrimBehavior">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content">
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/add_business"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/lighter_grey"
+                        android:src="@drawable/ic_baseline_business_24"
+                        app:fabSize="mini"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent" />
+
+                    <TextView
+                        android:id="@+id/add_business_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="Business"
+                        app:layout_constraintBottom_toBottomOf="@id/add_business"
+                        app:layout_constraintEnd_toStartOf="@id/add_business"
+                        app:layout_constraintTop_toTopOf="@id/add_business" />
+
+                    <com.google.android.material.floatingactionbutton.FloatingActionButton
+                        android:id="@+id/add_dao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:backgroundTint="@color/lighter_grey"
+                        android:contentDescription="@string/app_name"
+                        android:src="@drawable/ic_dao"
+                        app:fabSize="mini"
+                        app:layout_constraintBottom_toTopOf="@id/add_business"
+                        app:layout_constraintEnd_toEndOf="@id/add_business"
+                        app:layout_constraintStart_toStartOf="@id/add_business" />
+
+                    <TextView
+                        android:id="@+id/add_dao_text"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="8dp"
+                        android:text="Dao"
+                        app:layout_constraintBottom_toBottomOf="@id/add_dao"
+                        app:layout_constraintEnd_toStartOf="@id/add_dao"
+                        app:layout_constraintTop_toTopOf="@id/add_dao" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </LinearLayout>
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/fabMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="bottom|end"
+                android:src="@drawable/ic_baseline_add_24"
+                android:layout_margin="32dp"
+                android:tint="@color/white" />
+        </androidx.coordinatorlayout.widget.CoordinatorLayout>-->
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

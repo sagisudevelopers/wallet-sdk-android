@@ -20,7 +20,7 @@ import retrofit2.adapter.rxjava3.RxJava3CallAdapterFactory;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class VaultApiClient {
-    private static final String LOCAL_NGROK = "http://3d14-2401-4900-32aa-c5c1-6c8d-9b2e-2e98-3122.ngrok.io";
+    private static final String LOCAL_NGROK = "http://5f14-2401-4900-4e68-70cb-f006-6100-83d1-8d3c.ngrok.io";
     private static final String LOCAL_DEV_URL = "http://44.198.41.195";
     private static final String PROD_URL = "https://walletprod.sagisu.com";
 
@@ -36,7 +36,7 @@ public class VaultApiClient {
     private static Retrofit retrofit;
 
     public static VaultApiInterface buildRetrofitService() {
-        URL = PROD_URL + "/v1/";
+        URL = LOCAL_NGROK + "/v1/";
         return buildService();
     }
 

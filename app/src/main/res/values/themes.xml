@@ -96,7 +96,7 @@
     </style>
 
     <style name="VaultTextExtraDarkStyle" parent="Widget.AppCompat.TextView">
-        <item name="android:textColor">#14172C</item>
+        <item name="android:textColor">@color/text_color</item>
         <item name="android:textSize">14sp</item>
         <item name="fontFamily">@font/rubik_medium</item>
     </style>
@@ -134,8 +134,16 @@
     <style name="VaultTextButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textColor">@color/vaultColorPrimary</item>
+        <item name="android:textColor">@color/btn_color</item>
         <item name="backgroundTint">@color/white</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="VaultOutlinedButtonStyle" parent="Widget.MaterialComponents.Button.OutlinedButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="backgroundTint">@color/btn_state_color</item>
+        <item name="android:textColor">@color/btn_text_state_color</item>
         <item name="textAllCaps">false</item>
     </style>
 

@@ -4,6 +4,7 @@ import android.text.Editable;
 import android.text.Html;
 import android.text.TextWatcher;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.ImageView;
 
@@ -25,11 +26,11 @@ import kotlin.jvm.JvmStatic;
 public class CustomViewBindings {
     @BindingAdapter("entries")
     public static void bindAutoCompleteView(AutoCompleteTextView autoCompleteTextView, String[] array) {
-        /*if (array != null && array.length > 0)
+        if (array != null && array.length > 0)
             autoCompleteTextView.setAdapter(
                     new ArrayAdapter<>(autoCompleteTextView.getContext(),
                             R.layout.dropdown_menu_popup_item,
-                            array));*/
+                            array));
     }
 
     @BindingAdapter("accountEntries")

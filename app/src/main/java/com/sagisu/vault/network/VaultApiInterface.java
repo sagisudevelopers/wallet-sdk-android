@@ -1,7 +1,10 @@
 package com.sagisu.vault.network;
 
 import com.google.gson.JsonObject;
+import com.sagisu.vault.models.Business;
 import com.sagisu.vault.models.Coins;
+import com.sagisu.vault.models.MyBusinessVault;
+import com.sagisu.vault.models.PaginationResponse;
 import com.sagisu.vault.models.Payments;
 import com.sagisu.vault.models.Transaction;
 import com.sagisu.vault.models.ValidateAddressResponse;
@@ -42,6 +45,10 @@ public interface VaultApiInterface {
 
     @POST("auth/login")
     VaulrErrorHandlingAdapter.MyCall<LoginResponse> login(@Body User user);
+
+    @POST("auth/login")
+    VaulrErrorHandlingAdapter.MyCall<LoginResponse> login(@Query("phone") String phone,
+                                                          @Query("password") String password);
 
     @POST("auth/signUp")
     VaulrErrorHandlingAdapter.MyCall<LoginResponse> signUp(@Body User user);
@@ -92,6 +99,9 @@ public interface VaultApiInterface {
 
     @GET("crypto/balance")
     VaulrErrorHandlingAdapter.MyCall<Balances> cryptoWalletBalance();
+
+    @GET("crypto/balance/{vaultAccountId}")
+    VaulrErrorHandlingAdapter.MyCall<Balances> cryptoWalletBalance(@Path("vaultAccountId") String vaultAccountId);
 
     @GET("accounts/transactions")
     Single<GetTransactionResponse> getTransactions(@Query("pageNo") Integer pageNo/*,@Query("cursor") String cursor*/);
@@ -150,6 +160,19 @@ public interface VaultApiInterface {
                                                                                      @Query("start") String start,
                                                                                      @Query("end") String end,
                                                                                      @Query("interval") String interval);
+
+
+    @POST("business")
+    VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<Business>> postBusiness(@Body Business business);
+
+    @GET("business")
+    Single<PaginationResponse<Business>> getBusiness(@Query("pageNo") Integer pageNo,@Query("query") String query);
+
+    @POST("business/{businessId}/join")
+    VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<Business>> joinBusiness(@Path("businessId") String businessId);
+
+    @GET("business/me")
+    VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<List<MyBusinessVault>>> getMyBusiness();
 
 
 }

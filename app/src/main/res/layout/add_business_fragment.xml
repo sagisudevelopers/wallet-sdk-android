@@ -1,0 +1,206 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="AddBusinessBinding">
+
+        <variable
+            name="viewModel"
+            type="com.sagisu.vault.ui.businessprofile.AddBusinessViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/add_business_name"
+            style="@style/VaultTextInputStyle"
+            removeRequiredErrorOnTextChange="@{true}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Name of the business*"
+            app:helperTextTextColor="@color/helper_text"
+            app:layout_constraintEnd_toStartOf="@+id/guideline53"
+            app:layout_constraintStart_toStartOf="@+id/guideline51"
+            app:layout_constraintTop_toTopOf="@+id/guideline54">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rubik_medium"
+                android:inputType="text|textNoSuggestions"
+                android:text="@={viewModel.businessData.name}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/business_ein_number"
+            style="@style/VaultTextInputStyle"
+            removeRequiredErrorOnTextChange="@{true}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="EIN Number*"
+            app:helperTextTextColor="@color/helper_text"
+            app:layout_constraintEnd_toStartOf="@+id/guideline53"
+            app:layout_constraintStart_toStartOf="@+id/guideline51"
+            app:layout_constraintTop_toBottomOf="@+id/add_business_name">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rubik_medium"
+                android:inputType="text|textNoSuggestions"
+                android:text="@={viewModel.businessData.einNumber}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/business_address"
+            style="@style/VaultTextInputStyle"
+            removeRequiredErrorOnTextChange="@{true}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Address*"
+            app:helperTextTextColor="@color/helper_text"
+            app:layout_constraintEnd_toStartOf="@+id/guideline53"
+            app:layout_constraintStart_toStartOf="@+id/guideline51"
+            app:layout_constraintTop_toBottomOf="@+id/business_ein_number">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:minHeight="50dp"
+                android:layout_gravity="start"
+                android:fontFamily="@font/rubik_medium"
+                android:singleLine="false"
+                android:inputType="textPostalAddress|textNoSuggestions"
+                android:text="@={viewModel.businessData.address}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/corporation_type"
+            style="@style/VaultSpinnerStyle"
+            removeRequiredErrorOnTextChange="@{true}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Corporation Type"
+            app:helperTextTextColor="@color/helper_text"
+            app:layout_constraintEnd_toStartOf="@+id/guideline53"
+            app:layout_constraintStart_toStartOf="@+id/guideline51"
+            app:layout_constraintTop_toBottomOf="@+id/business_address">
+
+            <AutoCompleteTextView
+                entries="@{@stringArray/corp_type}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rubik_medium"
+                android:inputType="text|textNoSuggestions"
+                android:text="@={viewModel.businessData.corporationType}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.chip.ChipGroup
+            android:id="@+id/director_grp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline53"
+            app:layout_constraintStart_toStartOf="@+id/guideline51"
+            app:layout_constraintTop_toBottomOf="@+id/corporation_type">
+
+            <com.google.android.material.chip.Chip
+                android:id="@+id/add_director"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/vaultColorPrimary"
+                android:text="Add director"
+                android:textColor="@color/white" />
+
+        </com.google.android.material.chip.ChipGroup>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/department"
+            style="@style/VaultTextInputStyle"
+            removeRequiredErrorOnTextChange="@{true}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Department"
+            app:helperTextTextColor="@color/helper_text"
+            app:layout_constraintEnd_toStartOf="@+id/guideline53"
+            app:layout_constraintStart_toStartOf="@+id/guideline51"
+            app:layout_constraintTop_toBottomOf="@+id/director_grp">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rubik_medium"
+                android:inputType="text|textNoSuggestions"
+                android:text="@={viewModel.businessData.department}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/default_crypto"
+            style="@style/VaultSpinnerStyle"
+            removeRequiredErrorOnTextChange="@{true}"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:hint="Default Crypto"
+            app:helperTextTextColor="@color/helper_text"
+            app:layout_constraintEnd_toStartOf="@+id/guideline53"
+            app:layout_constraintStart_toStartOf="@+id/guideline51"
+            app:layout_constraintTop_toBottomOf="@+id/department">
+
+            <AutoCompleteTextView
+                entries="@{@stringArray/default_crypto}"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rubik_medium"
+                android:inputType="text|textNoSuggestions"
+                android:text="@={viewModel.businessData.defaultCrypto}" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.button.MaterialButton
+            style="@style/VaultLargeButtonStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:onClick="@{()-> viewModel.addButtonSubmit()}"
+            android:text="Add business"
+            app:layout_constraintEnd_toStartOf="@+id/guideline53"
+            app:layout_constraintStart_toStartOf="@+id/guideline51"
+            app:layout_constraintTop_toBottomOf="@+id/default_crypto" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline51"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline53"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="20dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline54"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            app:layout_constraintGuide_begin="20dp" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

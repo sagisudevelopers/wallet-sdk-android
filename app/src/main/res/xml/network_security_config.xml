@@ -4,6 +4,6 @@
         <domain includeSubdomains="true">44.198.41.195</domain>
         <domain includeSubdomains="true">54.235.100.222</domain>
         <domain includeSubdomains="true">10.0.2.2</domain>
-        <domain includeSubdomains="true">3d14-2401-4900-32aa-c5c1-6c8d-9b2e-2e98-3122.ngrok.io</domain>
+        <domain includeSubdomains="true">c2cd-2401-4900-22b6-30cd-dae-39ca-ea7a-d6e4.ngrok.io</domain>
     </domain-config>
 </network-security-config>

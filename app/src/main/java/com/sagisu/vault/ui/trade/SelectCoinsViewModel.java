@@ -1,5 +1,7 @@
 package com.sagisu.vault.ui.trade;
 
+import android.graphics.Shader;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
 import androidx.lifecycle.Observer;
@@ -17,6 +19,7 @@ import com.sagisu.vault.network.VaultResult;
 import com.sagisu.vault.repository.CryptoTokensPagingSource;
 import com.sagisu.vault.repository.NetworkRepository;
 import com.sagisu.vault.ui.home.Balances;
+import com.sagisu.vault.utils.SharedPref;
 
 import java.util.List;
 
@@ -28,27 +31,11 @@ public class SelectCoinsViewModel extends ViewModel {
     private Flowable<PagingData<Coins>> flowable;
 
     public void init() {
-        /*Coins coins = new Coins();
-        coins.setName("BitCoin");
-        coins.setBalance(50);
-        coins.setUsdValue(5000);
-        coins.setSymbol("BTC");
-        coins.setPriceChangePercentage("-0.7");
-        Coins coins1 = new Coins();
-        coins1.setName("Etherium");
-        coins.setSymbol("ETH");
-        coins.setPriceChangePercentage("0.5");
-        coins1.setBalance(50);
-        coins1.setUsdValue(8000);
-        List<Coins> coinsList = new ArrayList<>();
-        coinsList.add(coins);
-        coinsList.add(coins1);
-        this.coinsList.setValue(coinsList);*/
-        //getCryptoTokens("");
     }
 
     public void getCryptoWalletBalance() {
-        LiveData<VaultResult<Balances>> balanceLiveData = NetworkRepository.getInstance().cryptoWalletBalance();
+        String vaultAccountId = new SharedPref().getBusinessVaultSelected().getVaultAccountId();
+        LiveData<VaultResult<Balances>> balanceLiveData = NetworkRepository.getInstance().cryptoWalletBalance(vaultAccountId);
         coinsList.addSource(balanceLiveData, new Observer<VaultResult<Balances>>() {
             @Override
             public void onChanged(VaultResult<Balances> balancesResult) {

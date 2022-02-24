@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data class="AddDaoFragmentBinding">
+
+        <variable
+            name="viewModel"
+            type="com.sagisu.vault.ui.businessprofile.AddBusinessViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <include
+            android:id="@+id/dao_loading"
+            layout="@layout/progress_shimmer"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/view_dao"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/appCompatTextView13"
+                style="@style/VaultTextDarkStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:text="Add dao"
+                app:layout_constraintStart_toStartOf="@+id/guideline57"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/dao_name"
+                style="@style/VaultTextInputStyle"
+                removeRequiredErrorOnTextChange="@{true}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:hint="Name*"
+                android:visibility="visible"
+                app:layout_constraintEnd_toStartOf="@+id/guideline58"
+                app:layout_constraintStart_toStartOf="@+id/guideline57"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatTextView13">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text|textNoSuggestions"
+                    android:text="@={viewModel.businessData.name}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/dao_eth_address"
+                style="@style/VaultTextInputStyle"
+                removeRequiredErrorOnTextChange="@{true}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Eth Address*"
+                android:visibility="visible"
+                app:layout_constraintEnd_toStartOf="@+id/guideline58"
+                app:layout_constraintStart_toStartOf="@+id/guideline57"
+                app:layout_constraintTop_toBottomOf="@+id/dao_name">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:inputType="text|textNoSuggestions"
+                    android:text="@={viewModel.businessData.ethAddress}" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/add_dao"
+                style="@style/VaultButtonStyle"
+                android:layout_width="160dp"
+                android:layout_height="50dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:fontFamily="@font/rubik_medium"
+                android:onClick="@{()->viewModel.addButtonSubmit()}"
+                android:text="Add Dao"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                app:backgroundTint="@color/vaultColorPrimary"
+                app:cornerRadius="20dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/guideline58"
+                app:layout_constraintStart_toStartOf="@+id/guideline57"
+                app:layout_constraintTop_toBottomOf="@+id/dao_eth_address" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline57"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="20dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline58"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="20dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

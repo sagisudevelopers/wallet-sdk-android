@@ -14,6 +14,7 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.sagisu.vault.R;
 import com.sagisu.vault.databinding.ProfileFragmentBinding;
+import com.sagisu.vault.ui.businessprofile.BusinessProfileActivity;
 import com.sagisu.vault.ui.kyc.VerifyIdIntroActivity;
 import com.sagisu.vault.ui.login.VaultLoginActivity;
 import com.sagisu.vault.utils.SharedPref;
@@ -34,6 +35,7 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
         binding = DataBindingUtil.bind(rootView);
 
         binding.userVerificationLayout.setOnClickListener(this);
+        binding.constraintLayoutBusinessProfile.setOnClickListener(this);
         binding.logoutLayout.setOnClickListener(this);
 
         return binding.getRoot();
@@ -53,12 +55,19 @@ public class ProfileFragment extends Fragment implements View.OnClickListener {
             logout();
         } else if (view.getId() == R.id.user_verification_layout) {
             userVerification();
+        } else if (view.getId() == R.id.constraintLayout_business_profile) {
+            switchToBusinessProfile();
         }
 
     }
 
     private void userVerification() {
         Intent intent = new Intent(getActivity(), VerifyIdIntroActivity.class);
+        startActivity(intent);
+    }
+
+    private void switchToBusinessProfile() {
+        Intent intent = new Intent(getActivity(), BusinessProfileActivity.class);
         startActivity(intent);
     }
 

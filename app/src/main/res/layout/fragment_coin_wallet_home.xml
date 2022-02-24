@@ -59,15 +59,25 @@
                     app:tint="@color/white" />
 
                 <androidx.appcompat.widget.AppCompatTextView
-                    android:id="@+id/appCompatTextView"
+                    android:id="@+id/account_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="@string/your_account_value"
+                    android:text="@{viewModel.userName}"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     app:layout_constraintStart_toEndOf="@+id/appCompatImageView11"
                     app:layout_constraintTop_toTopOf="@+id/appCompatImageView11" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/appCompatTextView"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text='@{viewModel.businessSelected==null?"Personal" : "Business" + " account value" }'
+                    android:textColor="@color/white"
+                    android:textSize="12sp"
+                    app:layout_constraintStart_toStartOf="@+id/account_name"
+                    app:layout_constraintTop_toBottomOf="@+id/account_name" />
 
                 <com.facebook.shimmer.ShimmerFrameLayout
                     android:id="@+id/shimmer_view_container"
@@ -210,7 +220,7 @@
                         app:layout_constraintTop_toBottomOf="@+id/accountImg" />
                 </androidx.constraintlayout.widget.ConstraintLayout>
             </com.google.android.material.card.MaterialCardView>
-<!--#4D81FF-->
+            <!--#4D81FF-->
             <com.google.android.material.card.MaterialCardView
                 android:id="@+id/card_receive"
                 android:layout_width="0dp"

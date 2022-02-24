@@ -50,7 +50,7 @@ public class HomeViewModel extends ViewModel {
 
     public void getCryptoWalletBalance() {
         shimmerBalanceView.setValue(true);
-        LiveData<VaultResult<Balances>> balanceLiveData = NetworkRepository.getInstance().cryptoWalletBalance();
+        LiveData<VaultResult<Balances>> balanceLiveData = NetworkRepository.getInstance().cryptoWalletBalance(null);
         totalWalletBalance.addSource(balanceLiveData, new Observer<VaultResult<Balances>>() {
             @Override
             public void onChanged(VaultResult<Balances> balancesResult) {
