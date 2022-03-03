@@ -13,13 +13,18 @@ import com.sagisu.vault.databinding.ListItemBinding;
 import com.sagisu.vault.databinding.TransactionItemBinding;
 import com.sagisu.vault.databinding.VaultNetworkItemBinding;
 import com.sagisu.vault.models.Business;
+import com.sagisu.vault.models.MyBusinessVault;
 import com.sagisu.vault.models.Transaction;
 import com.sagisu.vault.network.VaultNetworkState;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class AllBusinessListAdapter extends PagingDataAdapter<Business, RecyclerView.ViewHolder> {
     private static final int TYPE_PROGRESS = 0;
     private static final int TYPE_ITEM = 1;
     private IBusinessClickListener listener;
+    private List<MyBusinessVault> myBusinessVaultList = new ArrayList<>();
 
     private Context context;
     private VaultNetworkState vaultNetworkState;
@@ -28,6 +33,10 @@ public class AllBusinessListAdapter extends PagingDataAdapter<Business, Recycler
         super(Business.DIFF_CALLBACK);
         this.context = context;
         this.listener = listener;
+    }
+
+    public void setMyBusinessVaultList(List<MyBusinessVault> myBusinessVaultList) {
+        this.myBusinessVaultList = myBusinessVaultList;
     }
 
     @NonNull
@@ -100,12 +109,18 @@ public class AllBusinessListAdapter extends PagingDataAdapter<Business, Recycler
         }
 
         public void bindTo(Business transaction) {
-           binding.setModel(transaction);
+            binding.setModel(transaction);
+            MyBusinessVault business = new MyBusinessVault(transaction);
+            MyBusinessVault myBusiness = null;
+            int myBusinessIndex = myBusinessVaultList.indexOf(business);
+            if (myBusinessIndex != -1) myBusiness = myBusinessVaultList.get(myBusinessIndex);
+
+            binding.setMyBusiness(myBusiness == null ? null : myBusiness);
 
             binding.joinBusiness.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    listener.itemClick(view,transaction);
+                    listener.itemClick(view, transaction);
                 }
             });
 

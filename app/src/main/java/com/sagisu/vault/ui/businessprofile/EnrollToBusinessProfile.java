@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -19,12 +20,16 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Toast;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.sagisu.vault.R;
 import com.sagisu.vault.databinding.EnrollToBusinessProfileBinding;
 import com.sagisu.vault.models.Business;
+import com.sagisu.vault.models.MyBusinessVault;
 import com.sagisu.vault.ui.transactions.TransactionListAdapter;
 import com.sagisu.vault.ui.transactions.TransactionLoadStateAdapter;
 import com.sagisu.vault.utils.ViewAnimation;
+
+import java.util.List;
 
 import autodispose2.AutoDispose;
 import autodispose2.androidx.lifecycle.AndroidLifecycleScopeProvider;
@@ -32,6 +37,7 @@ import autodispose2.androidx.lifecycle.AndroidLifecycleScopeProvider;
 public class EnrollToBusinessProfile extends Fragment implements IBusinessClickListener, View.OnClickListener {
 
     private EnrollToBusinessProfileViewModel mViewModel;
+    private BusinessProfileViewModel businessProfileViewModel;
     private EnrollToBusinessProfileBinding binding;
     private AllBusinessListAdapter adapter;
     private IBusinessNavigator navigator;
@@ -128,6 +134,16 @@ public class EnrollToBusinessProfile extends Fragment implements IBusinessClickL
                 navigator.loading(s);
             }
         });
+
+        businessProfileViewModel = new ViewModelProvider(getActivity()).get(BusinessProfileViewModel.class);
+        businessProfileViewModel.getBusinessList().observe(getViewLifecycleOwner(), new Observer<List<MyBusinessVault>>() {
+            @Override
+            public void onChanged(List<MyBusinessVault> myBusinessVaults) {
+                if (adapter != null) {
+                    adapter.setMyBusinessVaultList(myBusinessVaults);
+                }
+            }
+        });
     }
 
     private void initRecyclerView() {
@@ -152,10 +168,29 @@ public class EnrollToBusinessProfile extends Fragment implements IBusinessClickL
         });
     }
 
+    private void joinConfirmationPopup(Business business) {
+        new MaterialAlertDialogBuilder(getActivity())
+                .setTitle("Join Business")
+                .setMessage("Are you sure you want to join " + business.getName() + " ?")
+                .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        dialogInterface.dismiss();
+                    }
+                })
+                .setPositiveButton("Join", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        mViewModel.joinBusiness(business.get_id());
+                    }
+                }).show();
+
+    }
+
     @Override
     public void itemClick(View view, Business business) {
-        if (view.getId() == R.id.join_business)
-            mViewModel.joinBusiness(business.get_id());
+        if (view.getId() == R.id.join_business) joinConfirmationPopup(business);
+
     }
 
     @Override

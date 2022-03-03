@@ -2,6 +2,7 @@ package com.sagisu.vault.ui.businessprofile;
 
 import android.app.Activity;
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,7 +81,7 @@ public class BusinessSelectionAdapter extends RecyclerView.Adapter<BusinessSelec
                     listener.onMessageClicked(messageBean);
                 }
             });*/
-            if (prevVaultSelection != null && prevVaultSelection.equals(messageBean)) {
+            if (prevVaultSelection != null && prevVaultSelection.equals(messageBean.getBusiness())) {
                 lastChecked = binding.businessRb;
                 binding.businessRb.setChecked(true);
             }

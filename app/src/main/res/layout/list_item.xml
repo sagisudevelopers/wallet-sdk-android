@@ -8,7 +8,11 @@
             name="model"
             type="com.sagisu.vault.models.Business" />
 
-        <import type="com.sagisu.vault.utils.BusinessTypeDescriptor"/>
+        <variable
+            name="myBusiness"
+            type="com.sagisu.vault.models.MyBusinessVault" />
+
+        <import type="com.sagisu.vault.utils.BusinessTypeDescriptor" />
 
     </data>
 
@@ -43,16 +47,28 @@
             app:layout_constraintStart_toEndOf="@+id/appCompatImageView20"
             app:layout_constraintTop_toTopOf="@+id/appCompatImageView20" />
 
+        <!--android:text='@{model.type.equals(BusinessTypeDescriptor.BUSINESS) ? "EIN : ****"+model.einNumber.substring(model.einNumber.length()-4) : "DAO"}'-->
         <androidx.appcompat.widget.AppCompatTextView
             android:id="@+id/appCompatTextView90"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="6dp"
-            android:text='@{model.type.equals(BusinessTypeDescriptor.BUSINESS) ? "EIN : "+model.einNumber : "DAO"}'
             android:textColor="@color/text_200"
             android:textSize="12sp"
+            android:visibility="gone"
             app:layout_constraintStart_toStartOf="@+id/appCompatTextView80"
             app:layout_constraintTop_toBottomOf="@+id/appCompatTextView80" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/business_address"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="6dp"
+            android:text='@{model.address}'
+            android:textColor="@color/text_200"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/appCompatTextView90"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView90" />
 
         <com.google.android.material.button.MaterialButton
             android:id="@+id/join_business"
@@ -60,8 +76,9 @@
             android:layout_width="70dp"
             android:layout_height="35dp"
             android:layout_marginEnd="16dp"
+            android:enabled="@{myBusiness==null}"
             android:fontFamily="@font/rubik_medium"
-            android:text="Join"
+            android:text='@{myBusiness == null ? "Join" : myBusiness.status}'
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="12dp"
@@ -75,10 +92,12 @@
             android:layout_width="0dp"
             android:layout_height="1dp"
             android:layout_marginStart="20dp"
+            android:layout_marginTop="6dp"
             android:layout_marginEnd="20dp"
             android:background="#D9D9D9"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/business_address" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

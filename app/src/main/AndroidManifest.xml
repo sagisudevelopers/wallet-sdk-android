@@ -15,6 +15,9 @@
 
     <application android:supportsRtl="true">
         <activity
+            android:name=".ui.businessrequests.BusinessRequestsActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.businessprofile.TestActivity"
             android:exported="false" />
         <activity

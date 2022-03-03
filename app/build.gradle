@@ -119,13 +119,14 @@ dependencies {
     implementation "com.jumio.android:nv-mrz:3.9.2@aar"       // MRZ scanning
 
     //Firebase
-    /*implementation platform('com.google.firebase:firebase-bom:28.4.0')
+    implementation platform('com.google.firebase:firebase-bom:28.4.0')
     // Add the Firebase Crashlytics SDK
     implementation 'com.google.firebase:firebase-crashlytics:18.2.6'
     // Recommended: Add the Google Analytics SDK
     implementation 'com.google.firebase:firebase-analytics:20.0.2'
     implementation 'com.google.android.gms:play-services-base:18.0.1'
-    implementation 'com.google.firebase:firebase-messaging:23.0.0'*/
+    implementation 'com.google.firebase:firebase-messaging:23.0.0'
+    implementation 'com.google.firebase:firebase-dynamic-links:21.0.0'
 
     //Shimmer progressbar
     implementation 'com.facebook.shimmer:shimmer:0.5.0'
