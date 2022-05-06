@@ -7,10 +7,10 @@
 
         <variable
             name="viewModel"
-            type="com.sagisu.vault.ui.login.fragments.VaultLoginViewModel" />
+            type="com.sagisu.vaultLibrary.ui.login.fragments.VaultLoginViewModel" />
 
-        <import type="com.sagisu.vault.ui.login.fragments.VaultLoginViewModel.ViewType" />
-        <import type="com.sagisu.vault.utils.Util"/>
+        <import type="com.sagisu.vaultLibrary.ui.login.fragments.VaultLoginViewModel.ViewType" />
+        <import type="com.sagisu.vaultLibrary.utils.Util"/>
 
     </data>
 
@@ -88,14 +88,14 @@
                 requiredValidator="@{viewModel.consumer.phone}"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="17dp"
-                app:prefixText="@{Util.phone_prefix}"
+                android:layout_marginTop="32dp"
                 app:helperTextTextColor="@color/helper_text"
                 app:layout_constraintEnd_toStartOf="@+id/guideline31"
                 app:layout_constraintHorizontal_bias="0.5"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintStart_toStartOf="@+id/guideline28"
-                app:layout_constraintTop_toBottomOf="@+id/login_business_id_wrap">
+                app:layout_constraintTop_toBottomOf="@+id/login_business_id_wrap"
+                app:prefixText="@{Util.phone_prefix}">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/login_phone"
@@ -115,6 +115,7 @@
                 style="@style/VaultTextInputStyle"
                 requiredValidator="@{viewModel.consumer.password}"
                 android:layout_width="0dp"
+                android:visibility="gone"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="22dp"
                 app:layout_constraintEnd_toStartOf="@+id/guideline31"
@@ -151,7 +152,7 @@
                 android:textAllCaps="false"
                 android:textColor="@color/vaultColorPrimary"
                 android:textSize="11sp"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@+id/guideline27"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/login_password_wrap"
@@ -164,7 +165,7 @@
                 android:layout_marginTop="16dp"
                 android:gravity="center_horizontal"
                 android:orientation="horizontal"
-                android:visibility="visible"
+                android:visibility="gone"
                 app:layout_constraintBottom_toTopOf="@+id/login_employee"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -266,7 +267,7 @@
                 android:layout_width="0dp"
                 android:layout_height="57dp"
                 android:background="@color/vaultColorPrimary"
-                android:onClick="@{()->viewModel.login()}"
+                android:onClick="@{()->viewModel.userExists()}"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/login_businessPartner"
                 app:layout_constraintHorizontal_bias="0.5"
@@ -280,7 +281,7 @@
                     android:layout_centerHorizontal="true"
                     android:layout_centerVertical="true"
                     android:lineSpacingExtra="6sp"
-                    android:text="Login"
+                    android:text="Next"
                     android:textColor="@color/white"
                     android:textSize="16dp" />
 

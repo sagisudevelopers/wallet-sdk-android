@@ -6,10 +6,10 @@
 
         <variable
             name="messageBean"
-            type="com.sagisu.vault.models.MessageBean" />
+            type="com.sagisu.vaultLibrary.models.MessageBean" />
 
         <import type="android.view.View" />
-        <import type="com.sagisu.vault.utils.Globals"/>
+        <import type="com.sagisu.vaultLibrary.utils.Globals"/>
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

@@ -5,10 +5,10 @@
     <data class="TransactionItemBinding">
         <variable
             name="model"
-            type="com.sagisu.vault.models.Transaction" />
+            type="com.sagisu.vaultLibrary.models.Transaction" />
 
-        <import type="com.sagisu.vault.utils.AccountTypeDescriptor"/>
-        <import type="com.sagisu.vault.utils.Globals"/>
+        <import type="com.sagisu.vaultLibrary.utils.AccountTypeDescriptor"/>
+        <import type="com.sagisu.vaultLibrary.utils.Globals"/>
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"

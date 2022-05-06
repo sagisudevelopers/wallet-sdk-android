@@ -6,7 +6,11 @@
 
         <variable
             name="viewModel"
-            type="com.sagisu.vault.ui.businessprofile.AddBusinessViewModel" />
+            type="com.sagisu.vaultLibrary.ui.businessprofile.AddBusinessViewModel" />
+
+        <variable
+            name="enableDefault"
+            type="Boolean" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -83,13 +87,25 @@
                     android:text="@={viewModel.businessData.ethAddress}" />
             </com.google.android.material.textfield.TextInputLayout>
 
+            <com.google.android.material.checkbox.MaterialCheckBox
+                android:id="@+id/materialCheckBox"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:checked="@={viewModel.defaultBusiness}"
+                android:text="Use this as default business"
+                android:enabled="@{enableDefault}"
+                android:clickable="@{enableDefault}"
+                android:theme="@style/VaultTextExtraDarkStyle"
+                app:layout_constraintStart_toStartOf="@+id/guideline57"
+                app:layout_constraintTop_toBottomOf="@+id/dao_eth_address" />
+
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/add_dao"
                 style="@style/VaultButtonStyle"
                 android:layout_width="160dp"
                 android:layout_height="50dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="16dp"
+                android:layout_marginTop="32dp"
                 android:fontFamily="@font/rubik_medium"
                 android:onClick="@{()->viewModel.addButtonSubmit()}"
                 android:text="Add Dao"
@@ -101,7 +117,7 @@
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/guideline58"
                 app:layout_constraintStart_toStartOf="@+id/guideline57"
-                app:layout_constraintTop_toBottomOf="@+id/dao_eth_address" />
+                app:layout_constraintTop_toBottomOf="@+id/materialCheckBox" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/guideline57"

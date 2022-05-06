@@ -7,9 +7,9 @@
 
         <variable
             name="model"
-            type="com.sagisu.vault.models.Coins" />
+            type="com.sagisu.vaultLibrary.models.Coins" />
 
-        <import type="com.sagisu.vault.R" />
+        <import type="com.sagisu.vaultLibrary.R" />
 
         <import type="android.view.View" />
     </data>

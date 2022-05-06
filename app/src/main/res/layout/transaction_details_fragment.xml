@@ -6,11 +6,11 @@
 
         <variable
             name="model"
-            type="com.sagisu.vault.models.Transaction" />
+            type="com.sagisu.vaultLibrary.models.Transaction" />
 
         <variable
             name="viewModel"
-            type="com.sagisu.vault.ui.transactions.TransactionDetailsViewModel" />
+            type="com.sagisu.vaultLibrary.ui.transactions.TransactionDetailsViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView

@@ -4,16 +4,19 @@
 
     <data class="TradeHomeFragmentBinding">
 
-        <import type="com.sagisu.vault.utils.Util.TradeTypes" />
+        <import type="com.sagisu.vaultLibrary.utils.Util.TradeTypes" />
 
         <variable
             name="viewModel"
-            type="com.sagisu.vault.ui.home.TradeHomeViewModel" />
+            type="com.sagisu.vaultLibrary.ui.home.TradeHomeViewModel" />
 
-        <import type="com.sagisu.vault.utils.AssetTypeDescriptor" />
+        <import type="com.sagisu.vaultLibrary.utils.AssetTypeDescriptor" />
 
-        <import type="com.sagisu.vault.utils.FeatureNameDescriptor" />
+        <import type="com.sagisu.vaultLibrary.utils.FeatureNameDescriptor" />
 
+        <import type="com.sagisu.vaultLibrary.ui.home.TradeHomeViewModel.ProfileEnum" />
+
+        <import type="android.view.View" />
     </data>
 
     <androidx.core.widget.NestedScrollView
@@ -60,22 +63,26 @@
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/account_name"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="16dp"
-                    android:text="@{viewModel.userName}"
+                    android:layout_marginEnd="16dp"
+                    android:text="@{viewModel.currentProfile.userName}"
                     android:textColor="@color/white"
                     android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@+id/appCompatImageView25"
                     app:layout_constraintStart_toEndOf="@+id/appCompatImageView11"
                     app:layout_constraintTop_toTopOf="@+id/appCompatImageView11" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/appCompatTextView"
-                    android:layout_width="wrap_content"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:text='@{viewModel.businessSelected==null?"Personal" : "Business" + " account value" }'
+                    android:layout_marginEnd="16dp"
+                    android:text='@{viewModel.currentProfile.profile==ProfileEnum.PERSONAL?"Your personal account value" : "Your business account value" }'
                     android:textColor="@color/white"
                     android:textSize="12sp"
+                    app:layout_constraintEnd_toStartOf="@+id/appCompatImageView25"
                     app:layout_constraintStart_toStartOf="@+id/account_name"
                     app:layout_constraintTop_toBottomOf="@+id/account_name" />
 
@@ -113,8 +120,26 @@
                     android:visibility="invisible"
                     app:layout_constraintStart_toEndOf="@+id/appCompatImageView11"
                     app:layout_constraintTop_toBottomOf="@+id/appCompatTextView" />
+                <!--android:visibility="@{viewModel.hasBusinessProfile ? View.VISIBLE : View.GONE}"-->
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/switch_profile"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:layout_marginEnd="16dp"
+                    android:layout_marginBottom="4dp"
+                    android:fontFamily="@font/rubik_medium"
+                    android:onClick="@{()->viewModel.switchProfileButtonSubmit()}"
+                    android:text='@{viewModel.currentProfile.profile==ProfileEnum.PERSONAL?"Switch to business profile" : "Switch to personal profile" }'
+                    android:textColor="#4c2b72"
+                    android:textSize="14sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/appCompatImageView25"
+                    app:layout_constraintStart_toStartOf="@+id/account_name"
+                    app:layout_constraintTop_toBottomOf="@+id/home_wallet_balance" />
 
                 <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/appCompatImageView25"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="24dp"

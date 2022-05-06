@@ -7,11 +7,11 @@
 
         <variable
             name="transferModel"
-            type="com.sagisu.vault.ui.transfer.BankTransferRequest" />
+            type="com.sagisu.vaultLibrary.ui.transfer.BankTransferRequest" />
 
         <variable
             name="viewModel"
-            type="com.sagisu.vault.ui.transfer.TransferToAccountViewModel" />
+            type="com.sagisu.vaultLibrary.ui.transfer.TransferToAccountViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView

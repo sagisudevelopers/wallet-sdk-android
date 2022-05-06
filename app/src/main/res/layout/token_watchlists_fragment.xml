@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.sagisu.vault.ui.trade.watchlists.TokenWatchListsViewModel" />
+            type="com.sagisu.vaultLibrary.ui.trade.watchlists.TokenWatchListsViewModel" />
         <import type="android.view.View"/>
     </data>
 

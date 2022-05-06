@@ -4,7 +4,7 @@
     <data class="ProfileFragmentBinding">
         <variable
             name="model"
-            type="com.sagisu.vault.ui.login.fragments.User" />
+            type="com.sagisu.vaultLibrary.ui.login.fragments.User" />
     </data>
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"

@@ -7,7 +7,7 @@
 
         <variable
             name="viewModel"
-            type="com.sagisu.vault.ui.login.fragments.VaultLoginViewModel" />
+            type="com.sagisu.vaultLibrary.ui.login.fragments.VaultLoginViewModel" />
 
     </data>
 

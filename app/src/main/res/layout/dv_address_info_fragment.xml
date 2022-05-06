@@ -5,7 +5,7 @@
 
         <variable
             name="viewModel"
-            type="com.sagisu.vault.ui.kyc.DocumentVerificationViewModel" />
+            type="com.sagisu.vaultLibrary.ui.kyc.DocumentVerificationViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"

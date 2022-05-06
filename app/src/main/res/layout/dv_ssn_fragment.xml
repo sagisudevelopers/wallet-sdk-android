@@ -3,7 +3,7 @@
     <data class="DvSsnInfoBinding">
         <variable
             name="viewModel"
-            type="com.sagisu.vault.ui.kyc.DocumentVerificationViewModel" />
+            type="com.sagisu.vaultLibrary.ui.kyc.DocumentVerificationViewModel" />
 
     </data>
     <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"

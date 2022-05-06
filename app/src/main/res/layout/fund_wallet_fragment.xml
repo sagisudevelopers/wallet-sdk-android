@@ -6,7 +6,7 @@
 
         <variable
             name="viewModel"
-            type="com.sagisu.vault.ui.fundwallet.FundWalletViewModel" />
+            type="com.sagisu.vaultLibrary.ui.fundwallet.FundWalletViewModel" />
     </data>
 
     <androidx.core.widget.NestedScrollView

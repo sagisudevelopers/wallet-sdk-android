@@ -6,13 +6,15 @@
 
         <variable
             name="model"
-            type="com.sagisu.vault.models.Business" />
+            type="com.sagisu.vaultLibrary.models.Business" />
 
         <variable
             name="myBusiness"
-            type="com.sagisu.vault.models.MyBusinessVault" />
+            type="com.sagisu.vaultLibrary.models.MyBusinessVault" />
 
-        <import type="com.sagisu.vault.utils.BusinessTypeDescriptor" />
+        <import type="com.sagisu.vaultLibrary.utils.BusinessTypeDescriptor" />
+
+        <import type="android.view.View" />
 
     </data>
 
@@ -76,13 +78,28 @@
             android:layout_width="70dp"
             android:layout_height="35dp"
             android:layout_marginEnd="16dp"
-            android:enabled="@{myBusiness==null}"
             android:fontFamily="@font/rubik_medium"
-            android:text='@{myBusiness == null ? "Join" : myBusiness.status}'
+            android:text="Join"
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:textSize="12dp"
+            android:visibility="@{ myBusiness==null ? View.VISIBLE : View.VISIBLE }"
             app:backgroundTint="@color/vaultColorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/status_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:fontFamily="@font/rubik_medium"
+            android:text="@{myBusiness.status}"
+            android:textAllCaps="false"
+            android:textColor="@color/vaultColorPrimary"
+            android:textSize="12dp"
+            android:visibility='@{myBusiness==null ?View.GONE : View.GONE}'
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent" />

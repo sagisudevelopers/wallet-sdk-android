@@ -7,7 +7,7 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
-    <color name="hintTextColor">#4749586F</color>
+    <color name="hintTextColor">#BFBFBF</color>
     <!--<color name="vaultColorPrimary">#3842FB</color>-->
     <color name="vaultColorPrimary">#39B5B5</color>
     <color name="blue_700">#5927FF</color>
@@ -20,6 +20,7 @@
     <color name="red_500">#F45B7E</color>
     <color name="green">#55BD6C</color>
     <color name="tabInActive">#707070</color>
+    <color name="lighter_grey">#DDDDDD</color>
 
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">#FFE3E3E3</color>
 </resources>

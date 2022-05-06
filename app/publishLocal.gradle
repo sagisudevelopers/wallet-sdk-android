@@ -8,8 +8,8 @@ task sourceJar(type: Jar) {
 project.afterEvaluate {
     publishToMavenLocal {
         def groupId = "com.sagisu"
-        def artifactId = "vault"
-        def versionName = "1.0.0" + "-local"
+        def artifactId = "vaultSdk"
+        def versionName = "2.0.0" + "-local"
         def debugSuffix = "-debug"
         def releaseSuffix = "-release"
         publishing {

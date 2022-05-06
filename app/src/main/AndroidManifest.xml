@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.sagisu.vault">
+    package="com.sagisu.vaultLibrary">
 
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -15,13 +15,28 @@
 
     <application android:supportsRtl="true">
         <activity
-            android:name=".ui.businessrequests.BusinessRequestsActivity"
+            android:name="com.sagisu.vaultLibrary.ui.businessrequests.BusinessRequestsActivity"
+            android:exported="true"
+            android:theme="@style/Theme.SagisuWallet">
+            <intent-filter android:autoVerify="true">
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data
+                    android:host="vault.sagisu.com"
+                    android:scheme="http" />
+                <data
+                    android:host="vault.sagisu.com"
+                    android:scheme="https" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.sagisu.vaultLibrary.ui.businessprofile.TestActivity"
             android:exported="false" />
         <activity
-            android:name=".ui.businessprofile.TestActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ui.businessprofile.BusinessProfileActivity"
+            android:name="com.sagisu.vaultLibrary.ui.businessprofile.BusinessProfileActivity"
             android:exported="false"
             android:theme="@style/Theme.SagisuWallet" />
         <!--
@@ -33,67 +48,67 @@
         tools:replace="android:icon">
         -->
         <activity
-            android:name=".ui.trade.watchlists.TokenWatchlistsActivity"
+            android:name="com.sagisu.vaultLibrary.ui.trade.watchlists.TokenWatchlistsActivity"
             android:exported="true"
             android:theme="@style/Theme.SagisuWallet.NoActionBar" />
         <activity
-            android:name=".ui.trade.send.SendActivity"
+            android:name="com.sagisu.vaultLibrary.ui.trade.send.SendActivity"
             android:exported="true"
             android:theme="@style/Theme.SagisuWallet" />
         <activity
-            android:name=".ui.ReceiveCryptoActivity"
+            android:name="com.sagisu.vaultLibrary.ui.ReceiveCryptoActivity"
             android:exported="true"
             android:theme="@style/Theme.SagisuWallet" />
         <activity
-            android:name=".ui.BuyCoinsActivity"
+            android:name="com.sagisu.vaultLibrary.ui.BuyCoinsActivity"
             android:exported="true"
             android:theme="@style/Theme.SagisuWallet" />
         <activity
-            android:name=".ui.storyteller.StoryTellerActivity"
+            android:name="com.sagisu.vaultLibrary.ui.storyteller.StoryTellerActivity"
             android:exported="true"
             android:theme="@style/Theme.SagisuWallet" />
         <activity
-            android:name=".ui.DocumentVerificationActivity"
+            android:name="com.sagisu.vaultLibrary.ui.DocumentVerificationActivity"
             android:exported="true"
             android:theme="@style/Theme.SagisuWallet" />
         <activity
-            android:name=".ui.kyc.VerifyIdIntroActivity"
+            android:name="com.sagisu.vaultLibrary.ui.kyc.VerifyIdIntroActivity"
             android:exported="true"
             android:theme="@style/Theme.SagisuWallet" />
         <activity
-            android:name=".ui.kyc.VerifyIdSuccessActivity"
+            android:name="com.sagisu.vaultLibrary.ui.kyc.VerifyIdSuccessActivity"
             android:exported="true"
             android:theme="@style/Theme.SagisuWallet" />
         <activity
-            android:name=".ui.ContactTransferActivity"
+            android:name="com.sagisu.vaultLibrary.ui.ContactTransferActivity"
             android:exported="true"
             android:theme="@style/Theme.SagisuWallet.Chat" />
         <activity
-            android:name=".TransactionDetailsActivity"
+            android:name="com.sagisu.vaultLibrary.TransactionDetailsActivity"
             android:exported="true"
             android:theme="@style/Theme.SagisuWallet" />
         <activity
-            android:name=".ui.TransactionActivity"
+            android:name="com.sagisu.vaultLibrary.ui.TransactionActivity"
             android:exported="true"
             android:theme="@style/Theme.SagisuWallet" />
         <activity
-            android:name=".ui.transactions.TransactionHistoryActivity"
+            android:name="com.sagisu.vaultLibrary.ui.transactions.TransactionHistoryActivity"
             android:exported="true"
             android:theme="@style/Theme.SagisuWallet" />
         <activity
-            android:name=".ui.FundWalletActivity"
+            android:name="com.sagisu.vaultLibrary.ui.FundWalletActivity"
             android:exported="true"
             android:theme="@style/Theme.SagisuWallet" />
         <activity
-            android:name=".ui.ContactsActivity"
+            android:name="com.sagisu.vaultLibrary.ui.ContactsActivity"
             android:exported="true"
             android:theme="@style/Theme.SagisuWallet" />
         <activity
-            android:name=".ui.TransferToAccountActivity"
+            android:name="com.sagisu.vaultLibrary.ui.TransferToAccountActivity"
             android:exported="true"
             android:theme="@style/Theme.SagisuWallet" />
         <activity
-            android:name=".ui.VaultMainActivity"
+            android:name="com.sagisu.vaultLibrary.ui.VaultMainActivity"
             android:exported="true"
             android:theme="@style/Theme.SagisuWallet.NoActionBar">
 
@@ -117,11 +132,11 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".ui.login.VaultLoginActivity"
+            android:name="com.sagisu.vaultLibrary.ui.login.VaultLoginActivity"
             android:exported="true"
             android:theme="@style/Theme.SagisuWallet.NoActionBar" />
         <activity
-            android:name=".ui.splashscreen.VaultSplashScreenActivity"
+            android:name="com.sagisu.vaultLibrary.ui.splashscreen.VaultSplashScreenActivity"
             android:exported="true"
             android:theme="@style/Theme.SagisuWallet.NoActionBar">
 
@@ -136,7 +151,7 @@
             -->
         </activity>
         <activity
-            android:name=".ui.PlaidLinkActivity"
+            android:name="com.sagisu.vaultLibrary.ui.PlaidLinkActivity"
             android:exported="true"
             android:theme="@style/Theme.SagisuWallet" /> <!-- Jumio -->
         <!--
