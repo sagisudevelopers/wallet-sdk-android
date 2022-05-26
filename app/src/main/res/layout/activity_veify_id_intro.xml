@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.kyc.VerifyIdIntroActivity">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/appCompatImageView21"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="43dp"
+            android:src="@drawable/kyc"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView84"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:fontFamily="@font/rubik_medium"
+            android:text="@string/take_a_minute_to_verify_your_identity"
+            android:textColor="@color/text_700"
+            android:textSize="18sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline36"
+            app:layout_constraintStart_toStartOf="@+id/guideline35"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatImageView21" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView85"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/intro_text1"
+            android:textColor="@color/text_200"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline36"
+            app:layout_constraintStart_toStartOf="@+id/guideline35"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView84" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView86"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:text="@string/intro_text2"
+            android:textColor="@color/text_200"
+            android:textSize="12sp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline36"
+            app:layout_constraintStart_toStartOf="@+id/guideline35"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView85" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView87"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="2dp"
+            android:text="@string/terms_and_conditions"
+            android:textColor="@color/blue_500"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline35"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView86" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView88"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="26dp"
+            android:fontFamily="@font/rubik_medium"
+            android:text="@string/this_is_how_it_works"
+            android:textColor="@color/text_700"
+            android:textSize="18sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline35"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView87" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView89"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="13dp"
+            android:text="@string/_1_take_a_picture_of_valid_id"
+            android:textColor="@color/text_200"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline35"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView88" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/appCompatTextView90"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="@string/_2_take_a_selfie"
+            android:textColor="@color/text_200"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@+id/guideline35"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView89" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/verify"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="60dp"
+            android:backgroundTint="@color/vaultColorPrimary"
+            android:text="@string/verify"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            app:cornerRadius="15dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline36"
+            app:layout_constraintStart_toStartOf="@+id/guideline35"
+            app:layout_constraintTop_toBottomOf="@+id/appCompatTextView90" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/skip"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:backgroundTint="@color/white"
+            android:text="@string/i_dont_have_my_id_with_me"
+            android:textAllCaps="false"
+            android:textColor="@color/vaultColorPrimary"
+            android:textSize="18sp"
+            app:cornerRadius="15dp"
+            app:layout_constraintEnd_toStartOf="@+id/guideline36"
+            app:layout_constraintStart_toStartOf="@+id/guideline35"
+            app:layout_constraintTop_toBottomOf="@+id/verify" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline35"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="50dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline36"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="30dp" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.core.widget.NestedScrollView>

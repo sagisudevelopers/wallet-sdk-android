@@ -1,0 +1,186 @@
+<resources xmlns:tools="http://schemas.android.com/tools">
+    <!-- Base application theme. -->
+    <style name="Theme.SagisuWallet" parent="Theme.MaterialComponents.Light.DarkActionBar">
+        <!-- Primary brand color. -->
+        <item name="colorPrimary">@color/vaultColorPrimary</item>
+        <item name="colorPrimaryVariant">@color/vaultColorPrimary</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <!-- Secondary brand color. -->
+        <item name="colorSecondary">@color/vaultColorPrimary</item>
+        <item name="colorSecondaryVariant">@color/vaultColorPrimary</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <!-- Status bar color. -->
+        <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
+        <!-- Customize your theme here. -->
+        <item name="circularProgressIndicatorStyle">@style/Widget.App.CircularProgressIndicator</item>
+        <item name="fontFamily">@font/rubik_regular</item>
+    </style>
+
+    <style name="Theme.SagisuWallet.NoActionBar" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="windowActionBar">false</item>
+        <item name="windowNoTitle">true</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:fontFamily">@font/rubik_regular</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+
+    </style>
+
+    <style name="Theme.SagisuWallet.Chat" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/vaultColorPrimary</item>
+        <item name="colorPrimaryDark">@color/vaultColorPrimary</item>
+        <item name="actionBarSize">48dp</item>
+        <item name="android:screenOrientation">portrait</item>
+        <item name="colorAccent">@color/vaultColorPrimary</item>
+        <!--<item name="VaultButtonStyle">@style/AntButton</item>-->
+        <!--<item name="materialButtonStyle">@style/AntButton</item>-->
+        <!--<item name="android:button"></item>-->
+        <!--<item name="android:progressTint">@color/ffc000</item>-->
+        <item name="android:statusBarColor" tools:targetApi="l">#F6F6F6</item>
+        <item name="android:windowLightStatusBar" tools:targetApi="m">true</item>
+    </style>
+    <style name="VaultTextInputStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense">
+        <item name="boxStrokeColor">@color/vaultColorPrimary</item>
+        <item name="android:strokeWidth">1</item>
+        <!--for changing the label theme-->
+        <item name="android:textColorHint">@color/hintTextColor</item>
+        <item name="android:theme">@style/VaultTextInputTheme</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/dm_2dp</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/dm_2dp</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/dm_2dp</item>
+        <item name="boxCornerRadiusTopStart">@dimen/dm_2dp</item>
+        <item name="android:importantForAutofill" tools:targetApi="o">noExcludeDescendants</item>
+    </style>
+
+    <style name="VaultSpinnerStyle" parent="Widget.MaterialComponents.TextInputLayout.OutlinedBox.ExposedDropdownMenu">
+        <item name="boxStrokeColor">@color/vaultColorPrimary</item>
+        <!--for changing the label theme-->
+        <item name="android:textColorHint">@color/hintTextColor</item>
+        <item name="android:theme">@style/VaultTextInputTheme</item>
+        <item name="boxCornerRadiusBottomEnd">@dimen/dm_2dp</item>
+        <item name="boxCornerRadiusBottomStart">@dimen/dm_2dp</item>
+        <item name="boxCornerRadiusTopEnd">@dimen/dm_2dp</item>
+        <item name="boxCornerRadiusTopStart">@dimen/dm_2dp</item>
+        <item name="android:importantForAutofill" tools:targetApi="o">noExcludeDescendants</item>
+    </style>
+
+    <style name="VaultTextInputTheme">
+        <!--for changing the label theme-->
+        <item name="android:textSize">16sp</item>
+        <item name="colorAccent">@color/vaultColorPrimary</item>
+        <item name="colorControlNormal">@color/vaultColorPrimary</item>
+        <item name="colorControlActivated">@color/vaultColorPrimary</item>
+        <item name="colorPrimary">@color/vaultColorPrimary</item>
+        <item name="colorPrimaryDark">@color/vaultColorPrimary</item>
+    </style>
+
+    <style name="VaultTextDarkStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">#444555</item>
+        <item name="android:textSize">16sp</item>
+    </style>
+
+    <style name="VaultTextLightStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/text_200</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="VaultTextSmall" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/text_200</item>
+        <item name="android:textSize">12sp</item>
+    </style>
+
+    <style name="VaultTextNormalBlue" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">@color/blue_500</item>
+        <item name="android:textSize">14sp</item>
+    </style>
+
+    <style name="VaultTextExtraDarkStyle" parent="Widget.AppCompat.TextView">
+        <item name="android:textColor">#14172C</item>
+        <item name="android:textSize">14sp</item>
+        <item name="fontFamily">@font/rubik_medium</item>
+    </style>
+
+    <style name="VaultLargeButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="cornerRadius">25dp</item>
+        <item name="android:minWidth">200dp</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/blue_500</item>
+        <item name="textAllCaps">false</item>
+    </style>
+    <style name="VaultButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="cornerRadius">30dp</item>
+        <item name="android:layout_width">160dp</item>
+        <item name="android:layout_height">60dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/blue_500</item>
+        <item name="textAllCaps">false</item>
+    </style>
+    <style name="VaultSmallButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="cornerRadius">15dp</item>
+        <item name="android:layout_width">120dp</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:textColor">@color/white</item>
+        <item name="backgroundTint">@color/blue_200</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="VaultTextButtonStyle" parent="Widget.MaterialComponents.Button.TextButton">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textColor">@color/vaultColorPrimary</item>
+        <item name="backgroundTint">@color/white</item>
+        <item name="textAllCaps">false</item>
+    </style>
+
+    <style name="Widget.App.CircularProgressIndicator" parent="Widget.MaterialComponents.CircularProgressIndicator">
+        <item name="materialThemeOverlay">@style/ThemeOverlay.App.CircularProgressIndicator</item>
+        <item name="android:opacity">opaque</item>
+    </style>
+
+    <style name="ThemeOverlay.App.CircularProgressIndicator" parent="">
+        <item name="colorPrimary">@color/vaultColorPrimary</item>
+    </style>
+
+    <style name="LMessageCardViewStyle" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay_card_message_corners_l</item>
+        <item name="strokeColor">#707070</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+
+    <style name="ShapeAppearanceOverlay_card_message_corners_l" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">26dp</item>
+        <item name="cornerSizeTopLeft">0dp</item>
+        <item name="cornerSizeBottomRight">26dp</item>
+        <item name="cornerSizeBottomLeft">26dp</item>
+    </style>
+
+    <style name="RMessageCardViewStyle" parent="@style/Widget.MaterialComponents.CardView">
+        <item name="shapeAppearanceOverlay">@style/ShapeAppearanceOverlay_card_message_corners_r</item>
+        <item name="strokeColor">#707070</item>
+        <item name="strokeWidth">1dp</item>
+    </style>
+
+
+    <style name="ShapeAppearanceOverlay_card_message_corners_r" parent="">
+        <item name="cornerFamily">rounded</item>
+        <item name="cornerSizeTopRight">0dp</item>
+        <item name="cornerSizeTopLeft">26dp</item>
+        <item name="cornerSizeBottomRight">26dp</item>
+        <item name="cornerSizeBottomLeft">26dp</item>
+    </style>
+
+    <style name="ShapeAppearanceOverlay.App.CornerSize50Percent" parent="">
+        <item name="cornerSize">50%</item>
+    </style>
+
+    <style name="VaultSearchViewStyle">
+        <item name="android:textColorHint">@color/hintTextColor</item>
+        <item name="android:textColor">@color/text_500</item>
+        <item name="android:textSize">14dp</item>
+        <item name="android:fontFamily">@font/rubik_regular</item>
+    </style>
+</resources>

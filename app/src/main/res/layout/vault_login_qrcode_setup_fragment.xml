@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-ato"
+    xmlns:app2="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="VaultLoginQrCodeSetupBinding">
+
+        <variable
+            name="viewModel"
+            type="com.sagisu.vaultLibrary.ui.login.fragments.VaultLoginViewModel" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="true">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            tools:context=".ui.login.VaultLoginActivity">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/imageView15"
+                style="@style/VaultTextDarkStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Scan this QR Code"
+                android:textSize="16dp"
+                app2:layout_constraintStart_toStartOf="@+id/guideline60"
+                app2:layout_constraintTop_toTopOf="@+id/guideline59"
+                app:layout_constraintBottom_toTopOf="@+id/guideline24"
+                app:layout_constraintEnd_toStartOf="@+id/guideline30"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline29"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/imageView6"
+                style="@style/VaultTextLightStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:text="Download the free Google Authenticator app, add a new account, and then scan this QR Code to setup your account."
+                app2:layout_constraintEnd_toStartOf="@+id/guideline61"
+                app2:layout_constraintStart_toStartOf="@+id/guideline60"
+                app2:layout_constraintTop_toBottomOf="@+id/imageView15"
+                app:layout_constraintBottom_toTopOf="@+id/guideline24"
+                app:layout_constraintDimensionRatio=""
+                app:layout_constraintEnd_toStartOf="@+id/guideline30"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline29"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatImageView
+                android:id="@+id/appCompatImageView26"
+                imageBitmap="@{viewModel.totpData.qrCodeBitmap}"
+                android:layout_width="220dp"
+                android:layout_height="220dp"
+                android:layout_marginTop="16dp"
+                android:scaleType="fitXY"
+                app2:layout_constraintEnd_toStartOf="@+id/guideline61"
+                app2:layout_constraintStart_toStartOf="@+id/guideline60"
+                app2:layout_constraintTop_toBottomOf="@+id/imageView6" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/imageView7"
+                style="@style/VaultTextLightStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:gravity="start"
+                android:text="... or enter this secret key into your Google Authenticator device"
+                app2:layout_constraintEnd_toStartOf="@+id/guideline61"
+                app2:layout_constraintStart_toStartOf="@+id/guideline60"
+                app2:layout_constraintTop_toBottomOf="@+id/appCompatImageView26"
+                app:layout_constraintBottom_toTopOf="@+id/guideline24"
+                app:layout_constraintEnd_toStartOf="@+id/guideline30"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline29"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/imageView8"
+                style="@style/VaultTextLightStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:gravity="center"
+                android:text="@{viewModel.totpData.secret}"
+                android:textStyle="bold"
+                app2:layout_constraintEnd_toStartOf="@+id/guideline61"
+                app2:layout_constraintHorizontal_bias="0.0"
+                app2:layout_constraintStart_toStartOf="@+id/guideline60"
+                app2:layout_constraintTop_toBottomOf="@+id/imageView7"
+                app:layout_constraintBottom_toTopOf="@+id/guideline24"
+                app:layout_constraintEnd_toStartOf="@+id/guideline30"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline29"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/materialButton12"
+                style="@style/VaultTextButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:onClick="@{()->viewModel.copySecretClicked()}"
+                android:text="@string/copy"
+                android:textColor="@color/vaultColorPrimary"
+                app2:layout_constraintBottom_toBottomOf="@+id/imageView8"
+                app2:layout_constraintStart_toEndOf="@+id/imageView8"
+                app2:layout_constraintTop_toTopOf="@+id/imageView8" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/imageView9"
+                style="@style/VaultTextDarkStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="50dp"
+                android:gravity="center"
+                android:text="Your recovery codes"
+                android:textSize="16dp"
+                app2:layout_constraintStart_toStartOf="@+id/guideline60"
+                app2:layout_constraintTop_toBottomOf="@+id/imageView8"
+                app:layout_constraintBottom_toTopOf="@+id/guideline24"
+                app:layout_constraintEnd_toStartOf="@+id/guideline30"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="@+id/guideline29"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                style="@style/VaultTextButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{()->viewModel.copyAllRecoveryCodesClicked()}"
+                android:text="Copy all"
+                android:textColor="@color/vaultColorPrimary"
+                app2:layout_constraintBottom_toBottomOf="@+id/imageView9"
+                app2:layout_constraintEnd_toStartOf="@+id/guideline61"
+                app2:layout_constraintTop_toTopOf="@+id/imageView9" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/materialCardView6"
+                android:layout_width="0dp"
+                android:layout_height="250dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="8dp"
+                app2:cardCornerRadius="1dp"
+                app2:layout_constraintEnd_toStartOf="@+id/guideline61"
+                app2:layout_constraintStart_toStartOf="@+id/guideline60"
+                app2:layout_constraintTop_toBottomOf="@+id/imageView9"
+                app2:strokeColor="@color/lighter_grey"
+                app2:strokeWidth="1dp">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp">
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/imageView10"
+                        style="@style/VaultTextLightStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="8dp"
+                        android:gravity="start"
+                        android:text="Use these one time codes if you loose access to the authenticator app"
+                        app2:layout_constraintEnd_toStartOf="@+id/guideline61"
+                        app2:layout_constraintStart_toStartOf="@+id/guideline60"
+                        app2:layout_constraintTop_toBottomOf="@+id/imageView9"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline24"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline30"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/guideline29"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <androidx.appcompat.widget.AppCompatTextView
+                        android:id="@+id/imageView11"
+                        style="@style/VaultTextLightStyle"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="8dp"
+                        android:gravity="start"
+                        android:text="You will not be able to view this set of recovery codes after this point, so please save them in a safe place."
+                        android:textColor="#FFB74D"
+                        app2:layout_constraintEnd_toStartOf="@+id/guideline61"
+                        app2:layout_constraintStart_toStartOf="@+id/guideline60"
+                        app2:layout_constraintTop_toBottomOf="@+id/imageView10"
+                        app:layout_constraintBottom_toTopOf="@+id/guideline24"
+                        app:layout_constraintEnd_toStartOf="@+id/guideline30"
+                        app:layout_constraintHorizontal_bias="0.0"
+                        app:layout_constraintStart_toStartOf="@+id/guideline29"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <GridView
+                        android:id="@+id/recovery_code_list"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:numColumns="2"
+                        app2:layout_constraintBottom_toBottomOf="parent"
+                        app2:layout_constraintEnd_toEndOf="parent"
+                        app2:layout_constraintStart_toStartOf="parent"
+                        app2:layout_constraintTop_toBottomOf="@+id/imageView11" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/materialButton"
+                style="@style/VaultTextButtonStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:backgroundTint="@color/vaultColorPrimary"
+                android:onClick="@{()->viewModel.qrCodeButtonSubmit()}"
+                android:text="Next"
+                android:textColor="@color/white"
+                app2:backgroundTint="@color/vaultColorPrimary"
+                app2:layout_constraintEnd_toStartOf="@+id/guideline61"
+                app2:layout_constraintStart_toStartOf="@+id/guideline60"
+                app2:layout_constraintTop_toBottomOf="@+id/materialCardView6"
+                app:icon="@drawable/ic_right_arrow"
+                app:iconGravity="textEnd"
+                app:iconSize="14dp"
+                app:iconTint="@color/white"
+                app:layout_constraintEnd_toStartOf="@+id/guideline31"
+                app:layout_constraintStart_toStartOf="@+id/guideline28"
+                app:layout_constraintTop_toBottomOf="@+id/login_confirm_password" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline59"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                app2:layout_constraintGuide_begin="50dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline60"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app2:layout_constraintGuide_begin="20dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline61"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app2:layout_constraintGuide_end="20dp" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

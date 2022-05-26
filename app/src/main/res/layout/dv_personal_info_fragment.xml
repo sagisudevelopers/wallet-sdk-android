@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="DvPersonalInfoBinding">
+
+        <variable
+            name="viewModel"
+            type="com.sagisu.vaultLibrary.ui.kyc.DocumentVerificationViewModel" />
+
+        <import type="android.view.View" />
+    </data>
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/document_verification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fillViewport="false"
+        tools:context=".ui.kyc.SelectDocumentsFragment">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/message"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/rubik_medium"
+                android:text="Please Review Your Information"
+                android:textColor="@color/text_700"
+                android:textSize="24sp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline38"
+                app:layout_constraintStart_toStartOf="@+id/guideline37"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/kyc_firstname"
+                style="@style/VaultTextInputStyle"
+                removeRequiredErrorOnTextChange="@{viewModel.validateFields}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:hint="First Name"
+                app:layout_constraintEnd_toStartOf="@+id/guideline38"
+                app:layout_constraintStart_toStartOf="@+id/guideline37"
+                app:layout_constraintTop_toBottomOf="@+id/message">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/rubik_medium"
+                    android:inputType="text|textNoSuggestions"
+                    android:text="@={viewModel.kycBeanObservable.firstName}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/kyc_lastname"
+                style="@style/VaultTextInputStyle"
+                removeRequiredErrorOnTextChange="@{viewModel.validateFields}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Last Name"
+                app:layout_constraintEnd_toStartOf="@+id/guideline38"
+                app:layout_constraintStart_toStartOf="@+id/guideline37"
+                app:layout_constraintTop_toBottomOf="@+id/kyc_firstname">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/rubik_medium"
+                    android:inputType="text|textNoSuggestions"
+                    android:text="@={viewModel.kycBeanObservable.lastName}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/kyc_dob"
+                style="@style/VaultTextInputStyle"
+                removeRequiredErrorOnTextChange="@{viewModel.validateFields}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Date of Birth"
+                app:helperText="Above 18 years"
+                app:helperTextTextColor="@color/helper_text"
+                app:layout_constraintEnd_toStartOf="@+id/guideline38"
+                app:layout_constraintStart_toStartOf="@+id/guideline37"
+                app:layout_constraintTop_toBottomOf="@+id/kyc_lastname">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:drawableEnd="@drawable/ic_calendar"
+                    android:focusableInTouchMode="false"
+                    android:fontFamily="@font/rubik_medium"
+                    android:inputType="text|textNoSuggestions" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/kyc_email"
+                style="@style/VaultTextInputStyle"
+                removeRequiredErrorOnTextChange="@{viewModel.validateFields}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:hint="Email"
+                app:helperText="You will get OTP code"
+                app:helperTextTextColor="@color/helper_text"
+                app:layout_constraintEnd_toStartOf="@+id/guideline38"
+                app:layout_constraintStart_toStartOf="@+id/guideline37"
+                app:layout_constraintTop_toBottomOf="@+id/kyc_dob">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/rubik_medium"
+                    android:inputType="text|textNoSuggestions"
+                    android:onTextChanged="@{viewModel::onEmailChanged}"
+                    android:text="@={viewModel.kycBeanObservable.email}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.facebook.shimmer.ShimmerFrameLayout
+                android:id="@+id/shimmer_otp_verify"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginTop="16dp"
+                android:orientation="vertical"
+                android:visibility='@{viewModel.enableVerificationFields == "shimmer" ?View.VISIBLE:View.GONE}'
+                app:layout_constraintEnd_toStartOf="@+id/guideline38"
+                app:layout_constraintStart_toStartOf="@+id/guideline37"
+                app:layout_constraintTop_toBottomOf="@+id/kyc_email"
+                app:shimmer_duration="800">
+
+                <androidx.constraintlayout.widget.ConstraintLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
+
+                    <View
+                        android:id="@+id/view4"
+                        android:layout_width="150dp"
+                        android:layout_height="20dp"
+                        android:layout_margin="10dp"
+                        android:background="@color/black"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:id="@+id/view5"
+                        android:layout_width="100dp"
+                        android:layout_height="15dp"
+                        android:layout_margin="10dp"
+                        android:layout_marginStart="8dp"
+                        android:background="@color/black"
+                        app:layout_constraintBottom_toBottomOf="@+id/view4"
+                        app:layout_constraintStart_toEndOf="@+id/view4"
+                        app:layout_constraintTop_toTopOf="@+id/view4" />
+
+                    <View
+                        android:id="@+id/view6"
+                        android:layout_width="70dp"
+                        android:layout_height="5dp"
+                        android:layout_margin="10dp"
+                        android:background="@color/black"
+                        app:layout_constraintEnd_toEndOf="@+id/view4"
+                        app:layout_constraintTop_toBottomOf="@+id/view4" />
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
+            </com.facebook.shimmer.ShimmerFrameLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/kyc_otp"
+                style="@style/VaultTextInputStyle"
+                removeRequiredErrorOnTextChange="@{viewModel.validateFields}"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="6dp"
+                android:hint="OTP"
+                android:visibility='@{viewModel.enableVerificationFields == "show" ?View.VISIBLE:View.GONE}'
+                app:helperText="5.00"
+                app:helperTextTextColor="@color/helper_text"
+                app:layout_constraintEnd_toStartOf="@+id/materialButton5"
+                app:layout_constraintStart_toStartOf="@+id/guideline37"
+                app:layout_constraintTop_toBottomOf="@+id/kyc_email">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/rubik_medium"
+                    requestFocus='@{viewModel.enableVerificationFields != "hide"}'
+                    android:inputType="text|textNoSuggestions"
+                    android:text="@={viewModel.kycBeanObservable.otpToken}" />
+
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/materialButton5"
+                style="@style/VaultSmallButtonStyle"
+                app:backgroundTint="@color/vaultColorPrimary"
+                android:layout_marginStart="6dp"
+                android:onClick="@{()->viewModel.verifyEmail()}"
+                android:text="@string/verify"
+                android:visibility='@{viewModel.enableVerificationFields == "show" ?View.VISIBLE:View.INVISIBLE}'
+                app:layout_constraintBottom_toBottomOf="@+id/kyc_otp"
+                app:layout_constraintEnd_toStartOf="@+id/guideline38"
+                app:layout_constraintStart_toEndOf="@+id/kyc_otp"
+                app:layout_constraintTop_toTopOf="@+id/kyc_otp" />
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/resend_otp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:text="Resend code"
+                android:textColor="@color/vaultColorPrimary"
+                android:textSize="12sp"
+                android:visibility='@{viewModel.enableVerificationFields == "show" ?View.VISIBLE:View.GONE}'
+                app:layout_constraintBottom_toBottomOf="@+id/kyc_otp"
+                app:layout_constraintEnd_toEndOf="@+id/kyc_otp"
+                app:layout_constraintTop_toTopOf="@+id/kyc_otp"
+                app:layout_constraintVertical_bias="1.0" />
+
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline37"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_begin="50dp" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/guideline38"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                app:layout_constraintGuide_end="50dp" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.core.widget.NestedScrollView>
+</layout>

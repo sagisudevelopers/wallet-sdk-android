@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data class="DocumentVerificationFragmentBinding">
+
+        <variable
+            name="viewModel"
+            type="com.sagisu.vaultLibrary.ui.kyc.DocumentVerificationViewModel" />
+
+        <import type="android.view.View" />
+
+        <import type="com.sagisu.vaultLibrary.ui.kyc.DocumentVerificationViewModel.KycScanResult" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/document_verification"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:context=".ui.kyc.SelectDocumentsFragment">
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/message"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="Select the Documents you wish to scan"
+            android:visibility="@{viewModel.documentScanResult.equals(KycScanResult.PENDING) ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_scan_documents"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="32dp"
+            android:text="Start scan"
+            android:textColor="@color/white"
+            android:visibility="@{viewModel.documentScanResult.equals(KycScanResult.PENDING) ? View.VISIBLE : View.GONE}"
+            app:backgroundTint="@color/vaultColorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/message" />
+
+        <com.google.android.material.progressindicator.CircularProgressIndicator
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:indeterminate="true"
+            android:visibility="@{viewModel.documentScanResult.equals(KycScanResult.AWAITING) ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toTopOf="@+id/message1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/scan_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:visibility="@{viewModel.documentScanResult.equals(KycScanResult.PENDING) ? View.GONE : View.VISIBLE}"
+            android:text="@{viewModel.kycScanStatus}"
+            app:layout_constraintBottom_toTopOf="@+id/message"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/message1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="Waiting for scan results"
+            android:visibility="@{viewModel.documentScanResult.equals(KycScanResult.AWAITING) ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btn_back"
+            style="@style/Widget.MaterialComponents.Button.TextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:layout_marginBottom="32dp"
+            android:text="Go back home"
+            android:textColor="@color/white"
+            android:visibility="@{viewModel.documentScanResult.equals(KycScanResult.AWAITING) ? View.VISIBLE : View.GONE}"
+            app:backgroundTint="@color/vaultColorPrimary"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/message" />
+
+        <androidx.appcompat.widget.AppCompatTextView
+            android:id="@+id/message2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="Document scan complete. Please continue to complete your kyc"
+            android:visibility="@{viewModel.documentScanResult.equals(KycScanResult.VERIFIED) ? View.VISIBLE : View.GONE}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -1,0 +1,130 @@
+<resources>
+    <string name="app_name">Vault by Sagisu</string>
+    <string name="business_profile_settings_tittle">Business Profile Settings</string>
+    <string name="business_profile_enroll_tittle">Join Business Profile</string>
+    <string name="business_profile_add_tittle">Add Business</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    //Error
+    <string name="required_field_error">Please fill this field</string>
+    <string name="select_different_account_error">Please select different account</string>
+    <string name="amount_higher_than_wallet_balance">Amount is higher then wallet balance</string>
+    <string name="password_mismatch">Password mismatch</string>
+    <string name="please_Verify_your_email_id">Please verify your email address</string>
+
+
+    //String references
+    <string name="your_account_value">Your account value</string>
+    <string name="to_contact">To Contact</string>
+    <string name="upi_or_qr">UPI or QR</string>
+    <string name="to_self">To Self</string>
+    <string name="to_account">To Account</string>
+    <string name="adding_wallet_amount">Fund your wallet</string>
+    <string name="recent_transactions">Recent Transactions</string>
+    <string name="see_all">See All</string>
+    <string name="select_bank_to_transfer_from">Select bank to transfer from</string>
+    <string name="select_bank_to_transfer_to">Select bank to transfer to</string>
+    <string name="amount">Amount</string>
+    <string name="routing_number">Routing Number</string>
+    <string name="account_number">Account Number</string>
+    <string name="confirm_account_number">Confirm Account Number</string>
+    <string name="select_account_type">Select Account Type</string>
+    <string name="wallet_amount">Wallet Amount</string>
+    <string name="select_payment_method">Select Payment Method</string>
+    <string name="net_banking">Net Banking</string>
+    <string name="debit_card">Debit Card</string>
+    <string name="credi_card">Credit Card</string>
+    <string name="transaction_id">Transaction ID</string>
+    <string name="paid_to">Paid to</string>
+    <string name="debited_from">Debited from</string>
+    <string name="status">Status</string>
+    <string name="message">Message</string>
+    <string name="copy">Copy</string>
+    <string name="send_again">Send Again</string>
+    <string name="ethereum">Ethereum</string>
+    <string name="eth">ETH</string>
+    <string name="enter_amount">Enter Amount</string>
+    <string name="you_are_buying_ethereum_for">You are buying ethereum for</string>
+    <string name="current_value">Current value</string>
+    <string name="proceed_to_pay">Proceed to pay</string>
+    <string name="scan_this_qr_code_form_sender_s_mobile">Scan this QR code form sender\'s mobile</string>
+    <string name="popular_currencies">Popular Currencies</string>
+    <string name="coin_balance">Coin Balance</string>
+    <string name="need_more_helps">Need More Helps?</string>
+    <string name="bank_details">Bank Details</string>
+    <string name="history">History</string>
+    <string name="redeem_gift_voucher">Redeem Gift Voucher</string>
+    <string name="help_amp_support"><![CDATA[Help & Support]]></string>
+    <string name="rate_us">Rate Us</string>
+    <string name="logout">Logout</string>
+    <string name="you_pay">You pay</string>
+    <string name="completed">Completed</string>
+    <string name="takes_about_30s_to_complete">Takes About 30s to complete</string>
+    <string name="_2_pan_card_verification">2. PAN Card Verification</string>
+    <string name="takes_about_40s_to_complete">Takes About 40s to complete</string>
+    <string name="_3_identity_card_verification">3. Identity Card Verification</string>
+    <string name="_1_basic_verification">1. Basic Verification</string>
+    <string name="need_help">Need Help?</string>
+    <string name="send_from">Send from</string>
+    <string name="deposit_to">Deposit to</string>
+    <string name="submit">Submit</string>
+    <string name="proceed">Proceed</string>
+    <string name="portfolio">Portfolio</string>
+    <string name="crypto">Crypto</string>
+    <string name="nft">NFT</string>
+    <string name="stocks">Stocks</string>
+    <string name="insurance">Insurance</string>
+    <string name="recent_transaction">Recent Transaction</string>
+    <string name="enter_your_email">Enter Your Email</string>
+    <string name="buy">Buy</string>
+    <string name="receive">Receive</string>
+    <string name="retry">Retry</string>
+    <string name="user_verifications">User Verifications</string>
+    <string name="pay">Pay</string>
+    <string name="send_message">Send message</string>
+    <string name="enter_mobile_number_or_name">Enter Mobile Number or Name</string>
+    <string name="take_a_minute_to_verify_your_identity">Take a minute to verify your Identity</string>
+    <string name="intro_text1">In order to create your an account we need to be 100% sure that you are you. As we\'re a financial services we have to complete with KYC requirement to use our services.</string>
+    <string name="intro_text2">you just need to go through some steps which will help us to build a secure system together. just check our </string>
+    <string name="terms_and_conditions">Terms and conditions</string>
+    <string name="this_is_how_it_works">This is how it works</string>
+    <string name="_1_take_a_picture_of_valid_id">1. Take a picture of valid ID</string>
+    <string name="_2_take_a_selfie">2. Take a selfie</string>
+    <string name="i_dont_have_my_id_with_me">I don\'t have my ID with me</string>
+    <string name="verify">Verify</string>
+    <string name="please_review_your_address">Please Review Your Address</string>
+    <string name="country">Country</string>
+    <string name="app_num_or_unit">App num or unit</string>
+    <string name="address">Address</string>
+    <string name="state">State</string>
+    <string name="pincode">Pincode</string>
+    <string name="please_enter_your_ssn_number">Please Enter your SSN number</string>
+
+    <string name="default_notification_channel_id" translatable="false">fcm_default_channel</string>
+    <string name="your_identity_is_being_verified">Your Identity is being verified.</string>
+    <string name="verify_identity">Verify identity</string>
+    <string name="learn_more">Learn More</string>
+    <string name="open_our_app_and_click_send">Open our app and click send</string>
+    <string name="to_address">To Address</string>
+    <string name="switch_to_business_profile">Switch to business profile</string>
+
+    <string-array name="corp_type">
+        <item>S Corporation</item>
+        <item>C Corporation</item>
+        <item>Non-profit Corporation</item>
+        <item>LLCs</item>
+        <item>Limited Liability Partnerships</item>
+        <item>Limited Partnerships</item>
+        <item>General Partnerships</item>
+        <item>Sole Proprietorship</item>
+    </string-array>
+
+    <string-array name="default_crypto">
+        <item>BTC</item>
+        <item>ETH</item>
+        <item>DOT</item>
+        <item>AVAX</item>
+        <item>SOL</item>
+    </string-array>
+</resources>

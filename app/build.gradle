@@ -1,0 +1,155 @@
+plugins {
+    id 'com.android.library'
+    id 'com.google.gms.google-services'
+   // id 'com.google.firebase.crashlytics'
+}
+
+apply from: "publish-root.gradle"
+apply from: "publish-module.gradle"
+//apply from: 'publishLocal.gradle'
+ext {
+    enableCrashlytics = true
+}
+
+android {
+    compileSdkVersion 31
+
+    defaultConfig {
+        minSdkVersion 21
+        targetSdkVersion 31
+        versionCode 5
+        versionName "1.5"
+        vectorDrawables.useSupportLibrary = true
+        multiDexEnabled true
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+    }
+
+    dataBinding {
+        enabled = true
+    }
+
+    signingConfigs {
+        release {
+            storeFile file('keystore.jks')
+            storePassword KEYSTORE_PASSWORD
+            keyAlias KEYSTORE_ALIAS
+            keyPassword KEY_PASSWORD
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
+    }
+
+    packagingOptions {
+        exclude 'META-INF/autodispose.kotlin_module'
+    }
+}
+
+dependencies {
+
+    implementation 'androidx.appcompat:appcompat:1.3.1'
+    implementation 'com.google.android.material:material:1.4.0'
+    implementation 'androidx.constraintlayout:constraintlayout:2.1.2'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+    implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.3.1'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    /*testImplementation 'junit:junit:4.13.2'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.3'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'*/
+
+    //plaid link
+    implementation 'com.plaid.link:sdk-core:3.4.1'
+
+    //HTTP logging
+    implementation 'com.squareup.okhttp3:logging-interceptor:4.9.2'
+
+    //Retrofit
+    implementation 'io.reactivex.rxjava3:rxandroid:3.0.0'
+    implementation 'io.reactivex.rxjava3:rxjava:3.1.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava3:2.9.0'
+
+    implementation 'com.loopj.android:android-async-http:1.4.9'
+    implementation 'com.squareup.retrofit2:retrofit:2.9.0'
+    implementation 'com.squareup.retrofit2:converter-gson:2.8.0'
+    //implementation 'com.squareup.retrofit2:adapter-rxjava2:2.3.0'
+    //implementation "io.reactivex.rxjava3:rxjava:3.0.0-RC3"
+    //implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+
+    //Paging
+    def paging_version = "3.0.1"
+
+    implementation "androidx.paging:paging-runtime:$paging_version"
+    //RxJava3 support
+    implementation "androidx.paging:paging-rxjava3:$paging_version"
+    //Guava ListenableFuture support
+    implementation "androidx.paging:paging-guava:$paging_version"
+
+    // AutoDispose 2.x
+    def dispose_version = "2.1.0"
+    implementation "com.uber.autodispose2:autodispose-android:$dispose_version"
+    implementation "com.uber.autodispose2:autodispose-androidx-lifecycle:$dispose_version"
+
+   /* //dagger
+    annotationProcessor 'com.google.dagger:dagger-compiler:2.16'
+    implementation 'com.google.dagger:dagger:2.27'
+    implementation 'javax.inject:javax.inject:1'*/
+
+    //multidex
+    implementation 'com.android.support:multidex:1.0.3'
+
+    //paging
+    implementation 'android.arch.paging:runtime:1.0.1'
+    implementation 'android.arch.lifecycle:extensions:1.1.1'
+
+    // PubNub Android-Java SDK
+    //implementation group: 'com.pubnub', name: 'pubnub-gson', version: '4.36.0'
+
+    //Jumio
+    implementation "com.jumio.android:core:3.9.2@aar"       // Jumio Core library
+    implementation "com.jumio.android:nv:3.9.2@aar"         // Netverify library
+    implementation "com.jumio.android:nv-barcode:3.9.2@aar"   // Barcode scanning
+    implementation "com.jumio.android:nv-mrz:3.9.2@aar"       // MRZ scanning
+
+    //Firebase
+    //implementation platform('com.google.firebase:firebase-bom:28.4.0')
+    //compileOnly('com.google.firebase:firebase-dynamic-links:21.0.0')
+    // Import the BoM for the Firebase platform
+    implementation platform('com.google.firebase:firebase-bom:29.1.0')
+
+    // Declare the dependencies for the Dynamic Links and Analytics libraries
+    // When using the BoM, you don't specify versions in Firebase library dependencies
+    implementation 'com.google.firebase:firebase-dynamic-links'
+    implementation 'com.google.firebase:firebase-analytics'
+
+    //Shimmer progressbar
+    implementation 'com.facebook.shimmer:shimmer:0.5.0'
+
+    //story teller
+    def storyteller_version = "4.5.6"
+    implementation group: "Storyteller", name: "sdk", version: "$storyteller_version"
+
+    // Barcode model
+    /*implementation 'com.google.mlkit:barcode-scanning:17.0.0'
+    implementation("androidx.preference:preference:1.1.1")*/
+   // implementation "com.sagisudeveloper:mlbarcodescanner:2.0.0-local-debug"
+
+    //Picasso
+    implementation 'com.squareup.picasso:picasso:2.71828'
+    implementation 'com.squareup.okhttp3:okhttp:4.9.2'
+    implementation 'com.jakewharton.picasso:picasso2-okhttp3-downloader:1.1.0'
+
+    //MPAndroid chart
+    implementation 'com.github.PhilJay:MPAndroidChart:v3.1.0'
+
+}
