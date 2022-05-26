@@ -3,7 +3,10 @@ plugins {
     id 'com.google.gms.google-services'
    // id 'com.google.firebase.crashlytics'
 }
-apply from: 'publishLocal.gradle'
+
+apply from: "publish-root.gradle"
+apply from: "publish-module.gradle"
+//apply from: 'publishLocal.gradle'
 ext {
     enableCrashlytics = true
 }

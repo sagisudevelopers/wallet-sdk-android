@@ -54,9 +54,17 @@ public interface VaultApiInterface {
 
     @POST("auth/login")
     VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<LoginResponse>> login(@Query("phone") String phone,
-                                                          @Query("code") String code);
+                                                                               @Query("countryCode") String countryCode,
+                                                                               @Query("code") String code);
+
+    @FormUrlEncoded
+    @POST("auth/api-key/validate")
+    VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<LoginResponse>> validateApiKey(@Field("apiKey") String apiKey,
+                                                                                        @Field("apiSecret") String apiSecret);
+
     @POST("auth/totp/recover")
     VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<TOTP>> recoverTotp(@Query("phone") String phone,
+                                                                            @Query("countryCode") String countryCode,
                                                                             @Query("recoveryCode") String code);
 
     @POST("auth/signUp")
@@ -66,7 +74,7 @@ public interface VaultApiInterface {
     VaulrErrorHandlingAdapter.MyCall<LoginResponse> forgotPassword(@Body User user);
 
     @GET("auth/me")
-    VaulrErrorHandlingAdapter.MyCall<LoginResponse> getProfile(@Query("phone") String phone);
+    VaulrErrorHandlingAdapter.MyCall<LoginResponse> getProfile(@Query("phone") String phone,@Query("countryCode") String countryCode);
 
     @GET("auth")
     VaulrErrorHandlingAdapter.MyCall<LoginResponse> getProfile();
@@ -96,6 +104,7 @@ public interface VaultApiInterface {
     @FormUrlEncoded
     @POST("wallet/contact_transfer")
     VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<Transaction>> contactTransfer(@Field("contactNumber") String contactNumber,
+                                                                                       @Field("countryCode") String countryCode,
                                                                                        @Field("contactName") String contactName,
                                                                                        @Field("amount") Integer amount);
 
@@ -121,6 +130,7 @@ public interface VaultApiInterface {
 
     @GET("otps/validate")
     Call<VaultServerResponse<JsonObject>> validateOtp(@Query(value = "phone", encoded = true) String phone,
+                                                      @Query("countryCode") String countryCode,
                                                       @Query(value = "email", encoded = true) String email,
                                                       @Query(value = "otpNumber", encoded = true) String otpNumber,
                                                       @Query(value = "event", encoded = true) String event,
@@ -176,13 +186,13 @@ public interface VaultApiInterface {
 
 
     @POST("business")
-    VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<Business>> postBusiness(@Body Business business,@Query("markDefault") boolean markDefault );
+    VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<Business>> postBusiness(@Body Business business, @Query("markDefault") boolean markDefault);
 
     @GET("business")
-    Single<PaginationResponse<Business>> getBusiness(@Query("pageNo") Integer pageNo,@Query("query") String query);
+    Single<PaginationResponse<Business>> getBusiness(@Query("pageNo") Integer pageNo, @Query("query") String query);
 
     @POST("business/{businessId}/join")
-    VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<Business>> joinBusiness(@Path("businessId") String businessId,@Query("markDefault") boolean markDefault );
+    VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<Business>> joinBusiness(@Path("businessId") String businessId, @Query("markDefault") boolean markDefault);
 
     @GET("business/me")
     VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<List<MyBusinessVault>>> getMyBusiness();
@@ -201,8 +211,8 @@ public interface VaultApiInterface {
 
     @GET("business/{businessId}/requests")
     Single<PaginationResponse<BusinessRequest>> getAllBusinessRequests(@Path("businessId") String businessId,
-                                                                @Query("pageNo") Integer pageNo,
-                                                                @Query("query") String query);
+                                                                       @Query("pageNo") Integer pageNo,
+                                                                       @Query("query") String query);
 
 
 }

@@ -16,6 +16,7 @@ import com.sagisu.vaultLibrary.network.VaultResult;
 import com.sagisu.vaultLibrary.network.VaultServerResponse;
 import com.sagisu.vaultLibrary.repository.NetworkRepository;
 import com.sagisu.vaultLibrary.ui.OTP.Otp;
+import com.sagisu.vaultLibrary.utils.Util;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -139,7 +140,7 @@ public class DocumentVerificationViewModel extends ViewModel {
         if (kycBean.getOtpToken() == null || kycBean.getOtpToken().isEmpty()) return;
 
         VaultApiInterface api = VaultApiClient.buildRetrofitService();
-        Call<VaultServerResponse<JsonObject>> call = api.validateOtp(null, kycBean.getEmail(), kycBean.getOtpToken(), null, null);
+        Call<VaultServerResponse<JsonObject>> call = api.validateOtp(null, Util.phone_prefix, kycBean.getEmail(), kycBean.getOtpToken(), null, null);
         call.enqueue(new Callback<VaultServerResponse<JsonObject>>() {
             @Override
             public void onResponse(Call<VaultServerResponse<JsonObject>> call, Response<VaultServerResponse<JsonObject>> response) {

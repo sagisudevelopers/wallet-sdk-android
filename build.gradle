@@ -12,12 +12,15 @@ buildscript {
         classpath 'com.google.firebase:firebase-crashlytics-gradle:2.7.1'
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
+        classpath 'io.github.gradle-nexus:publish-plugin:1.1.0'
     }
 }
 
 plugins {
     id("io.github.gradle-nexus.publish-plugin") version "1.1.0"
 }
+
+apply plugin: 'io.github.gradle-nexus.publish-plugin'
 
 allprojects {
     repositories {

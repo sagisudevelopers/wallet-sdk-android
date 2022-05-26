@@ -67,14 +67,16 @@ public class TokenWatchlistsFragment extends Fragment {
         binding.tokenWatchlistsReceive.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (!mViewModel.coinSelected.getValue().isSupported()) {
+                if (mViewModel.coinMetrics.getValue().isSupported() || mViewModel.coinSelected.getValue().isSupported()) {
+                    Intent intent = new Intent(getActivity(), ReceiveCryptoActivity.class);
+                    intent.putExtra(SelectCoinsFragment.BUNDLE_TRADE_TYPE, Util.TradeTypes.RECEIVE);
+                    intent.putExtra(ReceiveCryptoActivity.BUNDLE_COIN_SELECTED, mViewModel.coinSelected.getValue());
+                    startActivity(intent);
+                }else {
                     Util.showSnackBar("Token is not supported");
                     return;
                 }
-                Intent intent = new Intent(getActivity(), ReceiveCryptoActivity.class);
-                intent.putExtra(SelectCoinsFragment.BUNDLE_TRADE_TYPE, Util.TradeTypes.RECEIVE);
-                intent.putExtra(ReceiveCryptoActivity.BUNDLE_COIN_SELECTED, mViewModel.coinSelected.getValue());
-                startActivity(intent);
+
             }
         });
 

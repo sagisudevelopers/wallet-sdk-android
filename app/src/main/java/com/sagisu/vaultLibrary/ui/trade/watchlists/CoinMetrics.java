@@ -12,6 +12,7 @@ public class CoinMetrics extends BaseObservable {
     MarketData market_data;
     MarketCap marketcap;
     Supply supply;
+    private boolean supported;
 
     @Bindable
     public MarketData getMarket_data() {
@@ -38,6 +39,15 @@ public class CoinMetrics extends BaseObservable {
 
     public void setSupply(Supply supply) {
         this.supply = supply;
+    }
+
+    @Bindable
+    public boolean isSupported() {
+        return supported;
+    }
+
+    public void setSupported(boolean supported) {
+        this.supported = supported;
     }
 
     public class OHCLV extends BaseObservable{

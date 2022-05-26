@@ -42,7 +42,6 @@ public class OtpView {
 
     public void generateOtp() {
         listener.loading("Generating OTP", true);
-        otpObj.setPhone(Util.phone_prefix+otpObj.getPhone());
         Call<VaultServerResponse<JsonObject>> call = api.generateOtp(otpObj);
         call.enqueue(new Callback<VaultServerResponse<JsonObject>>() {
             @Override
@@ -154,7 +153,7 @@ public class OtpView {
 
     public void verifyOtp(String otpNumber) {
         listener.loading("Verifying OTP", true);
-        Call<VaultServerResponse<JsonObject>> call = api.validateOtp(otpObj.getPhone(),null, otpNumber, otpObj.getEvent(), otpObj.getActorType());
+        Call<VaultServerResponse<JsonObject>> call = api.validateOtp(otpObj.getPhone(),Util.phone_prefix,null, otpNumber, otpObj.getEvent(), otpObj.getActorType());
         call.enqueue(new Callback<VaultServerResponse<JsonObject>>() {
             @Override
             public void onResponse(Call<VaultServerResponse<JsonObject>> call, Response<VaultServerResponse<JsonObject>> response) {

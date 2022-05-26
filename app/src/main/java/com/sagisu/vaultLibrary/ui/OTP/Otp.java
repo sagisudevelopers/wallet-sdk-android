@@ -1,10 +1,12 @@
 package com.sagisu.vaultLibrary.ui.OTP;
 
+import com.sagisu.vaultLibrary.utils.Util;
+
 public class Otp {
     private String phone;
     private String name = "User";
     private String event;
-    private String countryCode = "+91";
+    private String countryCode = Util.phone_prefix;
     private String actorType;
     private String email;
 

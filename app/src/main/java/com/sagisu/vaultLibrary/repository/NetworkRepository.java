@@ -131,10 +131,9 @@ public class NetworkRepository {
     }*/
 
     public MutableLiveData<VaultResult<LoginResponse>> login(String phone, String code) {
-        phone = Util.phone_prefix + phone;
         MutableLiveData<VaultResult<LoginResponse>> userRes = new MutableLiveData<>();
         //VaulrErrorHandlingAdapter.MyCall<LoginResponse> call = api.login(user);
-        VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<LoginResponse>> call = api.login(phone, code);
+        VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<LoginResponse>> call = api.login(phone,Util.phone_prefix, code);
         call.enqueue(new VaulrErrorHandlingAdapter.MyCallback<VaultServerResponse<LoginResponse>>() {
             @Override
             public void success(Response<VaultServerResponse<LoginResponse>> response) {
@@ -176,12 +175,6 @@ public class NetworkRepository {
     }
 
     public MutableLiveData<VaultResult<LoginResponse>> signUp(User user) {
-        try {
-            user = (User) user.clone();
-        } catch (CloneNotSupportedException e) {
-            e.printStackTrace();
-        }
-        user.setPhone(Util.phone_prefix + user.getPhone());
         MutableLiveData<VaultResult<LoginResponse>> userRes = new MutableLiveData<>();
         VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<LoginResponse>> call = api.signUp(user);
         call.enqueue(new VaulrErrorHandlingAdapter.MyCallback<VaultServerResponse<LoginResponse>>() {
@@ -190,7 +183,8 @@ public class NetworkRepository {
                 if (response.isSuccessful()) {
                     if (response.body().isSuccess())
                         userRes.postValue(new VaultResult.Success<>(response.body().getData()));
-                    else  userRes.postValue(new VaultResult.Error(new VaultAPIError(response.body().getMessage(),response.code())));
+                    else
+                        userRes.postValue(new VaultResult.Error(new VaultAPIError(response.body().getMessage(), response.code())));
                 } else {
                     userRes.postValue(new VaultResult.Error(response.errorBody()));
                 }
@@ -220,6 +214,51 @@ public class NetworkRepository {
         });*/
         return userRes;
     }
+
+    public MutableLiveData<VaultResult<LoginResponse>> validateApiKey(String apiKey) {
+        MutableLiveData<VaultResult<LoginResponse>> userRes = new MutableLiveData<>();
+        //VaulrErrorHandlingAdapter.MyCall<LoginResponse> call = api.login(user);
+        VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<LoginResponse>> call = api.validateApiKey(apiKey,"");
+        call.enqueue(new VaulrErrorHandlingAdapter.MyCallback<VaultServerResponse<LoginResponse>>() {
+            @Override
+            public void success(Response<VaultServerResponse<LoginResponse>> response) {
+                if (response.isSuccessful()) {
+                    if (response.body().isSuccess())
+                        userRes.postValue(new VaultResult.Success<>(response.body().getData(), response.body().getMessage()));
+                    else
+                        userRes.postValue(new VaultResult.Error(new VaultAPIError(response.body().getMessage(), response.code())));
+                } else {
+                    userRes.postValue(new VaultResult.Error(response.errorBody()));
+                    // userRes.postValue(new Result.Error(new APIError(response.errorBody().toString(), response.code())));
+                }
+            }
+
+            @Override
+            public void clientError(Response<?> response) {
+                userRes.postValue(new VaultResult.Error(response.errorBody()));
+            }
+        });
+        /*call.enqueue(new M<LoginResponse>() {
+            @Override
+            public void onResponse(Call<LoginResponse> call, Response<LoginResponse> response) {
+                if (response.isSuccessful()) {
+                    userRes.postValue(new Result.Success<>(response.body()));
+                } else {
+                    userRes.postValue(new Result.Error(response.errorBody()));
+                   // userRes.postValue(new Result.Error(new APIError(response.errorBody().toString(), response.code())));
+                }
+            }
+
+            @Override
+            public void onFailure(Call<LoginResponse> call, Throwable t) {
+                t.printStackTrace();
+                if (t instanceof HttpException)
+                    userRes.postValue(new Result.Error((HttpException) t));
+            }
+        });*/
+        return userRes;
+    }
+
 
     public MutableLiveData<VaultResult<LoginResponse>> forgotPassword(User user) {
         try {
@@ -267,9 +306,8 @@ public class NetworkRepository {
 
 
     public MutableLiveData<VaultResult<LoginResponse>> getProfile(String phone) {
-        phone = Util.phone_prefix + phone;
         MutableLiveData<VaultResult<LoginResponse>> userRes = new MutableLiveData<>();
-        VaulrErrorHandlingAdapter.MyCall<LoginResponse> call = api.getProfile(phone);
+        VaulrErrorHandlingAdapter.MyCall<LoginResponse> call = api.getProfile(phone,Util.phone_prefix);
         call.enqueue(new VaulrErrorHandlingAdapter.MyCallback<LoginResponse>() {
             @Override
             public void success(Response<LoginResponse> response) {
@@ -516,7 +554,7 @@ public class NetworkRepository {
 
     public MutableLiveData<VaultResult<Transaction>> contactTransfer(ContactsInfo contactsInfo, Integer amount) {
         MutableLiveData<VaultResult<Transaction>> resResponse = new MutableLiveData<>();
-        VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<Transaction>> call = api.contactTransfer(contactsInfo.getPhoneNumber(), contactsInfo.getDisplayName(), amount);
+        VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<Transaction>> call = api.contactTransfer(contactsInfo.getPhoneNumber(),Util.phone_prefix, contactsInfo.getDisplayName(), amount);
         call.enqueue(new VaulrErrorHandlingAdapter.MyCallback<VaultServerResponse<Transaction>>() {
             @Override
             public void success(Response<VaultServerResponse<Transaction>> response) {
@@ -1115,10 +1153,9 @@ public class NetworkRepository {
 
 
     public MutableLiveData<VaultResult<TOTP>> recoverTotp(String phone, String code) {
-        phone = Util.phone_prefix + phone;
         MutableLiveData<VaultResult<TOTP>> userRes = new MutableLiveData<>();
         //VaulrErrorHandlingAdapter.MyCall<LoginResponse> call = api.login(user);
-        VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<TOTP>> call = api.recoverTotp(phone, code);
+        VaulrErrorHandlingAdapter.MyCall<VaultServerResponse<TOTP>> call = api.recoverTotp(phone, Util.phone_prefix, code);
         call.enqueue(new VaulrErrorHandlingAdapter.MyCallback<VaultServerResponse<TOTP>>() {
             @Override
             public void success(Response<VaultServerResponse<TOTP>> response) {
