@@ -36,7 +36,7 @@ public class VaultApiClient {
     private static Retrofit retrofit;
 
     public static VaultApiInterface buildRetrofitService() {
-        URL = LOCAL_NGROK + "/v1/";
+        URL = PROD_URL + "/v1/";
         return buildService();
     }
 
