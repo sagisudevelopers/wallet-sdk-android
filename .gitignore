@@ -50,3 +50,6 @@ Thumbs.db
 
 *.bin
 .gradle/
+
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
