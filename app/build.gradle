@@ -11,6 +11,11 @@ ext {
     enableCrashlytics = true
 }
 
+// works with every Gradle version
+task wrapper(type: Wrapper) {
+    gradleVersion = '7.0.2'
+}
+
 android {
     compileSdkVersion 31
 
