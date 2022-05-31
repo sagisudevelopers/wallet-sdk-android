@@ -23,7 +23,7 @@ jobs:
 
         # Builds the release artifacts of the library
       - name: Release build
-        run: ./gradlew :wallet-sdk-android:assembleRelease
+        run: ./gradlew assembleRelease
 
         # Generates other artifacts (javadocJar is optional)
       - name: Source jar and dokka
