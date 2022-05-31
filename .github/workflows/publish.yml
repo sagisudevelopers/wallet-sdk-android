@@ -17,6 +17,9 @@ jobs:
         with:
           distribution: adopt
           java-version: 11
+          
+      - name: Make gradlew executable
+        run: chmod +x ./gradlew
 
         # Builds the release artifacts of the library
       - name: Release build
